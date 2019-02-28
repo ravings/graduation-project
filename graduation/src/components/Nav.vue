@@ -8,7 +8,7 @@
        </nav>
     </div>
     <!-- 下拉隐藏栏 -->
-    <transition>
+    <!-- <transition>
         <div class="div_hide" id="div_hide">
             <ul class="div_hide_product">
                 <transition-group>
@@ -25,7 +25,7 @@
                 </transition-group>
             </ul>
         </div>
-    </transition>
+    </transition> -->
   </div>
 </template>
 

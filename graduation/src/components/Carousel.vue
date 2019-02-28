@@ -1,8 +1,10 @@
 <template>
   <div class="div">
-    <el-carousel type="card" height="360px">
+    <el-carousel type="" height="360px">
       <el-carousel-item v-for="item in imgs" :key="item.id">
-        <img :src="item.src" alt="">
+        <router-link :to="item.url">
+            <img :src="item.src" alt="">
+        </router-link>
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -14,22 +16,16 @@ export default {
   data () {
     return {
         imgs: [{
-            src: require('../assets/00.png')
+            src: require('../assets/10.png'),
+            url: ''
         },
         {
-            src: require('../assets/01.png')
+            src: require('../assets/11.png'),
+            url: ''
         },
         {
-            src: require('../assets/02.png')
-        },
-        {
-            src: require('../assets/03.png')
-        },
-        {
-            src: require('../assets/04.png')
-        },
-        {
-            src: require('../assets/05.png')
+            src: require('../assets/12.png'),
+            url: ''
         }]
     };
   }
