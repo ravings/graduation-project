@@ -49,7 +49,7 @@ export default{
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 .div_show{
-    width: 1366px;
+    // width: 1366px;
     height: 70px;
     margin: 0 auto;
     position: relative;
@@ -75,7 +75,7 @@ export default{
     color: #ff5719;
 }
 .div_hide{
-    width: 1366px;
+    // width: 1366px;
     height: 165px;
     margin: 0 auto;
     // position: relative;

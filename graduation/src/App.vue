@@ -1,28 +1,21 @@
 <template>
   <div id="app">
       <Nav></Nav>
+      <Carousel></Carousel>
     <!-- <router-view /> -->
   </div>
 </template>
 
 <script>
 import Nav from './components/Nav.vue'
+import Carousel from './components/Carousel.vue'
 export default {
     name: 'App',
     components: {
-        'Nav': Nav
+        'Nav': Nav,
+        'Carousel': Carousel
     },
     methods: {
-        // show() {
-        //     let str = document.getElementById('div_hide');
-        //     str.style.display = 'block';
-        //     str.style.transform = 'translate(0,165px)';
-        //     str.style.transition = 'all 0.3s ease-in-out';
-        // },
-        // change() {
-        //     let s = document.getElementById('div_nav_router');
-        //     s.style.color = 'blue';
-        // }
     }
 }
 </script>
