@@ -35,7 +35,7 @@ export default{
   data () {
     return {
       show: false,
-      list: ['首页', '关于我们', '公司产品', '人才招聘', '联系我们'],
+      list: ['首页', '关于我们', '产品中心', '人才招聘', '联系我们'],
       hide_list_product: ['产品一号', '产品二号', '产品三号', '产品四号'],
       hide_list_recruit: ['社会招聘', '校园招聘']
     }

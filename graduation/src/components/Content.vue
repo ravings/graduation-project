@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="about_us">
-            <el-row :gutter="20">
+            <el-row :gutter="50">
                 <el-col :span="6">
                     <div class="about_us_title">
                         <h2>ABOUT US</h2>
@@ -43,14 +43,19 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.el-row{
-    &:last-child{
-        margin-bottom: 0px;
-    }
+.about_us{
+    // padding-left: 15px;
+    // padding-right: 15px;
+    margin-left: 25px;
+    margin-right: 25px;
 }
-.about_us div{
+.el-col-6{
     height: 350px;
     font-family: Arial, 微软雅黑;
+    border-left: 1px solid rgba(20, 24, 38, 0.1);
+    &:first-child{
+        border: none;
+    }
 }
 .about_us .about_us_title{
     color: #dd4012;
@@ -60,17 +65,20 @@ export default {
     }
 }
 .about_us .about_us_title_one, .about_us_title_two, .about_us_title_three{
+    margin-top: 112px;
     h3{
-        margin-top: 112px;
+        min-height: 75px;
+        margin-bottom: 40px;
     }
     a{
         display: block;
         text-align: center;
         text-decoration: none;
         width: 160px;
+        height: 43px;
         background-color: #000;
         color: #fff;
-        position: absolute;
+        // position: absolute;
         bottom: 80px;
         line-height: 43px;
     }
