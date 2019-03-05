@@ -3,6 +3,7 @@
       <Nav></Nav>
       <Carousel></Carousel>
       <Content></Content>
+      <Footer></Footer>
     <!-- <router-view /> -->
   </div>
 </template>
@@ -11,12 +12,14 @@
 import Nav from './components/Nav.vue'
 import Carousel from './components/Carousel.vue'
 import Content from './components/Content.vue'
+import Footer from './components/Footer.vue'
 export default {
     name: 'App',
     components: {
         'Nav': Nav,
         'Carousel': Carousel,
-        'Content': Content
+        'Content': Content,
+        'Footer': Footer
     },
     methods: {
     }

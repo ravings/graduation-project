@@ -4,28 +4,28 @@
     <div class="div_show">
       <img class="div_img" src="" alt="">
       <nav class="div_nav">
-            <router-link class="div_nav_router" id="div_nav_router" v-for="item in list" :key="item.id" @mouseover.native="show = !show" to="">{{ item }}</router-link>
+            <router-link class="div_nav_router" id="div_nav_router" v-for="item in list" :key="item" @mouseover.native="show = !show" to="">{{ item }}</router-link>
        </nav>
     </div>
     <!-- 下拉隐藏栏 -->
-    <!-- <transition>
-        <div class="div_hide" id="div_hide">
+    <transition>
+        <div class="div_hide" v-if="show">
             <ul class="div_hide_product">
                 <transition-group>
-                    <li v-for="product in hide_list_product" :key="product.id">
+                    <li v-for="product in hide_list_product" :key="index">
                         <router-link to="">{{ product }}</router-link>
                     </li>
                 </transition-group>
             </ul>
             <ul class="div_hide_recruit">
                 <transition-group>
-                    <li v-for="recruit in hide_list_recruit" :key="recruit.id">
+                    <li v-for="recruit in hide_list_recruit" :key="index">
                         <router-link to="">{{ recruit }}</router-link>
                     </li>
                 </transition-group>
             </ul>
         </div>
-    </transition> -->
+    </transition>
   </div>
 </template>
 
@@ -34,7 +34,7 @@ export default{
   name: 'Nav',
   data () {
     return {
-      show: false,
+      show: true,
       list: ['首页', '关于我们', '产品中心', '人才招聘', '联系我们'],
       hide_list_product: ['产品一号', '产品二号', '产品三号', '产品四号'],
       hide_list_recruit: ['社会招聘', '校园招聘']
@@ -79,8 +79,8 @@ export default{
     height: 165px;
     margin: 0 auto;
     // position: relative;
-    // background-color: #141826;
-    // opacity: 0.75;
+    background-color: #141826;
+    opacity: 0.75;
     z-index: 100;
     border: 1px solid #000;
     ul{
@@ -93,16 +93,21 @@ export default{
     }
 }
 .div_hide_product{
-    // position: relative;
-    // float: right;
-    border: 1px solid #000;
-    // right: 283px;
+    position: relative;
+    float: right;
+    // border: 1px solid #000;
+    right: 283px;
 }
 .div_hide_recruit{
-    border: 1px solid #000;
-    // position: relative;
-    // float: right;
-    // right: 8px;
+    // border: 1px solid #000;
+    position: relative;
+    float: right;
+    right: 8px;
 
 }
+// .v-enter{
+// }
+// .v-enter-active{
+//     // transition: all 0.3s ease-in-out;
+// }
 </style>
