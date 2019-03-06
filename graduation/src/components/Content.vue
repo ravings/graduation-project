@@ -99,8 +99,8 @@ export default {
 
 <style lang="less" scoped>
 .about_us, .news{
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     // border: 1px solid #000;
     // margin-left: 25px;
     // margin-right: 25px;
@@ -117,6 +117,7 @@ export default {
 }
 .news{
         background-color: rgba(221, 64, 18, 1);
+        overflow: hidden;
     .el-row{
         // background: url('../assets/nimg1920_1bg.png') no-repeat;
         // background-size: cover;

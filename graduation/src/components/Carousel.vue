@@ -1,7 +1,7 @@
 <template>
   <div class="div">
     <el-carousel type="" height="360px">
-      <el-carousel-item v-for="item in imgs" :key="index">
+      <el-carousel-item v-for="(item, index) in imgs" :key="index">
         <router-link :to="item.url">
             <img :src="item.src" alt="">
         </router-link>

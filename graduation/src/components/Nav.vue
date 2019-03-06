@@ -4,28 +4,28 @@
     <div class="div_show">
       <img class="div_img" src="" alt="">
       <nav class="div_nav">
-            <router-link class="div_nav_router" id="div_nav_router" v-for="item in list" :key="item" @mouseover.native="show = !show" to="">{{ item }}</router-link>
+            <router-link class="div_nav_router" id="div_nav_router" v-for="(item, index) in list" :key="index" @mouseover.native="show = !show" to="">{{ item }}</router-link>
        </nav>
     </div>
     <!-- 下拉隐藏栏 -->
-    <transition>
+    <!-- <transition> -->
         <div class="div_hide" v-if="show">
             <ul class="div_hide_product">
-                <transition-group>
-                    <li v-for="product in hide_list_product" :key="index">
+                <transition-group tag="div">
+                    <li v-for="(product, index) in hide_list_product" :key="product">
                         <router-link to="">{{ product }}</router-link>
                     </li>
                 </transition-group>
             </ul>
             <ul class="div_hide_recruit">
-                <transition-group>
-                    <li v-for="recruit in hide_list_recruit" :key="index">
+                <transition-group tag="div">
+                    <li v-for="(recruit, index) in hide_list_recruit" :key="recruit">
                         <router-link to="">{{ recruit }}</router-link>
                     </li>
                 </transition-group>
             </ul>
         </div>
-    </transition>
+    <!-- </transition> -->
   </div>
 </template>
 
@@ -105,9 +105,11 @@ export default{
     right: 8px;
 
 }
-// .v-enter{
-// }
-// .v-enter-active{
-//     // transition: all 0.3s ease-in-out;
-// }
+.v-enter{
+    height: 0px;
+}
+.v-enter-active{
+    transition: all 0.3s ease-in-out;
+    height: 165px;
+}
 </style>
