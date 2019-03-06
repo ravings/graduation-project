@@ -11,16 +11,17 @@
             </div>
         </div>
         <div class="foot_right">
-            <ul>
-                <li><a href="">关于我们</a></li>
-                <li><a href="">产品中心</a></li>
-                <li><a href="">人才招聘</a>
-                    <ul>
-                        <li><a href="">社会招聘</a></li>
-                        <li><a href="">校园招聘</a></li>
-                    </ul>
+            <ul class="ul">
+                <li><h3><a href="">关于我们</a></h3></li>
+                <li><h3><a href="">新闻资讯</a></h3></li>
+                <li><h3><a href="">产品中心</a></h3></li>
+                <li><h3><a href="">人才招聘</a></h3>
+                    <dl>
+                        <dd><a href="">社会招聘</a></dd>
+                        <dd><a href="">校园招聘</a></dd>
+                    </dl>
                 </li>
-                <li><a href="">联系我们</a></li>
+                <li><h3><a href="">联系我们</a></h3></li>
             </ul>
         </div>
     </div>
@@ -39,6 +40,7 @@
     border: 1px solid #000;
     margin-top: 60px;
     margin-left: 80px;
+    margin-right: 80px;
 }
 .address{
     margin-top: 20px;
@@ -47,6 +49,29 @@
         padding: 10px 0;
         span{
             padding-left: 10px;
+        }
+    }
+}
+.foot_right{
+    margin-top: 50px;
+    margin-left: 50px;
+    ul{
+        display: flex;
+        flex-direction: row;
+        li{
+            h3{
+                font-size: 24px;
+                padding: 15px 0;
+                border-bottom: 1px solid #000;
+            }
+            a{
+                text-decoration: none;
+                // color: #fff;
+            }
+            list-style: none;
+    border: 1px solid #000;
+            // font-size: 18px;
+            padding: 0 25px;
         }
     }
 }
