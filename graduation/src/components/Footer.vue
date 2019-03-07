@@ -12,17 +12,39 @@
         </div>
         <div class="foot_right">
             <ul class="ul">
-                <li><h3><a href="">关于我们</a></h3></li>
-                <li><h3><a href="">新闻资讯</a></h3></li>
-                <li><h3><a href="">产品中心</a></h3></li>
-                <li><h3><a href="">人才招聘</a></h3>
+                <li><h3><a href="">关于我们</a></h3>
                     <dl>
+                        <dd><a href="">企业简介</a></dd>
+                        <dd><a href="">企业文化</a></dd>
+                        <dd><a href="">联系我们</a></dd>
+                    </dl>
+                </li>
+                <li><h3><a href="">新闻资讯</a></h3>
+                    <dl>
+                        <dd><a href="">公司新闻</a></dd>
+                        <dd><a href="">行业动态</a></dd>
+                    </dl>
+                </li>
+                <li><h3><a href="">产品中心</a></h3>
+                    <dl>
+                        <dd><a href="">产品一号</a></dd>
+                        <dd><a href="">产品二号</a></dd>
+                        <dd><a href="">产品三号</a></dd>
+                        <dd><a href="">产品四号</a></dd>
+                    </dl>
+                </li>
+                <li><h3><a href="">加入我们</a></h3>
+                    <dl>
+                        <dd><a href="">员工成长</a></dd>
                         <dd><a href="">社会招聘</a></dd>
                         <dd><a href="">校园招聘</a></dd>
                     </dl>
                 </li>
-                <li><h3><a href="">联系我们</a></h3></li>
             </ul>
+            <div class="img">
+                <img src="../assets/Qrcode_one.png" alt="">
+                <p>微信公众号</p>
+            </div>
         </div>
     </div>
 </template>
@@ -32,44 +54,60 @@
     border: 1px solid #000;
     display: flex;
     flex-direction: row;
+    padding: 40px 0;
+    background-color: rgba(221, 64, 18, 1);
+    color: #fff;
 }
 // .logo{
 //     margin: 20px 0;
 // }
 .foot_left{
-    border: 1px solid #000;
-    margin-top: 60px;
+    // border: 1px solid #000;
+    margin-top: 30px;
     margin-left: 80px;
     margin-right: 80px;
-}
-.address{
-    margin-top: 20px;
-    i{
-        display: block;
-        padding: 10px 0;
-        span{
-            padding-left: 10px;
+    .address{
+        margin-top: 20px;
+        i{
+            display: block;
+            padding: 10px 0;
+            span{
+                padding-left: 10px;
+            }
         }
     }
 }
 .foot_right{
-    margin-top: 50px;
-    margin-left: 50px;
-    ul{
+    margin-top: 20px;
+    // margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .img{
+        text-align: center;
+    }
+    .ul{
         display: flex;
         flex-direction: row;
+        margin-right: 30px;
         li{
+            dl{
+                margin-top: 10px;
+                dd{
+                    padding: 8px;
+                }
+            }
             h3{
                 font-size: 24px;
                 padding: 15px 0;
-                border-bottom: 1px solid #000;
+                border-bottom: 1px solid #fff;
             }
             a{
                 text-decoration: none;
-                // color: #fff;
+                color: #fff;
             }
             list-style: none;
-    border: 1px solid #000;
+            // border: 1px solid #000;
             // font-size: 18px;
             padding: 0 25px;
         }
