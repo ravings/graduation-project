@@ -1,11 +1,11 @@
 <template>
   <div id="app">
       <Nav></Nav>
-      <Carousel></Carousel>
-      <Content></Content>
-      <!-- <div style="height: 100px;"></div> -->
+      <!-- <Carousel></Carousel> -->
+      <!-- <Content></Content> -->
+      <!-- <AboutUs></AboutUs> -->
+      <router-view/>
       <Footer></Footer>
-    <!-- <router-view /> -->
   </div>
 </template>
 
@@ -14,13 +14,15 @@ import Nav from './components/Nav.vue'
 import Carousel from './components/Carousel.vue'
 import Content from './components/Content.vue'
 import Footer from './components/Footer.vue'
+import AboutUs from './components/About_us.vue'
 export default {
     name: 'App',
     components: {
         'Nav': Nav,
         'Carousel': Carousel,
         'Content': Content,
-        'Footer': Footer
+        'Footer': Footer,
+        'AboutUs': AboutUs
     },
     methods: {
     }

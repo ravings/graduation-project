@@ -4,7 +4,7 @@
     <div class="div_show">
       <img class="div_img" src="" alt="">
       <nav class="div_nav">
-            <router-link class="div_nav_router" id="div_nav_router" v-for="(item, index) in list" :key="index" @mouseover.native="show = !show" to="">{{ item }}</router-link>
+            <router-link class="div_nav_router" id="div_nav_router" v-for="(item, index) in list" :key="index" @mouseover.native="show = !show" :to="item.url">{{ item.name }}</router-link>
        </nav>
     </div>
     <!-- 下拉隐藏栏 -->
@@ -12,14 +12,14 @@
         <div class="div_hide" v-if="show">
             <ul class="div_hide_product">
                 <transition-group tag="div">
-                    <li v-for="(product, index) in hide_list_product" :key="product">
+                    <li v-for="product in hide_list_product" :key="product">
                         <router-link to="">{{ product }}</router-link>
                     </li>
                 </transition-group>
             </ul>
             <ul class="div_hide_recruit">
                 <transition-group tag="div">
-                    <li v-for="(recruit, index) in hide_list_recruit" :key="recruit">
+                    <li v-for="recruit in hide_list_recruit" :key="recruit">
                         <router-link to="">{{ recruit }}</router-link>
                     </li>
                 </transition-group>
@@ -34,8 +34,28 @@ export default{
   name: 'Nav',
   data () {
     return {
-      show: true,
-      list: ['首页', '关于我们', '产品中心', '人才招聘', '联系我们'],
+    //   show: false,
+      list: [
+          {
+              name: '首页',
+              url: '/'
+        },
+        {
+            name: '关于我们',
+            url: '/AboutUs'
+        },
+        {
+            name: '产品中心',
+            url: ''
+        },
+        {
+            name: '人才招聘',
+            url: ''
+        },
+        {
+            name: '联系我们',
+            url: ''
+        }],
       hide_list_product: ['产品一号', '产品二号', '产品三号', '产品四号'],
       hide_list_recruit: ['社会招聘', '校园招聘']
     }
@@ -63,6 +83,11 @@ export default{
     position: absolute;
     font-size: 18px;
     right: 30px;
+
+}
+a{
+    text-decoration: none;
+    color: #fff;
 }
 .div_nav_router{
     margin-right: 50px;

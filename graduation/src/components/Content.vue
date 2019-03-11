@@ -1,5 +1,14 @@
 <template>
     <div>
+        <div class="div">
+            <el-carousel type="" height="360px">
+            <el-carousel-item v-for="(item, index) in imgs" :key="index">
+                <router-link :to="item.url">
+                    <img :src="item.src" alt="" style="height: 100%; width: 100%;">
+                </router-link>
+            </el-carousel-item>
+            </el-carousel>
+        </div>
         <div class="about_us">
             <el-row :gutter="50">
                 <el-col :span="6">
@@ -11,13 +20,13 @@
                 <el-col :span="6">
                     <div class="about_us_title_one">
                         <h3>公司围绕通信、智慧城市业务板块，成为一流的运营商服务提供商和一流的智慧城市建设运营商</h3>
-                        <a href="">企业概况</a>
+                        <a href="/AboutUs/about">企业概况</a>
                     </div>
                 </el-col>
                 <el-col :span="6">
                     <div class="about_us_title_two">
                         <h3>公司成立于xxxx年，坐落在国家软件产业基地</h3>
-                        <a href="">发展历程</a>
+                        <a href="/AboutUs/history">发展历程</a>
                     </div>
                 </el-col>
                 <el-col :span="6">
@@ -80,6 +89,28 @@
                 </el-col>
             </el-row>
         </div>
+        <div class="product">
+            <el-row :gutter="50">
+                <el-col :span="6">
+                    <div class="product_title">
+                        <h2>PRODUCT CENTER</h2>
+                        <p>产品中心</p>
+                    </div>
+                </el-col>
+                <el-col :span="9">
+                    <div class="product_one">
+                        <img src="../assets/city_logo_1.png" alt="">
+                        <div>
+                            <h3><a href="">智慧城市</a></h3>
+                            <p>围绕“改变城市管理现状，全面提升城市效率”的宗旨，致力成为国内智慧城市领域一流的产品和综合解决方案提供商</p>
+                        </div>
+                    </div>
+                </el-col>
+                <el-col :span="9">
+                    <div class="product_two"></div>
+                </el-col>
+            </el-row>
+        </div>
     </div>
 </template>
 
@@ -91,14 +122,26 @@ export default {
             news_imgs:{
                 src: require('../assets/03.png'),
                 url: ''
-            }
+            },
+            imgs: [{
+                src: require('../assets/10.png'),
+                url: ''
+            },
+            {
+                src: require('../assets/11.png'),
+                url: ''
+            },
+            {
+                src: require('../assets/12.png'),
+                url: ''
+            }]
         }
     }
 }
 </script>
 
 <style lang="less" scoped>
-.about_us, .news{
+.about_us, .news, .product{
     padding-left: 25px;
     padding-right: 25px;
     // border: 1px solid #000;
@@ -130,7 +173,7 @@ export default {
         }
     }
 }
-.about_us_title{
+.about_us_title, .product_title{
     color: #dd4012;
     font-size: 36px;
     h2{
@@ -212,4 +255,33 @@ export default {
         }
     }
 }
+.product{
+    .el-col-9{
+        border-left: 1px solid rgba(20, 24, 38, 0.1);
+        &:first-child{
+            border: none;
+        }
+    }
+}
+.product_one, .product_two{
+    height: 350px;
+    display: flex;
+    align-items: center;
+    div{
+        margin-left: 20px;
+        margin-top: -60px;
+        h3{
+            padding: 20px 0;
+            font-size: 26px;
+            a{
+                text-decoration: none;
+                color: #000;
+                &:hover{
+                    color: #dd4012;
+                }
+            }
+        }
+    }
+}
+
 </style>

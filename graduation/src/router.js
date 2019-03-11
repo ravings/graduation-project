@@ -1,7 +1,9 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
-// import Nav from "./components/Nav.vue"
+// import Home from "./views/Home.vue";
+import AboutUs from "./components/About_us.vue"
+import Content from "./components/Content.vue"
+import about from "./components/about.vue"
 
 Vue.use(Router);
 
@@ -11,8 +13,8 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: Home
+      name: "Content",
+      component: Content
     },
     {
       path: "/about",
@@ -22,11 +24,28 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () =>
         import(/* webpackChunkName: "about" */ "./views/About.vue")
+    },
+    {
+        path: "/AboutUs",
+        name: "AboutUs",
+        component: AboutUs,
+        children: [
+            {
+                path: "about",
+                name: "about",
+                component: about
+            },
+            {
+                path: "history",
+                name: "history",
+                component: history
+            }
+        ]
     }
     // {
-    //     path: "/nav",
-    //     name: "nav",
-    //     component: Nav
+    //     path: "/Content",
+    //     name: "Content",
+    //     component: Content
     // }
   ]
 });

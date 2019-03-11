@@ -51,7 +51,7 @@
 
 <style lang="less" scoped>
 .footer{
-    border: 1px solid #000;
+    // border: 1px solid #000;
     display: flex;
     flex-direction: row;
     padding: 40px 0;
