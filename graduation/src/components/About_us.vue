@@ -24,7 +24,7 @@
                             <span>品牌文化</span>
                         </template>
                         <!-- <el-menu-item-group> -->
-                        <el-menu-item index="2-1">企业文化</el-menu-item>
+                        <el-menu-item index="/AboutUs/culture">企业文化</el-menu-item>
                         <el-menu-item index="2-2">企业活动</el-menu-item>
                         <!-- </el-menu-item-group> -->
                     </el-submenu>
@@ -91,7 +91,7 @@ export default {
         margin-top: 30px;
         margin-left: 40px;
         padding: 20px;
-        border: 1px solid #000;
+        // border: 1px solid #000;
         // height: 200px;
     }
 }

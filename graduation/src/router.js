@@ -5,6 +5,7 @@ import AboutUs from "./components/About_us.vue"
 import Content from "./components/Content.vue"
 import about from "./components/about.vue"
 import history from "./components/history.vue"
+import culture from "./components/culture.vue"
 
 Vue.use(Router);
 
@@ -40,6 +41,11 @@ export default new Router({
                 path: "history",
                 name: "AUhistory",
                 component: history
+            },
+            {
+                path: "culture",
+                name: "AUculture",
+                component: culture
             }
         ]
     }

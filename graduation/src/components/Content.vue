@@ -32,7 +32,7 @@
                 <el-col :span="6">
                     <div class="about_us_title_three">
                         <h3>超越客户期望，成就客户价值</h3>
-                        <a href="">企业文化</a>
+                        <a href="/AboutUs/culture">企业文化</a>
                     </div>
                 </el-col>
             </el-row>

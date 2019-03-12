@@ -42,7 +42,7 @@ export default{
         },
         {
             name: '关于我们',
-            url: '/AboutUs'
+            url: '/AboutUs/about'
         },
         {
             name: '产品中心',
