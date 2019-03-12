@@ -16,7 +16,7 @@
                         </template>
                         <!-- <el-menu-item-group> -->
                         <el-menu-item index="/AboutUs/about">公司概括</el-menu-item>
-                        <el-menu-item index="1-2">发展历程</el-menu-item>
+                        <el-menu-item index="/AboutUs/history">发展历程</el-menu-item>
                         <!-- </el-menu-item-group> -->
                     </el-submenu>
                     <el-submenu index="2">

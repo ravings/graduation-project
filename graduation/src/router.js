@@ -4,6 +4,7 @@ import Router from "vue-router";
 import AboutUs from "./components/About_us.vue"
 import Content from "./components/Content.vue"
 import about from "./components/about.vue"
+import history from "./components/history.vue"
 
 Vue.use(Router);
 
@@ -32,12 +33,12 @@ export default new Router({
         children: [
             {
                 path: "about",
-                name: "about",
+                name: "AUabout",
                 component: about
             },
             {
                 path: "history",
-                name: "history",
+                name: "AUhistory",
                 component: history
             }
         ]
