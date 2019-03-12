@@ -25,7 +25,7 @@
                         </template>
                         <!-- <el-menu-item-group> -->
                         <el-menu-item index="/AboutUs/culture">企业文化</el-menu-item>
-                        <el-menu-item index="2-2">企业活动</el-menu-item>
+                        <el-menu-item index="/AboutUs/activity">企业活动</el-menu-item>
                         <!-- </el-menu-item-group> -->
                     </el-submenu>
                     <el-menu-item class="el-submenu">

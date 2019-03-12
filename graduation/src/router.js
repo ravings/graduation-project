@@ -6,6 +6,7 @@ import Content from "./components/Content.vue"
 import about from "./components/about.vue"
 import history from "./components/history.vue"
 import culture from "./components/culture.vue"
+import activity from "./components/activity.vue"
 
 Vue.use(Router);
 
@@ -46,6 +47,11 @@ export default new Router({
                 path: "culture",
                 name: "AUculture",
                 component: culture
+            },
+            {
+                path: "activity",
+                name: "AUactivity",
+                component: activity
             }
         ]
     }
