@@ -12,6 +12,8 @@ import activity from "./components/About_us/activity.vue"
 import contactus from "./components/About_us/contactus.vue"
 
 import JoinUs from "./components/Join_us.vue"
+import treatment from "./components/Join_us/treatment.vue"
+import promote from "./components/Join_us/promote.vue"
 
 Vue.use(Router);
 
@@ -68,7 +70,19 @@ export default new Router({
     {
         path: "/JoinUs",
         name: "JoinUs",
-        component: JoinUs
+        component: JoinUs,
+        children: [
+            {
+                path: "treatment",
+                name: "JUtreatment",
+                component: treatment
+            },
+            {
+                path: "promote",
+                name: "JUpromote",
+                component: promote
+            }
+        ]
     }
   ]
 });

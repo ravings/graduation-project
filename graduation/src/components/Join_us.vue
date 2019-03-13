@@ -15,8 +15,8 @@
                             <span>员工成长</span>
                         </template>
                         <!-- <el-menu-item-group> -->
-                        <el-menu-item index="/AboutUs/about">员工福利</el-menu-item>
-                        <el-menu-item index="/AboutUs/history">培养与竞升</el-menu-item>
+                        <el-menu-item index="/JoinUs/treatment">员工福利</el-menu-item>
+                        <el-menu-item index="/JoinUs/promote">培养与竞升</el-menu-item>
                         <!-- </el-menu-item-group> -->
                     </el-submenu>
                     <el-submenu index="2">
