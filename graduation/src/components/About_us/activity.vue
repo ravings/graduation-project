@@ -8,7 +8,7 @@
             <ul>
                 <li v-for="(item, index) in imgs" :key="index">
                     <a :href="item.url"><img :src="item.src" alt=""></a>
-                    <p></p>
+                    <p>美食、电影节</p>
                 </li>
             </ul>
         </div>
@@ -20,15 +20,19 @@ export default {
     data () {
         return {
             imgs: [{
-                src: require('../assets/activity_1.jpg'),
+                src: require('../../assets/activity_1.jpg'),
                 url: ''
             },
             {
-                src: require('../assets/activity_1.jpg'),
+                src: require('../../assets/activity_1.jpg'),
                 url: ''
             },
             {
-                src: require('../assets/activity_1.jpg'),
+                src: require('../../assets/activity_1.jpg'),
+                url: ''
+            },
+            {
+                src: require('../../assets/activity_1.jpg'),
                 url: ''
             }]
         }
@@ -43,6 +47,24 @@ export default {
         font-size: 14px;
         color: rgb(102, 102, 102);
         line-height: 2;
+    }
+}
+.list{
+    li{
+        list-style: none;
+        float: left;
+        margin: 15px 10px;
+        p{
+            font-size: 18px;
+            padding: 5px 0;
+            text-align: center;
+            background-color: rgba(102, 102, 102, 0.5);
+            &:hover{
+                background-color:  rgba(221, 64, 18, 1);
+                cursor: pointer;
+                color: #fff;
+            }
+        }
     }
 }
 </style>

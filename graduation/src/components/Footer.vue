@@ -12,11 +12,11 @@
         </div>
         <div class="foot_right">
             <ul class="ul">
-                <li><h3><a href="">关于我们</a></h3>
+                <li><h3><a href="/AboutUs">关于我们</a></h3>
                     <dl>
-                        <dd><a href="">企业简介</a></dd>
-                        <dd><a href="">企业文化</a></dd>
-                        <dd><a href="">联系我们</a></dd>
+                        <dd><a href="/AboutUs/about">企业简介</a></dd>
+                        <dd><a href="/AboutUs/culture">企业文化</a></dd>
+                        <dd><a href="/AboutUs/contactus">联系我们</a></dd>
                     </dl>
                 </li>
                 <li><h3><a href="">新闻资讯</a></h3>
@@ -33,7 +33,7 @@
                         <dd><a href="">产品四号</a></dd>
                     </dl>
                 </li>
-                <li><h3><a href="">加入我们</a></h3>
+                <li><h3><a href="/JoinUs">加入我们</a></h3>
                     <dl>
                         <dd><a href="">员工成长</a></dd>
                         <dd><a href="">社会招聘</a></dd>

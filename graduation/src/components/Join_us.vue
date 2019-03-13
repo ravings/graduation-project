@@ -1,40 +1,41 @@
 <template>
     <div>
         <div class="img">
-            <img src="../assets/about_us_01.jpg" alt="">
+            <img src="../assets/join_us_01.jpg" alt="">
         </div>
         <div class="title">
-            <p>关于我们</p>
-            <p>ABOUT US</p>
+            <h3>加入我们</h3>
+            <p>JOIN US</p>
         </div>
         <div class="pagecontent">
             <div class="leftnav">
                 <el-menu active-text-color="#dd4012" router>
                     <el-submenu index="1">
                         <template slot="title">
-                            <span>企业简介</span>
+                            <span>员工成长</span>
                         </template>
                         <!-- <el-menu-item-group> -->
-                        <el-menu-item index="/AboutUs/about">公司概括</el-menu-item>
-                        <el-menu-item index="/AboutUs/history">发展历程</el-menu-item>
+                        <el-menu-item index="/AboutUs/about">员工福利</el-menu-item>
+                        <el-menu-item index="/AboutUs/history">培养与竞升</el-menu-item>
                         <!-- </el-menu-item-group> -->
                     </el-submenu>
                     <el-submenu index="2">
                         <template slot="title">
-                            <span>企业文化</span>
+                            <span>校园招聘</span>
                         </template>
                         <!-- <el-menu-item-group> -->
-                        <el-menu-item index="/AboutUs/culture">企业文化</el-menu-item>
-                        <el-menu-item index="/AboutUs/activity">企业活动</el-menu-item>
+                        <el-menu-item index="/AboutUs/culture">招聘流程</el-menu-item>
+                        <el-menu-item index="/AboutUs/activity">招聘岗位</el-menu-item>
                         <!-- </el-menu-item-group> -->
                     </el-submenu>
-                    <el-menu-item class="el-submenu" index="/AboutUs/contactus">
+                    <!-- <el-menu-item class="el-submenu" index="/AboutUs/contactus">
                         <span slot="title">联系我们</span>
-                    </el-menu-item>
-                    <!-- <el-submenu index="3">
+                    </el-menu-item> -->
+                    <el-submenu index="3">
                         <template slot="title">
-                            <span>联系我们</span>
-                        </template> -->
+                            <span>社会招聘</span>
+                        </template>
+                        <el-menu-item index="/AboutUs/activity">社招岗位</el-menu-item>
                     </el-submenu>
                 </el-menu>
             </div>

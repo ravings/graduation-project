@@ -34,7 +34,7 @@ export default{
   name: 'Nav',
   data () {
     return {
-    //   show: false,
+      show: '',
       list: [
           {
               name: '首页',
@@ -54,7 +54,7 @@ export default{
         },
         {
             name: '联系我们',
-            url: ''
+            url: '/AboutUs/contactus'
         }],
       hide_list_product: ['产品一号', '产品二号', '产品三号', '产品四号'],
       hide_list_recruit: ['社会招聘', '校园招聘']

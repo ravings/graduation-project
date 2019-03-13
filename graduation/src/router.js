@@ -1,12 +1,17 @@
 import Vue from "vue";
 import Router from "vue-router";
 // import Home from "./views/Home.vue";
-import AboutUs from "./components/About_us.vue"
+
 import Content from "./components/Content.vue"
-import about from "./components/about.vue"
-import history from "./components/history.vue"
-import culture from "./components/culture.vue"
-import activity from "./components/activity.vue"
+
+import AboutUs from "./components/About_us.vue"
+import about from "./components/About_us/about.vue"
+import history from "./components/About_us/history.vue"
+import culture from "./components/About_us/culture.vue"
+import activity from "./components/About_us/activity.vue"
+import contactus from "./components/About_us/contactus.vue"
+
+import JoinUs from "./components/Join_us.vue"
 
 Vue.use(Router);
 
@@ -52,13 +57,18 @@ export default new Router({
                 path: "activity",
                 name: "AUactivity",
                 component: activity
+            },
+            {
+                path: "contactus",
+                name: "AUcontactus",
+                component: contactus
             }
         ]
+    },
+    {
+        path: "/JoinUs",
+        name: "JoinUs",
+        component: JoinUs
     }
-    // {
-    //     path: "/Content",
-    //     name: "Content",
-    //     component: Content
-    // }
   ]
 });
