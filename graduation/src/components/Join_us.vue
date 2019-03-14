@@ -25,7 +25,7 @@
                         </template>
                         <!-- <el-menu-item-group> -->
                         <el-menu-item index="/AboutUs/culture">招聘流程</el-menu-item>
-                        <el-menu-item index="/AboutUs/activity">招聘岗位</el-menu-item>
+                        <el-menu-item index="/JoinUs/job2">招聘岗位</el-menu-item>
                         <!-- </el-menu-item-group> -->
                     </el-submenu>
                     <!-- <el-menu-item class="el-submenu" index="/AboutUs/contactus">

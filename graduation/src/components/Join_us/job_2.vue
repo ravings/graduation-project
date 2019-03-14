@@ -36,6 +36,7 @@
         </li>
         <li>
           Java开发工程师
+          <span class="arrow"></span>
         </li>
       </ul>
     </div>
@@ -53,20 +54,20 @@ export default {
   methods: {
     show: function (hide) {
       let str = document.getElementById('li');
+      let arrow = str.childNodes[1];
       if(hide){
-        let arrow = str.childNodes[1];
-        console.log(arrow);
         let divHeight = str.childNodes[2].offsetHeight;
         let liHeight = str.offsetHeight;
         // console.log(liHeight);
         //ES6模版字符串写法
         str.style.height = `${liHeight + divHeight}px`;
-        arrow.style.transform = 'rotate(45deg)';
+        arrow.style.transform = 'rotate(135deg)';
         // console.log(liHeight + divHeight);
         this.hide = false;
         // console.log(this.hide);
       }else{
         str.style.height = '52px';
+        arrow.style.transform = 'rotate(45deg)';
         this.hide = true;
       }
     }
@@ -97,10 +98,7 @@ export default {
       right: 10px;
       top: 23px;
       transform: rotate(45deg);
-      transition: transform 1s;
-      &:hover{
-        transform: rotate(45deg);
-      }
+      transition: transform 1.3s;
     }
     .content{
       margin-left: 30px;
