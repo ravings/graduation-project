@@ -14,6 +14,7 @@ import contactus from "./components/About_us/contactus.vue"
 import JoinUs from "./components/Join_us.vue"
 import treatment from "./components/Join_us/treatment.vue"
 import promote from "./components/Join_us/promote.vue"
+import job2 from "./components/Join_us/job_2.vue"
 
 Vue.use(Router);
 
@@ -41,29 +42,29 @@ export default new Router({
         component: AboutUs,
         children: [
             {
-                path: "about",
-                name: "AUabout",
-                component: about
+              path: "about",
+              name: "AUabout",
+              component: about
             },
             {
-                path: "history",
-                name: "AUhistory",
-                component: history
+              path: "history",
+              name: "AUhistory",
+              component: history
             },
             {
-                path: "culture",
-                name: "AUculture",
-                component: culture
+              path: "culture",
+              name: "AUculture",
+              component: culture
             },
             {
-                path: "activity",
-                name: "AUactivity",
-                component: activity
+              path: "activity",
+              name: "AUactivity",
+              component: activity
             },
             {
-                path: "contactus",
-                name: "AUcontactus",
-                component: contactus
+              path: "contactus",
+              name: "AUcontactus",
+              component: contactus
             }
         ]
     },
@@ -73,14 +74,19 @@ export default new Router({
         component: JoinUs,
         children: [
             {
-                path: "treatment",
-                name: "JUtreatment",
-                component: treatment
+              path: "treatment",
+              name: "JUtreatment",
+              component: treatment
             },
             {
-                path: "promote",
-                name: "JUpromote",
-                component: promote
+              path: "promote",
+              name: "JUpromote",
+              component: promote
+            },
+            {
+              path: "job2",
+              name: "job2",
+              component: job2
             }
         ]
     }

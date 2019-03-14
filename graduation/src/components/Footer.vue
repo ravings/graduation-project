@@ -36,7 +36,7 @@
                 <li><h3><a href="/JoinUs/treatment">加入我们</a></h3>
                     <dl>
                         <dd><a href="/JoinUs/treatment">员工成长</a></dd>
-                        <dd><a href="">社会招聘</a></dd>
+                        <dd><a href="/JoinUs/job2">社会招聘</a></dd>
                         <dd><a href="">校园招聘</a></dd>
                     </dl>
                 </li>

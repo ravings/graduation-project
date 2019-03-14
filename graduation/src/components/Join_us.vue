@@ -35,7 +35,7 @@
                         <template slot="title">
                             <span>社会招聘</span>
                         </template>
-                        <el-menu-item index="/AboutUs/activity">社招岗位</el-menu-item>
+                        <el-menu-item index="/JoinUs/job2">社招岗位</el-menu-item>
                     </el-submenu>
                 </el-menu>
             </div>

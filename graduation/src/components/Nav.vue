@@ -1,31 +1,38 @@
 <template>
   <div>
     <!-- 导航栏 -->
-    <div class="div_show">
-      <img class="div_img" src="" alt="">
-      <nav class="div_nav">
-            <router-link class="div_nav_router" id="div_nav_router" v-for="(item, index) in list" :key="index" @mouseover.native="show = !show" :to="item.url">{{ item.name }}</router-link>
-       </nav>
-    </div>
-    <!-- 下拉隐藏栏 -->
-    <!-- <transition> -->
-        <div class="div_hide" v-if="show">
+    <div class="div_show" id="div_show">
+      <div class="nav_show">
+        <div class="logo">
+          <img class="div_img" src="../assets/logo.png" alt="">
+          <p>中国科技技术有限公司</p>
+        </div>
+        <div class="nav">
+          <nav class="div_nav"><!-- @mouseover="show" @mouseleave="hide" -->
+                <router-link class="div_nav_router" id="div_nav_router" v-for="(item, index) in list" :key="index"
+                 :to="item.url">{{ item.name }}</router-link>
+          </nav>
+        </div>
+      </div>
+      <!-- 下拉隐藏栏 -->
+      <div class="div_hide">
             <ul class="div_hide_product">
-                <transition-group tag="div">
+                <!-- <transition-group tag="div"> -->
                     <li v-for="product in hide_list_product" :key="product">
                         <router-link to="">{{ product }}</router-link>
                     </li>
-                </transition-group>
+                <!-- </transition-group> -->
             </ul>
             <ul class="div_hide_recruit">
-                <transition-group tag="div">
+                <!-- <transition-group tag="div"> -->
                     <li v-for="recruit in hide_list_recruit" :key="recruit">
-                        <router-link to="">{{ recruit }}</router-link>
+                        <router-link :to="recruit.url">{{ recruit.name }}</router-link>
                     </li>
-                </transition-group>
+                <!-- </transition-group> -->
             </ul>
         </div>
-    <!-- </transition> -->
+    </div>
+    <div style="height: 87px;"></div>
   </div>
 </template>
 
@@ -34,7 +41,6 @@ export default{
   name: 'Nav',
   data () {
     return {
-      show: '',
       list: [
           {
               name: '首页',
@@ -50,18 +56,32 @@ export default{
         },
         {
             name: '人才招聘',
-            url: ''
+            url: '/JoinUs/job2'
         },
         {
             name: '联系我们',
             url: '/AboutUs/contactus'
         }],
       hide_list_product: ['产品一号', '产品二号', '产品三号', '产品四号'],
-      hide_list_recruit: ['社会招聘', '校园招聘']
+      hide_list_recruit: [{
+        name: '社会招聘',
+        url: '/JoinUs/job2'
+      },
+      {
+        name: '校园招聘',
+        url: ''
+      }]
     }
   },
   methods: {
-
+    // show: function () {
+    //   let str = document.getElementById('div_show');
+    //   str.style.height = '252px';
+    // },
+    // hide: function () {
+    //   let str = document.getElementById('div_show');
+    //   str.style.height = '87px';
+    // }
   }
 }
 </script>
@@ -69,21 +89,44 @@ export default{
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 .div_show{
-    // width: 1366px;
-    height: 70px;
-    margin: 0 auto;
-    position: relative;
+    // border: 1px solid #fff;
+    width: 100%;
+    height: 87px;
+    color: #fff;
+    position: absolute;
+    overflow: hidden;
+    transition: all .4s ease-in-out;
+    &:hover{
+      height: 252px;
+    }
+}
+.nav_show{
     background-color: #141826;
+    overflow: hidden;
+}
+.logo{
+  display: flex;
+  align-items: center;
+  float: left;
+  margin-bottom: 10px;
 }
 .div_img{
-    width: 182px;
-    height: 54px;
+    margin-left: 60px;
+    margin-top: 10px;
 }
-.div_nav{
-    position: absolute;
+p{
+    display: inline-block;
+    // border: 1px solid #fff;
+    margin-left: 18px;
+    font-size: 24px;
+}
+.nav{
+    // border: 1px solid #fff;
+    width: 560px;
+    margin-left: 750px;
     font-size: 18px;
-    right: 30px;
-
+    margin-top: 22px;
+    padding: 10px;
 }
 a{
     text-decoration: none;
@@ -97,44 +140,38 @@ a{
     color: #fff;
 }
 .router-link-active:hover{
-    color: #ff5719;
+    color: #dd4012;
 }
 .div_hide{
-    // width: 1366px;
     height: 165px;
-    margin: 0 auto;
-    // position: relative;
-    background-color: #141826;
-    opacity: 0.75;
-    z-index: 100;
-    border: 1px solid #000;
+    position: relative;
+    // background-color: #141826;
+    // opacity: 0.5;
+     background: rgba(24, 29, 31, 0.75);
+    overflow: hidden;
+    z-index: 9999;
     ul{
         text-align: center;
         width: 150px;
+        padding-top: 20px;
     }
     li{
-        margin-top: 15px;
+        margin-bottom: 15px;
         list-style: none;
+        font-size: 16px;
+        // font-weight: bold;
     }
 }
 .div_hide_product{
     position: relative;
     float: right;
-    // border: 1px solid #000;
-    right: 283px;
+    right: 270px;
+    // left: 810px;
 }
 .div_hide_recruit{
     // border: 1px solid #000;
     position: relative;
-    float: right;
-    right: 8px;
+    left: 1050px;
 
-}
-.v-enter{
-    height: 0px;
-}
-.v-enter-active{
-    transition: all 0.3s ease-in-out;
-    height: 165px;
 }
 </style>
