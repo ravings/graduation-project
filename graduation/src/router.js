@@ -15,6 +15,7 @@ import JoinUs from "./components/Join_us.vue"
 import treatment from "./components/Join_us/treatment.vue"
 import promote from "./components/Join_us/promote.vue"
 import job2 from "./components/Join_us/job_2.vue"
+import jobflow from "./components/Join_us/jobflow.vue"
 
 Vue.use(Router);
 
@@ -87,6 +88,11 @@ export default new Router({
               path: "job2",
               name: "job2",
               component: job2
+            },
+            {
+              path: "jobflow",
+              name: "JUjobflow",
+              component: jobflow
             }
         ]
     }

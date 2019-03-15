@@ -2,21 +2,22 @@
   <div>
     <div class="list">
       <ul>
-        <li @click="show(hide)" id="li">
-          前端开发工程师
+        <li @click="show(job.hide, $event)" :id="job.id" v-for="(job, index) in jobs" :key="index">
+          <!-- 前端开发工程师 -->
+          {{ job.title }}
           <span class="arrow"></span>
           <div class="content">
             <p>
               <strong>招聘人数：</strong>
-              <span>若干</span>
+              <span>{{ job.number }}</span>
             </p>
             <p>
               <strong>学历：</strong>
-              <span>本科及以上</span>
+              <span>{{ job.education }}</span>
             </p>
             <p>
               <strong>专业要求：</strong>
-              <span>计算机等相关专业</span>
+              <span>{{ job.professional }}</span>
             </p>
             <p>
               <strong>任职要求：</strong>
@@ -34,10 +35,6 @@
             </p>
           </div>
         </li>
-        <li>
-          Java开发工程师
-          <span class="arrow"></span>
-        </li>
       </ul>
     </div>
   </div>
@@ -48,27 +45,53 @@ export default {
   name: 'job2',
   data () {
     return {
-      hide: true
+      jobs: [
+        {
+          id: '01',
+          title: '前端开发工程师',
+          number: '若干', //招聘人数
+          education: '本科及以上',  //学历
+          professional: '计算机等相关专业',  //专业要求
+          hide: true,
+          content: ''
+        },
+        {
+          id: '02',
+          title: 'Java开发工程师',
+          number: '5', //招聘人数
+          education: '本科及以上',  //学历
+          professional: '计算机等相关专业',  //专业要求
+          hide: true,
+          content: ''
+        },
+        {
+          id: '03',
+          title: '.Net开发工程师',
+          number: '5', //招聘人数
+          education: '本科及以上',  //学历
+          professional: '计算机等相关专业',  //专业要求
+          hide: true,
+          content: ''
+        }
+      ]
     }
   },
   methods: {
-    show: function (hide) {
-      let str = document.getElementById('li');
+    show: function (hide, e) {
+      let str = e.target;
+      // let str = document.getElementById(e.target.id);
       let arrow = str.childNodes[1];
       if(hide){
         let divHeight = str.childNodes[2].offsetHeight;
         let liHeight = str.offsetHeight;
-        // console.log(liHeight);
         //ES6模版字符串写法
         str.style.height = `${liHeight + divHeight}px`;
         arrow.style.transform = 'rotate(135deg)';
-        // console.log(liHeight + divHeight);
-        this.hide = false;
-        // console.log(this.hide);
+        this.$set(this.jobs[e.target.id-1], 'hide', false);
       }else{
         str.style.height = '52px';
         arrow.style.transform = 'rotate(45deg)';
-        this.hide = true;
+        this.$set(this.jobs[e.target.id-1], 'hide', true);
       }
     }
   }

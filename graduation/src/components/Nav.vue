@@ -5,17 +5,17 @@
       <div class="nav_show">
         <div class="logo">
           <img class="div_img" src="../assets/logo.png" alt="">
-          <p>中国科技技术有限公司</p>
+          <p>中国科技技术股份有限公司</p>
         </div>
         <div class="nav">
-          <nav class="div_nav"><!-- @mouseover="show" @mouseleave="hide" -->
-                <router-link class="div_nav_router" id="div_nav_router" v-for="(item, index) in list" :key="index"
+          <nav class="div_nav" @mouseover="show"><!--  -->
+                <router-link class="div_nav_router" v-for="(item, index) in list" :key="index"
                  :to="item.url">{{ item.name }}</router-link>
           </nav>
         </div>
       </div>
       <!-- 下拉隐藏栏 -->
-      <div class="div_hide">
+      <div class="div_hide" @mouseleave="hide">
             <ul class="div_hide_product">
                 <!-- <transition-group tag="div"> -->
                     <li v-for="product in hide_list_product" :key="product">
@@ -74,14 +74,14 @@ export default{
     }
   },
   methods: {
-    // show: function () {
-    //   let str = document.getElementById('div_show');
-    //   str.style.height = '252px';
-    // },
-    // hide: function () {
-    //   let str = document.getElementById('div_show');
-    //   str.style.height = '87px';
-    // }
+    show: function () {
+      let str = document.getElementById('div_show');
+      str.style.height = '252px';
+    },
+    hide: function () {
+      let str = document.getElementById('div_show');
+      str.style.height = '87px';
+    }
   }
 }
 </script>
@@ -96,9 +96,6 @@ export default{
     position: absolute;
     overflow: hidden;
     transition: all .4s ease-in-out;
-    &:hover{
-      height: 252px;
-    }
 }
 .nav_show{
     background-color: #141826;
@@ -127,6 +124,12 @@ p{
     font-size: 18px;
     margin-top: 22px;
     padding: 10px;
+    padding-bottom: 29px;
+    &:hover{
+      .div_show{
+        height: 252px;
+      }
+    }
 }
 a{
     text-decoration: none;
