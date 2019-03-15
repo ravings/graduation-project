@@ -9,7 +9,7 @@
         </div>
         <div class="pagecontent">
             <div class="leftnav">
-                <el-menu active-text-color="#dd4012" router>
+                <el-menu active-text-color="#dd4012" @open="change" router unique-opened>
                     <el-submenu index="1">
                         <template slot="title">
                             <span>员工成长</span>
@@ -49,7 +49,15 @@
 
 <script>
 export default {
-
+  name: 'joinus',
+  methods: {
+    change: function (e) {
+      if (e) {
+        console.log(e.target);
+        // e.target.style.background = '#dd4012';
+      }
+    }
+  }
 }
 </script>
 

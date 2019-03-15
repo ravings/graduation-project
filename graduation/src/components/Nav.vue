@@ -25,7 +25,7 @@
             </ul>
             <ul class="div_hide_recruit">
                 <!-- <transition-group tag="div"> -->
-                    <li v-for="recruit in hide_list_recruit" :key="recruit">
+                    <li v-for="recruit in hide_list_recruit" :key="recruit.id">
                         <router-link :to="recruit.url">{{ recruit.name }}</router-link>
                     </li>
                 <!-- </transition-group> -->
@@ -64,10 +64,12 @@ export default{
         }],
       hide_list_product: ['产品一号', '产品二号', '产品三号', '产品四号'],
       hide_list_recruit: [{
+        id: '01',
         name: '社会招聘',
         url: '/JoinUs/job2'
       },
       {
+        id: '02',
         name: '校园招聘',
         url: ''
       }]
