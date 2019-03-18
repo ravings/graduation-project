@@ -18,8 +18,8 @@
       <div class="div_hide" @mouseleave="hide">
             <ul class="div_hide_product">
                 <!-- <transition-group tag="div"> -->
-                    <li v-for="product in hide_list_product" :key="product">
-                        <router-link to="">{{ product }}</router-link>
+                    <li v-for="product in hide_list_product" :key="product.id">
+                        <router-link :to="product.url">{{ product.name }}</router-link>
                     </li>
                 <!-- </transition-group> -->
             </ul>
@@ -62,7 +62,18 @@ export default{
             name: '联系我们',
             url: '/AboutUs/contactus'
         }],
-      hide_list_product: ['产品一号', '产品二号', '产品三号', '产品四号'],
+      hide_list_product: [
+        {
+          id: '1',
+          name: '通信',
+          url: ''
+        },
+        {
+          id: '2',
+          name: '智慧城市',
+          url: '/Product/xipro'
+        }
+      ],
       hide_list_recruit: [{
         id: '01',
         name: '社会招聘',

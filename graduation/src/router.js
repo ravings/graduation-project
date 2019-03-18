@@ -17,6 +17,8 @@ import promote from "./components/Join_us/promote.vue"
 import job2 from "./components/Join_us/job_2.vue"
 import jobflow from "./components/Join_us/jobflow.vue"
 
+import Product from "./components/Product.vue"
+import xipro from "./components/Product/xipro.vue"
 Vue.use(Router);
 
 export default new Router({
@@ -38,63 +40,75 @@ export default new Router({
         import(/* webpackChunkName: "about" */ "./views/About.vue")
     },
     {
-        path: "/AboutUs",
-        name: "AboutUs",
-        component: AboutUs,
-        children: [
-            {
-              path: "about",
-              name: "AUabout",
-              component: about
-            },
-            {
-              path: "history",
-              name: "AUhistory",
-              component: history
-            },
-            {
-              path: "culture",
-              name: "AUculture",
-              component: culture
-            },
-            {
-              path: "activity",
-              name: "AUactivity",
-              component: activity
-            },
-            {
-              path: "contactus",
-              name: "AUcontactus",
-              component: contactus
-            }
-        ]
+      path: "/AboutUs",
+      name: "AboutUs",
+      component: AboutUs,
+      children: [
+          {
+            path: "about",
+            name: "AUabout",
+            component: about
+          },
+          {
+            path: "history",
+            name: "AUhistory",
+            component: history
+          },
+          {
+            path: "culture",
+            name: "AUculture",
+            component: culture
+          },
+          {
+            path: "activity",
+            name: "AUactivity",
+            component: activity
+          },
+          {
+            path: "contactus",
+            name: "AUcontactus",
+            component: contactus
+          }
+      ]
     },
     {
-        path: "/JoinUs",
-        name: "JoinUs",
-        component: JoinUs,
-        children: [
-            {
-              path: "treatment",
-              name: "JUtreatment",
-              component: treatment
-            },
-            {
-              path: "promote",
-              name: "JUpromote",
-              component: promote
-            },
-            {
-              path: "job2",
-              name: "job2",
-              component: job2
-            },
-            {
-              path: "jobflow",
-              name: "JUjobflow",
-              component: jobflow
-            }
-        ]
+      path: "/JoinUs",
+      name: "JoinUs",
+      component: JoinUs,
+      children: [
+          {
+            path: "treatment",
+            name: "JUtreatment",
+            component: treatment
+          },
+          {
+            path: "promote",
+            name: "JUpromote",
+            component: promote
+          },
+          {
+            path: "job2",
+            name: "JUjob2",
+            component: job2
+          },
+          {
+            path: "jobflow",
+            name: "JUjobflow",
+            component: jobflow
+          }
+      ]
+    },
+    {
+      path: "/Product",
+      name: "Product",
+      component: Product,
+      children: [
+        {
+          path: "xipro",
+          name: "Pxipro",
+          component: xipro
+        }
+      ]
     }
   ]
 });

@@ -25,12 +25,10 @@
                         <dd><a href="">行业动态</a></dd>
                     </dl>
                 </li>
-                <li><h3><a href="">产品中心</a></h3>
+                <li><h3><a href="/Product/xipro">产品中心</a></h3>
                     <dl>
-                        <dd><a href="">产品一号</a></dd>
-                        <dd><a href="">产品二号</a></dd>
-                        <dd><a href="">产品三号</a></dd>
-                        <dd><a href="">产品四号</a></dd>
+                        <dd><a href="">通信</a></dd>
+                        <dd><a href="/Product/xipro">智慧城市</a></dd>
                     </dl>
                 </li>
                 <li><h3><a href="/JoinUs/treatment">加入我们</a></h3>
