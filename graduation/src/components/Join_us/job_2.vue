@@ -45,36 +45,40 @@ export default {
   name: 'job2',
   data () {
     return {
-      jobs: [
-        {
-          id: '01',
-          title: '前端开发工程师',
-          number: '若干', //招聘人数
-          education: '本科及以上',  //学历
-          professional: '计算机等相关专业',  //专业要求
-          hide: true,
-          content: ''
-        },
-        {
-          id: '02',
-          title: 'Java开发工程师',
-          number: '5', //招聘人数
-          education: '本科及以上',  //学历
-          professional: '计算机等相关专业',  //专业要求
-          hide: true,
-          content: ''
-        },
-        {
-          id: '03',
-          title: '.Net开发工程师',
-          number: '5', //招聘人数
-          education: '本科及以上',  //学历
-          professional: '计算机等相关专业',  //专业要求
-          hide: true,
-          content: ''
-        }
-      ]
+      // jobs: [
+      //   {
+      //     id: '01',
+      //     title: '前端开发工程师',
+      //     number: '若干', //招聘人数
+      //     education: '本科及以上',  //学历
+      //     professional: '计算机等相关专业',  //专业要求
+      //     hide: true,
+      //     content: ''
+      //   },
+      //   {
+      //     id: '02',
+      //     title: 'Java开发工程师',
+      //     number: '5', //招聘人数
+      //     education: '本科及以上',  //学历
+      //     professional: '计算机等相关专业',  //专业要求
+      //     hide: true,
+      //     content: ''
+      //   },
+      //   {
+      //     id: '03',
+      //     title: '.Net开发工程师',
+      //     number: '5', //招聘人数
+      //     education: '本科及以上',  //学历
+      //     professional: '计算机等相关专业',  //专业要求
+      //     hide: true,
+      //     content: ''
+      //   }
+      // ]
+      jobs: []
     }
+  },
+  created () {
+    this.getjobs();
   },
   methods: {
     show: function (hide, e) {
@@ -93,6 +97,17 @@ export default {
         arrow.style.transform = 'rotate(45deg)';
         this.$set(this.jobs[e.target.id-1], 'hide', true);
       }
+    },
+    getjobs () {
+      let _this = this;
+      this.$ajax.get('/job')
+      .then(res => {
+          _this.jobs = res.data;
+          console.log(res.data);
+        })
+        .catch(err => {
+            console.log('fail...');
+          })
     }
   }
 }
