@@ -92,6 +92,7 @@ export default {
         str.style.height = `${liHeight + divHeight}px`;
         arrow.style.transform = 'rotate(135deg)';
         this.$set(this.jobs[e.target.id-1], 'hide', false);
+
       }else{
         str.style.height = '52px';
         arrow.style.transform = 'rotate(45deg)';
@@ -100,7 +101,7 @@ export default {
     },
     getjobs () {
       let _this = this;
-      this.$ajax.get('/job')
+      this.$ajax.get('/api/job')
       .then(res => {
           _this.jobs = res.data;
           console.log(res.data);

@@ -19,6 +19,10 @@ import jobflow from "./components/Join_us/jobflow.vue"
 
 import Product from "./components/Product.vue"
 import xipro from "./components/Product/xipro.vue"
+
+import News from "./components/News.vue"
+import news from "./components/News/news.vue"
+
 Vue.use(Router);
 
 export default new Router({
@@ -107,6 +111,18 @@ export default new Router({
           path: "xipro",
           name: "Pxipro",
           component: xipro
+        }
+      ]
+    },
+    {
+      path: "/News",
+      name: "News",
+      component: News,
+      children: [
+        {
+          path: "news",
+          name: "Nnews",
+          component: news
         }
       ]
     }

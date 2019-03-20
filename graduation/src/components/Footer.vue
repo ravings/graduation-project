@@ -19,7 +19,7 @@
                         <dd><a href="/AboutUs/contactus">联系我们</a></dd>
                     </dl>
                 </li>
-                <li><h3><a href="">新闻资讯</a></h3>
+                <li><h3><a href="/News">新闻资讯</a></h3>
                     <dl>
                         <dd><a href="">公司新闻</a></dd>
                         <dd><a href="">行业动态</a></dd>

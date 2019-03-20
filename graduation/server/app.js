@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 // const proxy = require('../src/proxy');
 
 //连接数据库
@@ -12,10 +13,14 @@ mongoose.connect('mongodb://localhost:27017/test', function(err){
   }
 })
 
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json());
+
 //引入job文件
 const job = require('./routes/job');
 //使用路由
-app.use('/job', job);
+app.use('/api/job', job);
+
 
 // const post = process.env.PORT || 3000;
 
