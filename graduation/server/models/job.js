@@ -10,11 +10,12 @@ const jobSchema = new Schema({
   number: String, //招聘人数
   education: String,  //学历
   professional: String,  //专业要求
-  hide: String
+  hide: String,
+  requirements: String  //任职要求
 },
 {
-  collation: 'job'
+  collection: 'job'
 });
 
 //导出模板job
-module.exports = mongoose.model('job', jobSchema);
+module.exports = mongoose.model('jobs', jobSchema);

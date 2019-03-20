@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const job = require('../models/job');
+const jobs = require('../models/job');
 
 router.get('/', (req, res) => {
-  job.find({}).then(job => {
+  jobs.find({}).then(job => {
     // console.log(req.body);
     if (!job) {
       return res.status(404).json('fail...');
     }
+    // console.log(res.json(job));
     res.json(job);
   }).catch(err => {
     res.status(404).json(err);
@@ -35,16 +36,20 @@ router.post('/add', (req , res) => {
   if (req.body.hide) {
     jobfile.hide = req.body.hide;
   }
-  new job(jobfile).save().then((doc) => {
+  if (req.body.requirements) {
+    jobfile.requirements = req.body.requirements;
+  }
+  jobs(jobfile).save().then((doc) => {
     res.json(doc);
   }).catch(err => {
     console.log(err);
   })
 });
 
-router.delete('/delete', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
   // console.log(req.body);
-  job.remove({}).then(job => {
+  console.log(req.params.id);
+  job.findByIdAndRemove({_id: req.params.id}).then(job => {
     job.save().then(job => {
       res.json(job);
     }).catch(err => {
