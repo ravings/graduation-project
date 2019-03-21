@@ -1,14 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const product = require('../models/history');
+const history = require('../models/history');
 
 router.get('/', (req, res) => {
-  product.find({}).then(doc => {
-    // console.log(req.body);
+  history.find({}).then(doc => {
     if (!doc) {
       return res.status(404).json('fail...');
     }
-    // console.log(res.json(job));
     res.json(doc);
   }).catch(err => {
     res.status(404).json(err);

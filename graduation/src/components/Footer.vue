@@ -25,7 +25,7 @@
                         <dd><a href="">行业动态</a></dd>
                     </dl>
                 </li>
-                <li><h3><a href="/Product/xipro">产品中心</a></h3>
+                <li><h3><a href="/Product">产品中心</a></h3>
                     <dl>
                         <dd><a href="">通信</a></dd>
                         <dd><a href="/Product/xipro">智慧城市</a></dd>

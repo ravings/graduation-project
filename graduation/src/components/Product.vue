@@ -23,7 +23,9 @@
                         <template slot="title">
                             <span>智慧城市</span>
                         </template>
-                        <el-menu-item index="/Product/xipro">车辆大数据侦查平台</el-menu-item>
+                        <!-- {name: 'Pxipro', params: {id: item._id}} -->
+                        <el-menu-item v-for="(item, index) in products" :key="index"
+                        :index="`/Product/xipro/${item._id}`">{{ item.title}}</el-menu-item>
                     </el-submenu>
                 </el-menu>
             </div>
@@ -37,12 +39,32 @@
 <script>
 export default {
   name: 'joinus',
+  data () {
+    return {
+      products: []
+    }
+  },
+  created () {
+    this.getProducts();
+  },
   methods: {
     change: function (e) {
       if (e) {
-        console.log(e.target);
+        // console.log(e.target);
         // e.target.style.background = '#dd4012';
       }
+    },
+    getProducts() {
+      // let _this = this;
+      this.$ajax.get('/api/product')
+      .then(res => {
+        // console.log(res.data);
+        this.products = res.data;
+        // console.log(this.products);
+      })
+      .catch(err => {
+        console.log('fail...');
+      })
     }
   }
 }

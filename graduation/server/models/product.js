@@ -4,7 +4,7 @@ const mongoose=require('mongoose');
 const Schema = mongoose.Schema;
 //通过mongoose的Schema定义模板
 const productSchema = new Schema({
-  time: String,
+  // _id: Object,
   title: String,
   content: String
 },

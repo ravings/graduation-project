@@ -108,7 +108,7 @@ export default new Router({
       component: Product,
       children: [
         {
-          path: "xipro",
+          path: "xipro/:id",
           name: "Pxipro",
           component: xipro
         }

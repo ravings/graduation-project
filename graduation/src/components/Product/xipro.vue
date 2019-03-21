@@ -34,7 +34,8 @@ export default {
   name: 'history',
   data () {
     return {
-      products: {}
+      products: {},
+      id: this.$route.params.id
     }
   },
   created () {
@@ -42,8 +43,7 @@ export default {
   },
   methods: {
     getProducts() {
-      // let _this = this;
-      this.$ajax.get('/api/product')
+      this.$ajax.get(`/api/product/${this.id}`)//'5c93070541224b33700faaa5'
       .then(res => {
         // console.log(res.data);
         this.products = res.data;
@@ -72,11 +72,11 @@ export default {
 }
 .content{
     text-indent: 25pt;
-  p{
+  // p{
     font-size: 14px;
-    line-height: 150%;
-    padding: 5px 0;
+    // line-height: 150%;
+    // padding: 5px 0;
     color: #666;
-  }
+  // }
 }
 </style>
