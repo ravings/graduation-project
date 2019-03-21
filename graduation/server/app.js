@@ -18,8 +18,12 @@ app.use(bodyParser.json());
 
 //引入job文件
 const job = require('./routes/job');
+const history = require('./routes/history');
+const product = require('./routes/product');
 //使用路由
 app.use('/api/job', job);
+app.use('/api/history', history);
+app.use('/api/product', product);
 
 
 // const post = process.env.PORT || 3000;

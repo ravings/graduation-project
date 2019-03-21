@@ -1,39 +1,43 @@
 <template>
     <div class="block">
         <el-timeline class="el-timeline">
-            <el-timeline-item timestamp="2018-至今" placement="top" color="#12c3dd">
+            <el-timeline-item v-for="(list, index) in lists" :key="index" :timestamp="list.time" placement="top" color="#12c3dd">
                 <el-card>
-                    <h4>更新 Github 模板</h4>
-                    <p>王小虎 提交于 2018/4/12 20:46</p>
-                </el-card>
-            </el-timeline-item>
-            <el-timeline-item timestamp="2015-2017" placement="top" color="#12c3dd">
-                <el-card>
-                    <h4>更新 Github 模板</h4>
-                    <p>王小虎 提交于 2018/4/3 20:46</p>
-                </el-card>
-            </el-timeline-item>
-            <el-timeline-item timestamp="2011-2014" placement="top" color="#12c3dd">
-                <el-card>
-                    <h4>更新 Github 模板</h4>
-                    <p>王小虎 提交于 2018/4/3 20:46</p>
-                </el-card>
-            </el-timeline-item>
-            <el-timeline-item timestamp="2006-2010" placement="top" color="#12c3dd">
-                <el-card>
-                    <h4>更新 Github 模板</h4>
-                    <p>王小虎 提交于 2018/4/3 20:46</p>
-                </el-card>
-            </el-timeline-item>
-            <el-timeline-item timestamp="2000-2005" placement="top" color="#12c3dd">
-                <el-card>
-                    <h4>更新 Github 模板</h4>
-                    <p>王小虎 提交于 2018/4/3 20:46</p>
+                    <h4>{{ list.title }}</h4>
+                    <p>{{ list.content }}</p>
                 </el-card>
             </el-timeline-item>
         </el-timeline>
     </div>
 </template>
+
+<script>
+export default {
+  name: 'history',
+  data () {
+    return {
+      lists: []
+    }
+  },
+  created () {
+    this.gethistory();
+  },
+  methods: {
+    gethistory() {
+      // let _this = this;
+      this.$ajax.get('/api/history')
+      .then(res => {
+        // console.log(res.data);
+        this.lists = res.data;
+        console.log(this.lists);
+      })
+      .catch(err => {
+        console.log('fail...');
+      })
+    }
+  }
+}
+</script>
 
 <style lang="less" scoped>
 .block{

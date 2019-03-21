@@ -22,7 +22,7 @@
             <p>
               <strong>任职要求：</strong>
             </p>
-            <p>{{ job.requirements }}</p>
+            <p v-html="job.requirements"></p>
               <!-- 1、对HTML5、CSS3、JavaScriptES5、ES6、jQuery、Vue.js、Node.js、Http1.0~2.0、webpack，对TypeScript有一定的了解；<br>
               2、对构建响应式页面、触屏端页面有一定的经验并熟练掌握；<br>
               3、熟悉Restful api的设计，能够参与或主导前后端分离的接口设计；<br>
@@ -49,24 +49,6 @@ export default {
       //     id: '01',
       //     title: '前端开发工程师',
       //     number: '若干', //招聘人数
-      //     education: '本科及以上',  //学历
-      //     professional: '计算机等相关专业',  //专业要求
-      //     hide: true,
-      //     content: ''
-      //   },
-      //   {
-      //     id: '02',
-      //     title: 'Java开发工程师',
-      //     number: '5', //招聘人数
-      //     education: '本科及以上',  //学历
-      //     professional: '计算机等相关专业',  //专业要求
-      //     hide: true,
-      //     content: ''
-      //   },
-      //   {
-      //     id: '03',
-      //     title: '.Net开发工程师',
-      //     number: '5', //招聘人数
       //     education: '本科及以上',  //学历
       //     professional: '计算机等相关专业',  //专业要求
       //     hide: true,
@@ -103,7 +85,7 @@ export default {
       this.$ajax.get('/api/job')
       .then(res => {
           _this.jobs = res.data;
-          console.log(res.data);
+          // console.log(res.data);
         })
         .catch(err => {
             console.log('fail...');
