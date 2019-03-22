@@ -4,7 +4,7 @@
     <div class="div_show" id="div_show">
       <div class="nav_show">
         <div class="logo">
-          <img class="div_img" src="../assets/logo.png" alt="">
+          <img class="div_img" src="../assets/logo_01.png" alt="">
           <p>中国科技技术股份有限公司</p>
         </div>
         <div class="nav">

@@ -2,7 +2,8 @@
     <div class="footer">
         <div class="foot_left">
             <div class="logo">
-                <img src="../assets/logo.png" alt="">
+                <img src="../assets/logo_01.png" alt="">
+                <p>中国科技技术股份有限公司</p>
             </div>
             <div class="address">
                 <i class="el-icon-location-outline"><span>地址：广州市天河区高普路168号广州高科科技园</span></i>
@@ -40,7 +41,7 @@
                 </li>
             </ul>
             <div class="img">
-                <img src="../assets/Qrcode_one.png" alt="">
+                <img src="../assets/Qrcode.png" alt="">
                 <p>微信公众号</p>
             </div>
         </div>
@@ -56,9 +57,15 @@
     background-color: rgba(221, 64, 18, 1);
     color: #fff;
 }
-// .logo{
-//     margin: 20px 0;
-// }
+.logo{
+  display: flex;
+  flex-direction: row;
+  font-size: 22px;
+  align-items: center;
+  p{
+    padding: 0 15px;
+  }
+}
 .foot_left{
     // border: 1px solid #000;
     margin-top: 30px;

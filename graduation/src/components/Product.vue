@@ -9,27 +9,27 @@
         </div>
         <div class="pagecontent">
             <div class="leftnav">
-                <el-menu active-text-color="#dd4012" @open="change" router unique-opened>
+                <el-menu @open="change" router :default-active="this.$route.path">
                     <el-submenu index="1">
                         <template slot="title">
                             <span>通信</span>
                         </template>
-                        <!-- <el-menu-item-group> -->
-                        <!-- <el-menu-item index=""></el-menu-item>
-                        <el-menu-item index=""></el-menu-item> -->
-                        <!-- </el-menu-item-group> -->
                     </el-submenu>
-                    <el-submenu index="2">
+                    <el-submenu index="2" popper-class="submenu">
                         <template slot="title">
                             <span>智慧城市</span>
                         </template>
                         <!-- {name: 'Pxipro', params: {id: item._id}} -->
                         <el-menu-item v-for="(item, index) in products" :key="index"
-                        :index="`/Product/xipro/${item._id}`">{{ item.title}}</el-menu-item>
+                        @click="getId(item._id)" :index="`/Product/xipro/${item._id}`">{{ item.title}}</el-menu-item>
+                        <!-- :index="`/Product/xipro/${this.proId}`" -->
+                        <!-- :index="`/Product/xipro/${item._id}`" -->
+                        <!-- index="/Product/xipro" -->
                     </el-submenu>
                 </el-menu>
             </div>
             <div class="right_content">
+                <!-- <router-view :id="proId"/> -->
                 <router-view/>
             </div>
         </div>
@@ -38,16 +38,21 @@
 
 <script>
 export default {
-  name: 'joinus',
+  name: 'product',
   data () {
     return {
-      products: []
+      products: [],
+      proId: ''
     }
   },
   created () {
     this.getProducts();
   },
   methods: {
+    getId: function (id) {
+      this.proId = id;
+      // console.log(this.proId);
+    },
     change: function (e) {
       if (e) {
         // console.log(e.target);
@@ -55,12 +60,10 @@ export default {
       }
     },
     getProducts() {
-      // let _this = this;
       this.$ajax.get('/api/product')
       .then(res => {
         // console.log(res.data);
         this.products = res.data;
-        // console.log(this.products);
       })
       .catch(err => {
         console.log('fail...');
@@ -97,6 +100,9 @@ export default {
         width: 250px;
         margin-left: 60px;
         margin-top: 30px;
+        .submenu:hover{
+          background-color: rgba(221, 64, 18, 1);
+        }
         .el-menu{
             background-color: #e5e5e5;
             span{

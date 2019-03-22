@@ -31,11 +31,14 @@
 
 <script>
 export default {
-  name: 'history',
+  name: 'xipro',
+  props: {
+    id: String
+  },
   data () {
     return {
       products: {},
-      id: this.$route.params.id
+      // id: this.$route.params.id
     }
   },
   created () {
@@ -45,14 +48,26 @@ export default {
     getProducts() {
       this.$ajax.get(`/api/product/${this.id}`)//'5c93070541224b33700faaa5'
       .then(res => {
-        // console.log(res.data);
+        console.log(res.data);
         this.products = res.data;
-        console.log(this.products);
       })
       .catch(err => {
         console.log('fail...');
       })
     }
+  },
+  watch: {
+    '$route' (to, from) {
+        this.getProducts();
+    }
+    // id: function (val) {
+    //   this.getProducts();
+    // }
+    // id (val) {
+    //   if (val) {
+    //     this.getProducts();
+    //   }
+    // }
   }
 }
 </script>

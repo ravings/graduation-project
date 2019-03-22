@@ -22,7 +22,7 @@
                 </ul>
             </div>
             <div class="content_right">
-                <img src="../../assets/Qrcode_one.png" alt="">
+                <img src="../../assets/Qrcode.png" alt="">
                 <p>微信公众号</p>
             </div>
         </div>
