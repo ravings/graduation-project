@@ -14,6 +14,8 @@
                         <template slot="title">
                             <span>通信</span>
                         </template>
+                        <el-menu-item v-for="(list, id) in lists" :key="id"
+                        @click="getId(list._id)" :index="`/Product/communication/${list._id}`">{{ list.title}}</el-menu-item>
                     </el-submenu>
                     <el-submenu index="2" popper-class="submenu">
                         <template slot="title">
@@ -41,12 +43,14 @@ export default {
   name: 'product',
   data () {
     return {
+      lists: [],
       products: [],
       proId: ''
     }
   },
   created () {
     this.getProducts();
+    this.getCommunication();
   },
   methods: {
     getId: function (id) {
@@ -58,6 +62,16 @@ export default {
         // console.log(e.target);
         // e.target.style.background = '#dd4012';
       }
+    },
+    getCommunication() {
+      this.$ajax.get('/api/communication')
+      .then(res => {
+        console.log(res.data);
+        this.lists = res.data;
+      })
+      .catch(err => {
+        console.log('fail...');
+      })
     },
     getProducts() {
       this.$ajax.get('/api/product')

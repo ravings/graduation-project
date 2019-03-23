@@ -19,6 +19,7 @@ import jobflow from "./components/Join_us/jobflow.vue"
 
 import Product from "./components/Product.vue"
 import xipro from "./components/Product/xipro.vue"
+import communication from './components/Product/communication.vue'
 
 import News from "./components/News.vue"
 import news from "./components/News/news.vue"
@@ -112,6 +113,12 @@ export default new Router({
           // path: "xipro",
           name: "Pxipro",
           component: xipro,
+          props: true
+        },
+        {
+          path: "communication/:id",
+          name: "Pcommunication",
+          component: communication,
           props: true
         }
       ]

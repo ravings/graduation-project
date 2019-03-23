@@ -20,10 +20,12 @@ app.use(bodyParser.json());
 const job = require('./routes/job');
 const history = require('./routes/history');
 const product = require('./routes/product');
+const communication = require('./routes/communication')
 //使用路由
 app.use('/api/job', job);
 app.use('/api/history', history);
 app.use('/api/product', product);
+app.use('/api/communication', communication);
 
 
 // const post = process.env.PORT || 3000;
