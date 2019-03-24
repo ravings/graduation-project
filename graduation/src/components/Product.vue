@@ -15,7 +15,7 @@
                             <span>通信</span>
                         </template>
                         <el-menu-item v-for="(list, id) in lists" :key="id"
-                        @click="getId(list._id)" :index="`/Product/communication/${list._id}`">{{ list.title}}</el-menu-item>
+                        @click="getId('1')" :index="`/Product/xipro/${list._id}`">{{ list.title}}</el-menu-item>
                     </el-submenu>
                     <el-submenu index="2" popper-class="submenu">
                         <template slot="title">
@@ -23,7 +23,7 @@
                         </template>
                         <!-- {name: 'Pxipro', params: {id: item._id}} -->
                         <el-menu-item v-for="(item, index) in products" :key="index"
-                        @click="getId(item._id)" :index="`/Product/xipro/${item._id}`">{{ item.title}}</el-menu-item>
+                        @click="getId('2')" :index="`/Product/xipro/${item._id}`">{{ item.title}}</el-menu-item>
                         <!-- :index="`/Product/xipro/${this.proId}`" -->
                         <!-- :index="`/Product/xipro/${item._id}`" -->
                         <!-- index="/Product/xipro" -->
@@ -32,7 +32,7 @@
             </div>
             <div class="right_content">
                 <!-- <router-view :id="proId"/> -->
-                <router-view/>
+                <router-view :type="type"/>
             </div>
         </div>
     </div>
@@ -45,7 +45,7 @@ export default {
     return {
       lists: [],
       products: [],
-      proId: ''
+      type: ''
     }
   },
   created () {
@@ -53,9 +53,10 @@ export default {
     this.getCommunication();
   },
   methods: {
-    getId: function (id) {
-      this.proId = id;
-      // console.log(this.proId);
+    getId: function (message) {
+      if (message == 1) this.type = 'communication';
+      if (message == 2) this.type = 'city';
+      // console.log(this.type);
     },
     change: function (e) {
       if (e) {
@@ -66,7 +67,7 @@ export default {
     getCommunication() {
       this.$ajax.get('/api/communication')
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         this.lists = res.data;
       })
       .catch(err => {
@@ -74,7 +75,7 @@ export default {
       })
     },
     getProducts() {
-      this.$ajax.get('/api/product')
+      this.$ajax.get('/api/city')
       .then(res => {
         // console.log(res.data);
         this.products = res.data;

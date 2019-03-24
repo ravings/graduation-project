@@ -24,7 +24,7 @@ const communication = require('./routes/communication')
 //使用路由
 app.use('/api/job', job);
 app.use('/api/history', history);
-app.use('/api/product', product);
+app.use('/api/city', product);
 app.use('/api/communication', communication);
 
 

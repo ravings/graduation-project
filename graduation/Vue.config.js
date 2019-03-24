@@ -2,7 +2,7 @@
 module.exports = {
   publicPath: '/' ,// 根域上下文目录
   outputDir: 'dist', // 构建输出目录
-  assetsDir: 'assets', // 静态资源目录 (js, css, img, fonts)
+  //assetsDir: 'assets', // 静态资源目录 (js, css, img, fonts)
   devServer: {
     open: false,
     host: 'localhost',

@@ -1,8 +1,10 @@
 <template>
   <div>
-    <div class="con_itle">
+    <div class="con_title">
       <div class="img">
+        <!-- ../../assets/product_2.jpg -->
         <img src="../../assets/product_2.jpg" alt="" />
+        <!-- ../../../public/img/prodct/product_2.jpg -->
       </div>
       <div class="title">
         <h2>{{ products.title}}</h2>
@@ -33,7 +35,8 @@
 export default {
   name: 'xipro',
   props: {
-    id: String
+    id: String,
+    type: String
   },
   data () {
     return {
@@ -46,9 +49,9 @@ export default {
   },
   methods: {
     getProducts() {
-      this.$ajax.get(`/api/product/${this.id}`)//'5c93070541224b33700faaa5'
+      this.$ajax.get(`/api/${this.type}/${this.id}`)//'5c93070541224b33700faaa5'
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         this.products = res.data;
       })
       .catch(err => {
@@ -73,7 +76,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.con_itle{
+.con_title{
   display: flex;
   flex-direction: row;
   margin-bottom: 30px;

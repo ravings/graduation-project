@@ -2,7 +2,7 @@
   <div>
     <div class="list">
       <ul>
-        <li @click="show(job.hide, $event)" :id="job.id" v-for="(job, index) in jobs" :key="index">
+        <li @click="show(job.hide, index, $event)" :id="job.id" v-for="(job, index) in jobs" :key="index">
           <!-- 前端开发工程师 -->
           {{ job.title }}
           <span class="arrow"></span>
@@ -62,7 +62,8 @@ export default {
     this.getjobs();
   },
   methods: {
-    show: function (hide, e) {
+    show: function (hide, index, e) {
+      // console.log(index);
       let str = e.target;
       // let str = document.getElementById(e.target.id);
       let arrow = str.childNodes[1];
@@ -72,12 +73,13 @@ export default {
         //ES6模版字符串写法
         str.style.height = `${liHeight + divHeight}px`;
         arrow.style.transform = 'rotate(135deg)';
-        this.$set(this.jobs[e.target.id-1], 'hide', false);
-
+        this.$set(this.jobs[index], 'hide', false);
+        // console.log(this.jobs[index]);
+        // e.target.id-1
       }else{
         str.style.height = '52px';
         arrow.style.transform = 'rotate(45deg)';
-        this.$set(this.jobs[e.target.id-1], 'hide', true);
+        this.$set(this.jobs[index], 'hide', true);
       }
     },
     getjobs () {
