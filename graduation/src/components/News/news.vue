@@ -2,15 +2,15 @@
   <div>
     <div class="news">
       <ul>
-        <li>
-          <h4>我奋斗，我幸福 | 记高科2019新春员工大会</h4>
+        <li v-for="(list, index) in lists" :key="index">
+          <h4>{{ list.title }}</h4>
           <div class="con">
             <div class="time">
               <h4>18</h4>
               <p>2019-02</p>
             </div>
             <div class="text">
-              <p>金猪纳福，开工大吉！</p>
+              <p>{{ list.subtitle }}</p>
               <a href=""> 查看详情> </a>
             </div>
           </div>
@@ -19,6 +19,32 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'news',
+  data () {
+    return {
+      lists: []
+    }
+  },
+  created () {
+    this.getNews_company();
+  },
+  methods: {
+    getNews_company() {
+      this.$ajax.get('/api/news_company')
+      .then(res => {
+        // console.log(res.data.time);
+        this.lists = res.data;
+      })
+      .catch(err => {
+        console.log('fail...');
+      })
+    }
+  }
+}
+</script>
 
 <style lang="less" scoped>
 .news{

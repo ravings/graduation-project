@@ -21,11 +21,13 @@ const job = require('./routes/job');
 const history = require('./routes/history');
 const product = require('./routes/product');
 const communication = require('./routes/communication')
+const news_company = require('./routes/news_company');
 //使用路由
 app.use('/api/job', job);
 app.use('/api/history', history);
 app.use('/api/city', product);
 app.use('/api/communication', communication);
+app.use('/api/news_company', news_company);
 
 
 // const post = process.env.PORT || 3000;
