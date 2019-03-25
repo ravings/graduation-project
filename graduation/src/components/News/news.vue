@@ -2,12 +2,12 @@
   <div>
     <div class="news">
       <ul>
-        <li v-for="(list, index) in lists" :key="index">
+        <li v-for="(list, index) in sortByKey(this.lists, 'time')" :key="index">
           <h4>{{ list.title }}</h4>
           <div class="con">
             <div class="time">
-              <h4>18</h4>
-              <p>2019-02</p>
+              <h4>{{ list.day }}</h4>
+              <p>{{ list.year }}</p>
             </div>
             <div class="text">
               <p>{{ list.subtitle }}</p>
@@ -25,7 +25,10 @@ export default {
   name: 'news',
   data () {
     return {
-      lists: []
+      lists: [],
+      days: [],
+      year_month: []
+      // newLists: []
     }
   },
   created () {
@@ -35,12 +38,35 @@ export default {
     getNews_company() {
       this.$ajax.get('/api/news_company')
       .then(res => {
-        // console.log(res.data.time);
         this.lists = res.data;
+        // this.newLists = this.sortByKey(this.lists, 'time');
+        this.getDay(this.lists);
       })
       .catch(err => {
         console.log('fail...');
       })
+    },
+    getDay(arr){
+      for (let i =0; i < arr.length; i++) {
+        // 2018-03-10
+        this.lists[i].day = arr[i].time.substr(8,2);
+        this.lists[i].year = arr[i].time.substr(0, 7);
+        // console.log(this.lists[i].day);
+      }
+    },
+    sortByKey(arr, key) {
+      // 注意：不能直接用 sort() ,要先copy一份在排序 -->>用slice()来copy
+      // 若直接用则会报错：无限循环
+      return arr.slice().sort(
+        function (a, b) {
+          let x = a[key];
+          let y = b[key];
+          let xDate = new Date(x.replace(/-/g, '/')).getTime();
+          let yDate = new Date(y.replace(/-/g, '/')).getTime();
+
+          return xDate < yDate ? 1 : -1;
+        }
+      )
     }
   }
 }
