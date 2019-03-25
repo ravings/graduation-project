@@ -60,10 +60,10 @@
                                 <a href="">More+</a>
                             </div>
                             <ul>
-                                <li><a href="">xxxxxxxxxxxxx</a></li>
-                                <li><a href="">xxxxxxxxxxxxxxxxx</a></li>
-                                <li><a href="">xxxxxxxxxxxxxxxxxxxxx</a></li>
-                                <li><a href="">xxxxxxxxxxxxxxxxxxxxxxxx</a></li>
+                                <li v-for="(list, index) in sortByKey(this.lists, 'time')" :key="index" v-if="index < 4">
+                                  <a href="" :title="list.title">{{ list.title }}</a>
+                                  <span>{{ list.time }}</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -79,10 +79,10 @@
                                 <a href="">More+</a>
                             </div>
                             <ul>
-                                <li><a href="">xxxxxxxxxxxxx</a></li>
-                                <li><a href="">xxxxxxxxxxxxxxxxx</a></li>
-                                <li><a href="">xxxxxxxxxxxxxxxxxxxxx</a></li>
-                                <li><a href="">xxxxxxxxxxxxxxxxxxxxxxxx</a></li>
+                                <li v-for="(item, id) in sortByKey(this.items, 'time')" :key="id" v-if="id < 4">
+                                  <a href="">{{ item.title }}</a>
+                                  <span>{{ item.time }}</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -107,7 +107,13 @@
                     </div>
                 </el-col>
                 <el-col :span="9">
-                    <div class="product_two"></div>
+                    <div class="product_two">
+                      <img src="../assets/city_logo_1.png" alt="">
+                        <div>
+                            <h3><a href="/Product/xipro">通信</a></h3>
+                            <p>致力于为电信运营商和行业客户提供优质的接入产品和完善的解决方案，是国内领先方案和解决方案提供商</p>
+                        </div>
+                    </div>
                 </el-col>
             </el-row>
         </div>
@@ -134,9 +140,52 @@ export default {
             {
                 src: require('../assets/12.png'),
                 url: ''
-            }]
+            }],
+            lists: [],  //  公司新闻
+            items: [] //  行业新闻
         }
+    },
+  created () {
+    this.getNews_company();
+    this.getNews_industry()
+  },
+  computed: {
+  },
+  methods: {
+    getNews_company() {
+      this.$ajax.get('/api/news_company')
+      .then(res => {
+        this.lists = res.data;
+      })
+      .catch(err => {
+        console.log('fail...');
+      })
+    },
+    getNews_industry() {
+      this.$ajax.get('/api/news_industry')
+      .then(res => {
+        this.items = res.data;
+      })
+      .catch(err => {
+        console.log('fail...');
+      })
+    },
+    // 根据时间对获取的数据排序
+    sortByKey(arr, key) {
+      // 注意：不能直接用 sort() ,要先copy一份在排序 -->>用slice()来copy
+      // 若直接用则会报错：无限循环
+      return arr.slice().sort(
+        function (a, b) {
+          let x = a[key];
+          let y = b[key];
+          let xDate = new Date(x.replace(/-/g, '/')).getTime();
+          let yDate = new Date(y.replace(/-/g, '/')).getTime();
+
+          return xDate < yDate ? 1 : -1;
+        }
+      )
     }
+  }
 }
 </script>
 
@@ -215,7 +264,7 @@ export default {
 .news_title_one_img{
     float: left;
     margin-top: 25px;
-    border: 1px solid #fff;
+    border: 1px dashed rgba(255, 255, 255, .7);
     width: 280px;
     height: 240px;
     margin-bottom: 40px;
@@ -235,7 +284,7 @@ export default {
     width: 290px;
     float: right;
     div {
-        overflow: hidden;
+      overflow: hidden;
         a{
             float: right;
             text-decoration: none;
@@ -244,14 +293,23 @@ export default {
         }
     }
     li{
-        text-overflow: ellipsis;
-        white-space: nowrap;
         border-bottom: 1px dashed #fff;
+        font-size: 14px;
         padding: 15px 0;
         list-style: none;
         a{
-            text-decoration: none;
-            color: #fff;
+          display: inline-block;
+          width: 210px;
+          vertical-align: bottom;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          text-decoration: none;
+          color: #fff;
+        }
+        span{
+          display: inline-block;
+          margin-left: 7px;
         }
     }
 }
