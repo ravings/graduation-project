@@ -23,6 +23,7 @@ import communication from './components/Product/communication.vue'
 
 import News from "./components/News.vue"
 import news from "./components/News/news.vue"
+import news_show from "./components/News/news_show.vue"
 
 Vue.use(Router);
 
@@ -129,9 +130,14 @@ export default new Router({
       component: News,
       children: [
         {
-          path: "news",
+          path: "news/:id",
           name: "Nnews",
           component: news
+        },
+        {
+          path: "news_show/:id",
+          name: "Nnews_show",
+          component: news_show
         }
       ]
     }

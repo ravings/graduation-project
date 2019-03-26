@@ -26,9 +26,52 @@
                 <p>微信公众号</p>
             </div>
         </div>
+        <div class="map" id="map"></div>
     </div>
 </template>
 
+<script>
+export default {
+  name: '',
+  data () {
+    return {
+
+    }
+  },
+  mounted() {
+    this.getMap();
+  },
+  methods: {
+    getMap () {
+      // 创建地图实例
+      let map = new BMap.Map('map');
+      // 创建中心点坐标
+      let point = new BMap.Point(113.331063, 23.111656);
+      // 初始化地图，设置中心点坐标和地图级别
+      map.centerAndZoom(point, 16);
+      //开启鼠标滚轮缩放
+      map.enableScrollWheelZoom(true);
+      // 创建标注
+      var marker = new BMap.Marker(point);
+      // 将标注添加到地图中
+      map.addOverlay(marker);
+
+      let opts = {
+        width: 250,
+        height: 100,
+        title: '中国未来科技技术股份有限公司'
+        // content: '联系电话： 020-82598555<br/>传真号码： 020-82599989<br/>公司地址：广州市天河区高普路168号广州高科科技园',
+        // point: '113.331063|23.111656'
+      }
+      // 创建信息窗口对象
+      let infowindow = new BMap.InfoWindow('公司地址：广州市天河区高普路168号广州高科科技园', opts);
+      marker.addEventListener("click", function(){
+        map.openInfoWindow(infoWindow,point); //开启信息窗口
+      });
+    }
+  }
+}
+</script>
 
 <style lang="less" scoped>
 .title{
@@ -71,5 +114,9 @@
             color: rgb(102, 102, 102);
         }
     }
+}
+.map{
+  height: 410px;
+  width: 790px;
 }
 </style>

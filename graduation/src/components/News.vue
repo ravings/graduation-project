@@ -10,16 +10,16 @@
         <div class="pagecontent">
             <div class="leftnav">
                 <el-menu @open="change" router>
-                  <el-menu-item class="el-submenu" index="/News/news">
+                  <el-menu-item class="el-submenu" :index="`/News/news/1`" @click="get('1')">
                     <span slot="title">公司新闻</span>
                       </el-menu-item>
-                  <el-menu-item class="el-submenu" index="/News/news">
+                  <el-menu-item class="el-submenu" :index="`/News/news/2`" @click="get('2')">
                     <span slot="title">行业动态</span>
                   </el-menu-item>
                 </el-menu>
             </div>
             <div class="right_content">
-                <router-view/>
+                <router-view :type="type"/>
             </div>
         </div>
     </div>
@@ -27,8 +27,20 @@
 
 <script>
 export default {
-  name: 'joinus',
+  name: '',
+  data () {
+    return {
+      type: ''
+    }
+  },
   methods: {
+    get: function(num){
+      if(num == 1){
+        this.type = 'news_company';
+      }else{
+        this.type = 'news_industry';
+      }
+    },
     change: function (e) {
       if (e) {
         console.log(e.target);

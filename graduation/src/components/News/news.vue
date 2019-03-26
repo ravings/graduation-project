@@ -11,7 +11,7 @@
             </div>
             <div class="text">
               <p>{{ list.subtitle }}</p>
-              <a href=""> 查看详情> </a>
+              <router-link :to="`/News/news_show/${list._id}`"> 查看详情> </router-link>
             </div>
           </div>
         </li>
@@ -23,12 +23,12 @@
 <script>
 export default {
   name: 'news',
+  props: {
+    type: String
+  },
   data () {
     return {
       lists: [],
-      days: [],
-      year_month: []
-      // newLists: []
     }
   },
   created () {
@@ -36,7 +36,8 @@ export default {
   },
   methods: {
     getNews_company() {
-      this.$ajax.get('/api/news_company')
+      // console.log(this.type);
+      this.$ajax.get(`/api/${this.type}`)
       .then(res => {
         this.lists = res.data;
         // this.newLists = this.sortByKey(this.lists, 'time');
@@ -67,6 +68,13 @@ export default {
           return xDate < yDate ? 1 : -1;
         }
       )
+    }
+  },
+  watch: {
+    type(val){
+      if(val){
+        this.getNews_company();
+      }
     }
   }
 }
