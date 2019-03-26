@@ -17,7 +17,7 @@
                     </li>
                     <li>
                         <div><img src="../../assets/contactus_ico_3.png" alt=""></div>
-                        <p>公司地址：广州市天河区高普路168号广州高科科技园</p>
+                        <p>公司地址：广州市海珠区广州塔</p>
                     </li>
                 </ul>
             </div>
@@ -57,17 +57,19 @@ export default {
       map.addOverlay(marker);
 
       let opts = {
-        width: 250,
-        height: 100,
-        title: '中国未来科技技术股份有限公司'
+        width: 350,
+        height: 120,
+        title: '<h4 style="padding: 7px 0;font-size: 15px;">中国未来科技技术股份有限公司</h4>'
         // content: '联系电话： 020-82598555<br/>传真号码： 020-82599989<br/>公司地址：广州市天河区高普路168号广州高科科技园',
         // point: '113.331063|23.111656'
       }
       // 创建信息窗口对象
-      let infowindow = new BMap.InfoWindow('公司地址：广州市天河区高普路168号广州高科科技园', opts);
-      marker.addEventListener("click", function(){
-        map.openInfoWindow(infoWindow,point); //开启信息窗口
-      });
+      let infowindow = new BMap.InfoWindow("<span style='display: inline-block; padding: 4px 0; font-size: 14px;'>联系电话： 020-82598555</span><br/>"
+      + "<span style='display: inline-block; padding: 4px 0; font-size: 14px;'>传真号码： 020-82599989</span><br/>"
+      + "<span style='display: inline-block; font-size: 14px; padding: 4px 0;'>公司地址：广州市海珠区广州塔</span>", opts);
+      // marker.addEventListener("click", function(){
+        map.openInfoWindow(infowindow, point); //开启信息窗口
+      // });
     }
   }
 }
@@ -84,6 +86,7 @@ export default {
     display: flex;
     flex-direction: row;
     .content_left{
+      margin-right: 130px;
         ul{
             margin-top: 20px;
         }
