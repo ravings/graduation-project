@@ -6,10 +6,10 @@
     </div>
     <div class="content">
       <div class="left">
-
         <el-menu class="el-menu-menu" background-color="#f5f5f5" :collapse="isCollapse">
-          <div class="img" id="img">
-            <img src="../../assets/01.png" alt="">
+          <div class="img" id="img" >
+            <img src="../../assets/05.png" alt="">
+            <!-- v-show="!isCollapse" -->
           </div>
           <el-menu-item index="0">
             <i class="el-icon-menu"></i>
@@ -123,20 +123,16 @@ export default {
     // width: 260px;
     border-right: 1px solid #d7d7d7;
     .img{
-      // display: none;
       text-align: center;
-        // display: block;
       padding: 10px 0;
       img{
-        width: 80px;
-        height: 80px;
+        width: 56px;
+        height: 56px;
         border-radius: 50%;
       }
     }
     .el-menu-menu{
-      // border: none;
-
-      margin-top: 10px;
+      margin-top: 15px;
     }
     .el-menu-menu:not(.el-menu--collapse){
       width: 260px;

@@ -3,8 +3,11 @@ import Router from "vue-router";
 // import Home from "./views/Home.vue";
 
 import Content from "./components/Content.vue"
+
 import Login from "./components/management/login.vue"
 import Management from './components/management/manage.vue'
+import tinymce from './components/management/tinymce.vue'
+
 
 import AboutUs from "./components/About_us.vue"
 import about from "./components/About_us/about.vue"
@@ -47,6 +50,11 @@ export default new Router({
       path: '/Management',
       name: "Management",
       component: Management
+    },
+    {
+      path: '/tinymce',
+      name: 'tinymce',
+      component: tinymce
     },
     {
       path: "/about",
