@@ -1,5 +1,6 @@
 <template>
     <div>
+      <Nav></Nav>
         <div class="div">
             <el-carousel type="" height="360px">
             <el-carousel-item v-for="(item, index) in imgs" :key="index">
@@ -108,21 +109,28 @@
                 </el-col>
                 <el-col :span="9">
                     <div class="product_two">
-                      <img src="../assets/city_logo_1.png" alt="">
+                      <img src="../assets/communication_logo.png" alt="">
                         <div>
-                            <h3><a href="/Product/xipro">通信</a></h3>
+                            <h3><a href="/Product">通信</a></h3>
                             <p>致力于为电信运营商和行业客户提供优质的接入产品和完善的解决方案，是国内领先方案和解决方案提供商</p>
                         </div>
                     </div>
                 </el-col>
             </el-row>
         </div>
+      <Footer></Footer>
     </div>
 </template>
 
 <script>
+import Nav from './Nav.vue'
+import Footer from './Footer.vue'
 export default {
     name: 'Content',
+    components: {
+        'Nav': Nav,
+        'Footer': Footer
+    },
     data() {
         return {
             news_imgs:{

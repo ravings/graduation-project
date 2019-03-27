@@ -30,6 +30,11 @@
                     </li>
                 <!-- </transition-group> -->
             </ul>
+            <!-- <ul class="div_hide_staff">
+              <li>
+                <router-link to="">员工入口</router-link>
+              </li>
+            </ul> -->
         </div>
     </div>
     <div style="height: 87px;"></div>
@@ -118,7 +123,7 @@ export default{
   display: flex;
   align-items: center;
   float: left;
-  margin-bottom: 10px;
+  margin-bottom: 9px;
 }
 .div_img{
     margin-left: 60px;
@@ -137,7 +142,7 @@ p{
     font-size: 18px;
     margin-top: 22px;
     padding: 10px;
-    padding-bottom: 29px;
+    padding-bottom: 27px;
     &:hover{
       .div_show{
         height: 252px;
@@ -186,8 +191,15 @@ a{
 }
 .div_hide_recruit{
     // border: 1px solid #000;
-    position: relative;
-    left: 1050px;
-
+    // display: inline-block;
+    // position: relative;
+    // left: 1050px;
+    float: right;
+}
+.div_hide_staff{
+  // position: relative;
+  // left: 1150px;
+  float: right;
+  right: 0;
 }
 </style>

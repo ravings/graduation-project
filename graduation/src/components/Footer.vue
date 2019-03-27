@@ -3,10 +3,10 @@
         <div class="foot_left">
             <div class="logo">
                 <img src="../assets/logo_01.png" alt="">
-                <p>中国科技技术股份有限公司</p>
+                <p>中国未来科技技术股份有限公司</p>
             </div>
             <div class="address">
-                <i class="el-icon-location-outline"><span>地址：广州市天河区高普路168号广州高科科技园</span></i>
+                <i class="el-icon-location-outline"><span>地址：广州市海珠区广州塔</span></i>
                 <i class="el-icon-phone-outline"><span>电话：020-82598555</span></i>
                 <i class="el-icon-printer"><span>传真：020-82599989</span></i>
             </div>
@@ -18,6 +18,7 @@
                         <dd><a href="/AboutUs/about">企业简介</a></dd>
                         <dd><a href="/AboutUs/culture">企业文化</a></dd>
                         <dd><a href="/AboutUs/contactus">联系我们</a></dd>
+                        <dd><a href="/Login">员工通道</a></dd>
                     </dl>
                 </li>
                 <li><h3><a href="/News">新闻资讯</a></h3>
@@ -69,8 +70,8 @@
 .foot_left{
     // border: 1px solid #000;
     margin-top: 30px;
-    margin-left: 80px;
-    margin-right: 80px;
+    margin-left: 70px;
+    margin-right: 70px;
     .address{
         margin-top: 20px;
         i{
