@@ -7,6 +7,7 @@ import Content from "./components/Content.vue"
 import Login from "./components/management/login.vue"
 import Management from './components/management/manage.vue'
 import tinymce from './components/management/tinymce.vue'
+import home from './components/management/home.vue'
 
 
 import AboutUs from "./components/About_us.vue"
@@ -49,12 +50,19 @@ export default new Router({
     {
       path: '/Management',
       name: "Management",
-      component: Management
-    },
-    {
-      path: '/tinymce',
-      name: 'tinymce',
-      component: tinymce
+      component: Management,
+      children: [
+        {
+          path: 'tinymce',
+          name: 'tinymce',
+          component: tinymce
+        },
+        {
+          path: 'home',
+          name: 'home',
+          component: home
+        }
+      ]
     },
     {
       path: "/about",

@@ -12,6 +12,7 @@
     "@tinymce/tinymce-vue": "^2.0.0",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "echarts": "^4.2.1",
     "element-ui": "^2.6.1",
     "express": "^4.16.4",
     "mongoose": "^5.4.19",
