@@ -9,6 +9,8 @@ import Management from './components/management/manage.vue'
 import tinymce from './components/management/tinymce.vue'
 import home from './components/management/home.vue'
 import news_company from './components/management/news_company.vue'
+import Personal_information from './components/management/Personal_information.vue'
+import product_city from './components/management/product_city.vue'
 
 
 import AboutUs from "./components/About_us.vue"
@@ -67,6 +69,16 @@ export default new Router({
           path: 'news_company',
           name: 'news_company',
           component: news_company
+        },
+        {
+          path: 'Personal_information',
+          name: 'Personal_information',
+          component: Personal_information
+        },
+        {
+          path: 'product_city',
+          name: 'product_city',
+          component: product_city
         }
       ]
     },

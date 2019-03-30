@@ -6,7 +6,7 @@
       </div>
       <el-button icon="el-icon-search"></el-button>
       <!-- <div class="add"></div> -->
-      <el-button icon="el-icon-plus" type="primary" class="add" @click="dialog = true"></el-button>
+      <el-button icon="el-icon-plus" type="primary" class="add" @click="dialog = true" round></el-button>
     </div>
     <div class="content">
       <el-table class="table" border stripe :data="tableData" :default-sort="{prop:'date'}">
@@ -26,12 +26,13 @@
         </el-table-column>
         <el-table-column label="操作" width="180" align="center">
           <template slot-scope="scope">
-            <el-button type="success">编辑</el-button>
-            <el-button type="danger">删除</el-button>
+            <el-button type="success" icon="el-icon-edit" size="small" plain round>编辑</el-button>
+            <el-button type="danger" icon="el-icon-delete" size="small" plain round>删除</el-button>
           </template>
         </el-table-column>
       </el-table>
     </div>
+    <!-- Dialog对话框 -->
     <div class="dialog">
       <el-dialog :visible="dialog" width="800" title="添加新闻" center @close="close">
         <el-form :model="form" label-width="60px" label-position="left">

@@ -3,6 +3,7 @@
     <div class="title">
       <i class="el-icon-menu" @click="show_hide"></i>
       <span>公司首页管理系统</span>
+      <el-button class="exit" icon="el-icon-star-off" type="warning" size="mini" plain round>退出登录</el-button>
     </div>
     <div class="content">
       <div class="left">
@@ -18,9 +19,10 @@
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-setting"></i>
-              <span>个人设置</span>
+              <span>设置</span>
             </template>
-            <el-menu-item index="1-1">修改个人信息</el-menu-item>
+            <el-menu-item index="/Management/Personal_information">个人信息</el-menu-item>
+            <el-menu-item index="1-2">管理员信息</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
@@ -52,7 +54,7 @@
               <span>产品中心</span>
             </template>
             <el-menu-item index="3-1">通信</el-menu-item>
-            <el-menu-item index="3-2">智慧城市</el-menu-item>
+            <el-menu-item index="/Management/product_city">智慧城市</el-menu-item>
           </el-submenu>
           <el-submenu index="5">
             <template slot="title">
@@ -156,15 +158,19 @@ export default {
   // border: 1px solid #000;
   line-height: 60px;
   box-shadow: 0 -2px 20px #000;
+  .exit{
+    float: right;
+    // position: relative;
+    margin-top: 15px;
+    margin-right: 20px;
+  }
   i{
     font-size: 26px;
     cursor: pointer;
     margin: 0 25px;;
   }
   span{
-    // overflow: hidden;
     font-size: 20px;
-    // vertical-align: bottom
   }
 }
 .content{

@@ -65,16 +65,29 @@ export default {
         nonbreaking_force_tab: false,
         paste_auto_cleanup_on_paste: false,
 
-        init_instance_callback: function (editor) {
-          editor.on('input change undo redo', () => {
-            this.$emit('input', editor.getContent());
-          })
-        }
+        // Tab
+        tabfocus_elements: ':prev,:next',
+        object_resizing: true,
+
+        // Image
+        // imagetools_toolbar: 'rotateleft rotateright | flipv fliph | editimage imageoptions',
+
+        // init_instance_callback: function (editor) {
+        //   editor.on('input change undo redo', () => {
+        //     this.$emit('input', editor.getContent());
+        //   })
+        // }
       }
     }
   },
   mounted () {
-    tinymce.init({})
+    // tinymce.init({})
+    this.init();
+  },
+  methods: {
+    init () {
+      tinymce.init({init});
+    }
   },
   watch: {
     tinymceHtml (val) {
