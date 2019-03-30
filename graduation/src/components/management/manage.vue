@@ -43,7 +43,7 @@
               <i class="el-icon-news"></i>
               <span>新闻资讯</span>
             </template>
-            <el-menu-item index="3-1">公司新闻</el-menu-item>
+            <el-menu-item index="/Management/news_company">公司新闻</el-menu-item>
             <el-menu-item index="3-2">行业动态</el-menu-item>
           </el-submenu>
           <el-submenu index="4">

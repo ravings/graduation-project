@@ -7,7 +7,7 @@
           <h4>管理员登录</h4>
         </div>
         <div class="text">
-          <el-input type="text" v-model="account" size="small"
+          <el-input type="text" v-model="account" size="mini"
           prefix-icon="el-icon-edit" placeholder="请输入账号" clearable></el-input>
         </div>
         <div class="password">
