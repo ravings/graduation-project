@@ -14,7 +14,7 @@
           </div>
           <el-menu-item index="/Management/home">
             <i class="el-icon-menu"></i>
-            <span>首页</span>
+            <span slot="title">首页</span>
           </el-menu-item>
           <el-submenu index="1">
             <template slot="title">
@@ -22,7 +22,7 @@
               <span>设置</span>
             </template>
             <el-menu-item index="/Management/Personal_information">个人信息</el-menu-item>
-            <el-menu-item index="1-2">管理员信息</el-menu-item>
+            <el-menu-item index="/Management/administrator">管理员</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
@@ -31,7 +31,7 @@
             </template>
             <el-menu-item-group>
               <span slot="title">企业简介</span>
-              <el-menu-item index="2-1">公司概括</el-menu-item>
+              <el-menu-item index="/Management/AU_about">公司概括</el-menu-item>
               <el-menu-item index="2-2">发展历程</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group>
@@ -50,10 +50,10 @@
           </el-submenu>
           <!-- <el-submenu index="4"> -->
           <el-menu-item index="/Management/product">
-            <template slot="title">
+            <!-- <template slot="title"> -->
               <i class="el-icon-goods"></i>
-              <span>产品中心</span>
-            </template>
+              <span slot="title">产品中心</span>
+            <!-- </template> -->
           </el-menu-item>
           <!-- </el-submenu> -->
           <el-submenu index="5">
@@ -63,7 +63,7 @@
             </template>
             <el-menu-item-group>
               <span slot="title">招聘岗位</span>
-              <el-menu-item index="2-1">校招岗位</el-menu-item>
+              <el-menu-item index="/Management/job_1">校招岗位</el-menu-item>
               <el-menu-item index="2-2">社招岗位</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
@@ -92,7 +92,6 @@
 </template>
 
 <script>
-// import tinymce from './tinymce.vue'
 export default {
   data () {
     return {
@@ -100,9 +99,6 @@ export default {
       tabs: [],
       tabsValue: '/Management/home'
     }
-  },
-  components: {
-    // 'tinymce': tinymce
   },
   watch: {
     '$route' (val) {
@@ -126,6 +122,7 @@ export default {
       }
     }
   },
+  // 刷新是显示首页页面
   mounted () {
     this.addTab({path: '/Management/home', name: '首页'});
     this.$router.push({path: this.tabsValue});
@@ -144,12 +141,19 @@ export default {
         name: data.path
       })
     },
-    // 切换至当前tab页-->当前页高亮
+    // 切换至当前tab页
     switchTab () {
       this.$router.push({ path: this.tabsValue});
     },
     removeTab (targetName) {
-      if (targetName == '/Management/home') return;
+      if (targetName == '/Management/home') {
+        // 关闭首页的消息提示
+        return this.$message({
+          message: '这是不能关闭的哦！',
+          type: 'warning',
+          center: true
+        });
+      }
       let newtabs = this.tabs;
       // for (let i =0; i < this.tabs.length; i++){
       //   if (newtabs[i].name == targetName) {
@@ -157,6 +161,7 @@ export default {
       //     break;
       //   }
       // }
+      // 若删除当前激活的tab页，则重新设置新的激活页
       if (targetName == this.tabsValue) {
         newtabs.forEach((tab, index) => {
           if (tab.name == targetName) {
@@ -168,10 +173,11 @@ export default {
           }
         });
       }
+      // 删除需要关闭的tab页
       this.tabs = newtabs.filter(tab => tab.name !== targetName);
       this.$router.push({path: this.tabsValue});
     },
-    // 当前激活菜单
+    // 当前激活的tab页
     activeTab (value) {
       this.tabsValue = value;
     }

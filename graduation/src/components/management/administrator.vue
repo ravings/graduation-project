@@ -1,26 +1,26 @@
 <template>
   <div style="width: 1000px;">
-    <el-card style="width: 400px;">
-      <div slot="header">
-        <span class="title">个人信息</span>
-        <el-button class="btn" type="success" icon="el-icon-edit" size="small" @click="dialog = true" plain round>编辑</el-button>
-      </div>
-      <div>
-        <div class="name">
-          <span style="padding: 5px 0">名字</span>
-          <img :src="sex_icon" alt="" style="width: 25px;height: 25px; vertical-align: bottom;">
-        </div>
-        <div class="img">
-          <img src="../../assets/05.png" alt="">
-        </div>
-        <div class="content">
-          <p>账号：</p>
-          <p>密码：</p>
-        </div>
-      </div>
-    </el-card>
+    <div style="text-align: center;padding: 8px 0;">
+      <span style="font-size: 16px;color: #67C23A;padding: 0 8px;">赶快增加管理员吧~</span>
+      <el-button icon="el-icon-plus" type="success" class="add" @click="dialog = true" plain circle></el-button>
+    </div>
+    <div class="content">
+      <el-table class="table" border stripe :data="tableData">
+        <el-table-column label="序号" type="index" width="80" align="center"></el-table-column>
+        <el-table-column prop="name" label="姓名" width="150" align="center"></el-table-column>
+        <el-table-column prop="sex" label="性别" width="150" align="center"></el-table-column>
+        <el-table-column prop="account" label="帐号" width="200" align="center"></el-table-column>
+        </el-table-column>
+        <el-table-column label="操作" width="180" align="center">
+          <template slot-scope="scope">
+            <el-button type="danger" icon="el-icon-delete" size="small" plain round>删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+    <!-- Dialog对话框 -->
     <div class="dialog">
-      <el-dialog :visible="dialog" width="800" title="更改信息" center @close="close">
+      <el-dialog :visible="dialog" width="800" title="注册/添加" center @close="close">
         <el-form :model="content" label-width="60px" label-position="left">
           <div style="width: 400px;">
             <el-form-item label="名字">
@@ -29,7 +29,7 @@
           </div>
           <div style="width: 400px;">
             <el-form-item label="性别">
-              <el-radio-group v-model="sex">
+              <el-radio-group v-model="content.sex">
                 <el-radio :label="0">女</el-radio>
                 <el-radio :label="1">男</el-radio>
               </el-radio-group>
@@ -59,15 +59,31 @@
 export default {
   data () {
     return {
+      value: '',
       dialog: false,
-      sex_icon: '/img/icons/sex_0.png',
-      sex: 0,
       content: {
         name: '',
         sex: '',
         account: '',
         password: ''
-      }
+      },
+      tableData: [
+        {
+          name: '张三',
+          sex: '男',
+          account: '123456'
+        },
+        {
+          name: '张三',
+          sex: '男',
+          account: '123456'
+        },
+        {
+          name: '张三',
+          sex: '男',
+          account: '123456'
+        }
+      ]
     }
   },
   methods: {
@@ -79,34 +95,4 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.title{
-  color: #606266;
-  font-size: 18px;
-}
-.btn{
-  position: relative;
-  right: -220px;
-}
-.name{
-  margin-left: 40px;
-  padding: 20px 0;
-  color: #C0C4CC;
-  font-size: 18px;
-  float: left;
-}
-.img{
-  margin-left: 300px;
-}
-.content{
-  margin-left: 40px;
-  font-size: 14px;
-  color: #C0C4CC;
-  p{
-    padding: 10px 0;
-  }
-}
-img{
-  width: 56px;
-  height: 56px;
-}
 </style>

@@ -15,9 +15,6 @@
           </div>
         </el-card>
       </el-col>
-      <!-- <el-col :span="4">
-        <div style="width: 150px;"></div>
-      </el-col> -->
       <!-- 智慧城市 -->
       <el-col :span="12">
         <div>
@@ -38,7 +35,7 @@
         <el-form :model="content" label-width="60px" label-position="left">
           <div style="width: 400px;">
             <el-form-item label="名字">
-              <el-input v-model="content.name" type="text"placeholder="请输入名字" size="samll" clearable></el-input>
+              <el-input v-model="content.name" type="text" placeholder="请输入名字" size="samll" clearable></el-input>
             </el-form-item>
           </div>
           <div style="width: 400px;">
@@ -51,12 +48,12 @@
           </div>
           <div style="width: 400px;">
             <el-form-item label="账号">
-              <el-input v-model="content.name" type="text"placeholder="请输入账号" size="samll" clearable></el-input>
+              <el-input v-model="content.name" type="text" placeholder="请输入账号" size="samll" clearable></el-input>
            </el-form-item>
           </div>
           <div style="width: 400px;">
             <el-form-item label="密码">
-              <el-input v-model="content.name" type="password"placeholder="请输入密码" size="samll" show-password clearable></el-input>
+              <el-input v-model="content.name" type="password" placeholder="请输入密码" size="samll" show-password clearable></el-input>
            </el-form-item>
           </div>
         </el-form>
@@ -80,44 +77,44 @@ export default {
         account: '',
         password: ''
       }
-    }
+    };
   },
   methods: {
-    close () {
+    close() {
       this.dialog = false;
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
-.title{
+.title {
   color: #606266;
   font-size: 18px;
 }
-.btn{
+.btn {
   position: relative;
   // right: -200px;
 }
-.name{
+.name {
   margin-left: 40px;
   padding: 20px 0;
-  color: #C0C4CC;
+  color: #c0c4cc;
   font-size: 18px;
   float: left;
 }
-.img{
+.img {
   margin-left: 300px;
 }
-.content{
+.content {
   margin-left: 40px;
   font-size: 14px;
-  color: #C0C4CC;
-  p{
+  color: #c0c4cc;
+  p {
     padding: 10px 0;
   }
 }
-img{
+img {
   width: 56px;
   height: 56px;
 }
