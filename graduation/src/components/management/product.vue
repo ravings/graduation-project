@@ -1,10 +1,12 @@
 <template>
   <div>
-    <el-row>
+    <el-row :gutter="40">
       <!-- 通信 -->
       <el-col :span="12">
-        <h3>通信</h3>
-        <el-card :body-style="{ width: '100px'}">
+        <div>
+          <p style="text-align: center; font-size: 20px; font-weight: bold;">通信</p>
+        </div>
+        <el-card :body-style="{ width: '440px'}">
           <div slot="header">
             <span class="title">产品名称</span>
             <el-button class="btn" type="success" icon="el-icon-edit" size="small" @click="dialog = true" plain round>编辑</el-button>
@@ -18,8 +20,10 @@
       </el-col> -->
       <!-- 智慧城市 -->
       <el-col :span="12">
-        <h3>智慧城市</h3>
-        <el-card :body-style="{ width: '100px'}">
+        <div>
+          <p style="text-align: center; font-size: 20px; font-weight: bold;">智慧城市</p>
+        </div>
+        <el-card :body-style="{ width: '440px'}">
           <div slot="header">
             <span class="title">产品名称</span>
             <el-button class="btn" type="success" icon="el-icon-edit" size="small" @click="dialog = true" plain round>编辑</el-button>

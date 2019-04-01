@@ -7,7 +7,7 @@
     </div>
     <div class="content">
       <div class="left">
-        <el-menu class="el-menu-menu" background-color="#f5f5f5" :collapse="isCollapse" router>
+        <el-menu class="el-menu-menu" background-color="#f5f5f5" :collapse="isCollapse" :default-active="tabsValue" router>
           <div class="img" id="img" >
             <img src="../../assets/05.png" alt="">
             <!-- v-show="!isCollapse" -->
@@ -48,14 +48,14 @@
             <el-menu-item index="/Management/news_company">公司新闻</el-menu-item>
             <el-menu-item index="3-2">行业动态</el-menu-item>
           </el-submenu>
-          <el-submenu index="4">
+          <!-- <el-submenu index="4"> -->
+          <el-menu-item index="/Management/product">
             <template slot="title">
               <i class="el-icon-goods"></i>
               <span>产品中心</span>
             </template>
-            <el-menu-item index="3-1">通信</el-menu-item>
-            <el-menu-item index="/Management/product_city">智慧城市</el-menu-item>
-          </el-submenu>
+          </el-menu-item>
+          <!-- </el-submenu> -->
           <el-submenu index="5">
             <template slot="title">
               <i class="el-icon-view"></i>
@@ -72,41 +72,63 @@
               <i class="el-icon-edit"></i>
               <span>编辑器</span>
             </template>
-            <el-menu-item index="/Management/tinymce" @click="addTab(1,'Tinymce富文本编辑器')">Tinymce富文本编辑器</el-menu-item>
-            <el-menu-item index="/Management" @click="addTab(2, 'Markdown编辑器')">Markdown编辑器</el-menu-item>
+            <el-menu-item index="/Management/tinymce">Tinymce富文本编辑器</el-menu-item>
+            <el-menu-item index="/Management">Markdown编辑器</el-menu-item>
           </el-submenu>
         </el-menu>
       </div>
       <div class="right">
-        <!-- <div class="table">
-          <el-tabs type="card" closable v-model="tabsValue" @tab-remove="removeTab">
-            <el-tab-pane v-for="(item, index) in tabs" :key="item.index" :label="item.title" :name="item.name">
-              {{ item.content }}
-              xxxxxxxxxxx -->
-              <!-- <router-view/> -->
-              <!-- <tinymce></tinymce>
+        <div class="table">
+          <el-tabs type="card" closable v-model="tabsValue" @tab-click="switchTab" @tab-remove="removeTab">
+            <el-tab-pane v-for="item in tabs" :key="item.name" :label="item.title" :name="item.name">
+
             </el-tab-pane>
           </el-tabs>
-        </div> -->
-        <router-view/>
+          <router-view/>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import tinymce from './tinymce.vue'
+// import tinymce from './tinymce.vue'
 export default {
   data () {
     return {
       isCollapse: false,
       tabs: [],
-      tabsValue: '0',
-      tabindex: 0
+      tabsValue: '/Management/home'
     }
   },
   components: {
-    'tinymce': tinymce
+    // 'tinymce': tinymce
+  },
+  watch: {
+    '$route' (val) {
+      // console.log(val);
+      let flag = false;
+      // 设置当前激活菜单
+      for (let tab of this.tabs) {
+        if (tab.title == val.name) {
+          flag = true;
+          this.activeTab(val.path);
+          break;
+        }
+      }
+      // 增加tab页并设置为当前激活菜单
+      if (!flag) {
+        this.addTab({
+          path: val.path,
+          name: val.name
+        });
+        this.activeTab(val.path);
+      }
+    }
+  },
+  mounted () {
+    this.addTab({path: '/Management/home', name: '首页'});
+    this.$router.push({path: this.tabsValue});
   },
   methods: {
     show_hide () {
@@ -116,34 +138,42 @@ export default {
         this.isCollapse = true;
       }
     },
-    addTab (num, str) {
-      let newName = ++this.tabindex + '';
-      // if (num == 1){
+    addTab (data) {
         this.tabs.push({
-        title: str,
-        name: newName,
-        index: this.tabindex
-        // content: ''
+        title: data.name,
+        name: data.path
       })
-      // }
-
-      this.tabsValue = newName;
+    },
+    // 切换至当前tab页-->当前页高亮
+    switchTab () {
+      this.$router.push({ path: this.tabsValue});
     },
     removeTab (targetName) {
-      // console.log(targetName);
+      if (targetName == '/Management/home') return;
       let newtabs = this.tabs;
-      for (let i =0; i < this.tabs.length; i++){
-        if (newtabs[i].name == targetName) {
-          newtabs.splice(i, 1);
-          break;
-        }
+      // for (let i =0; i < this.tabs.length; i++){
+      //   if (newtabs[i].name == targetName) {
+      //     newtabs.splice(i, 1);
+      //     break;
+      //   }
+      // }
+      if (targetName == this.tabsValue) {
+        newtabs.forEach((tab, index) => {
+          if (tab.name == targetName) {
+            let nextTab = newtabs[index + 1] || newtabs[index - 1];
+            if (nextTab) {
+              this.tabsValue = nextTab.name;
+              // console.log(this.tabsValue);
+            }
+          }
+        });
       }
-      this.tabs = newtabs;
-      // console.log(this.tabs);
-      if (this.tabs.length == 0) {
-        this.tabsValue = '0';
-        this.tabindex = 0;
-      }
+      this.tabs = newtabs.filter(tab => tab.name !== targetName);
+      this.$router.push({path: this.tabsValue});
+    },
+    // 当前激活菜单
+    activeTab (value) {
+      this.tabsValue = value;
     }
   }
 }

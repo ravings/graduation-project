@@ -10,7 +10,7 @@ import tinymce from './components/management/tinymce.vue'
 import home from './components/management/home.vue'
 import news_company from './components/management/news_company.vue'
 import Personal_information from './components/management/Personal_information.vue'
-import product_city from './components/management/product_city.vue'
+import product from './components/management/product.vue'
 
 
 import AboutUs from "./components/About_us.vue"
@@ -57,28 +57,28 @@ export default new Router({
       children: [
         {
           path: 'tinymce',
-          name: 'tinymce',
+          name: 'tinymce编辑器',
           component: tinymce
         },
         {
           path: 'home',
-          name: 'home',
+          name: '首页',
           component: home
         },
         {
           path: 'news_company',
-          name: 'news_company',
+          name: '公司新闻',
           component: news_company
         },
         {
           path: 'Personal_information',
-          name: 'Personal_information',
+          name: '个人信息',
           component: Personal_information
         },
         {
-          path: 'product_city',
-          name: 'product_city',
-          component: product_city
+          path: 'product',
+          name: '产品中心',
+          component: product
         }
       ]
     },
