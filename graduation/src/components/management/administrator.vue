@@ -68,27 +68,31 @@ export default {
         password: ''
       },
       tableData: [
-        {
-          name: '张三',
-          sex: '男',
-          account: '123456'
-        },
-        {
-          name: '张三',
-          sex: '男',
-          account: '123456'
-        },
-        {
-          name: '张三',
-          sex: '男',
-          account: '123456'
-        }
+        // {
+        //   name: '张三',
+        //   sex: '男',
+        //   account: '123456'
+        // }
       ]
     }
+  },
+  mounted () {
+    this.getContent();
   },
   methods: {
     close () {
       this.dialog = false;
+    },
+    getContent () {
+      let _this = this;
+      this.$ajax.get('/api/administrator')
+      .then(res => {
+        _this.tableData = res.data;
+          // console.log(res.data);
+      })
+      .catch(err => {
+        console.log('fail...');
+      })
     }
   }
 }

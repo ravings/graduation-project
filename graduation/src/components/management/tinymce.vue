@@ -1,8 +1,8 @@
 <template>
   <div class="block">
-    <!-- <div v-html="value"></div> -->
-    <!-- {{value}} -->
-    <Editor id="tinymce" v-model="tinymceHtml" :init="init"></Editor>
+    <!-- <div v-html="value"></div>
+    {{value}} -->
+    <Editor id="tinymce" v-model="value" :init="configInit" :key="flag"></Editor>
   </div>
 </template>
 
@@ -23,7 +23,7 @@ import 'tinymce/plugins/textcolor'
 export default {
   name: 'tinymce',
   props: {
-    tinymceHtml: String
+    // tinymceHtml: String
   },
   components: {
     'Editor': Editor
@@ -31,8 +31,9 @@ export default {
   data () {
     return {
       value: '',
+      flag: 0,
       status: 0,
-      init: {
+      configInit: {
         language_url: '/tinymce/skins/zh_CN.js',
         language: 'zh_CN',
         skin_url: '/tinymce/skins/ui/oxide',
@@ -41,66 +42,34 @@ export default {
         plugins: 'link lists image code table colorpicker textcolor wordcount contextmenu',
         toolbar:
           'bold italic underline strikethrough | fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | undo redo | link unlink image code | removeformat',
-        branding: false,
-        content_style:
-        `
-            *                         { padding:0; margin:0; }
-            html, body                { height:100%; }
-            img                       { max-width:100%; display:block;height:auto; }
-            a                         { text-decoration: none; }
-            iframe                    { width: 100%; }
-            p                         { line-height:1.6; margin: 0px; }
-            table                     { word-wrap:break-word; word-break:break-all; max-width:100%; border:none; border-color:#999; }
-            .mce-object-iframe        { width:100%; box-sizing:border-box; margin:0; padding:0; }
-            ul,ol                     { list-style-position:inside; }
-        `,
-        insert_button_items: 'image link | inserttable',
-
-        paste_retain_style_properties: 'all',
-        paste_word_valid_elements: '*[*]',        // word需要它
-        paste_data_images: true,                  // 粘贴的同时能把内容里的图片自动上传，非常强力的功能
-        paste_convert_word_fake_lists: false,     // 插入word文档需要该属性
-        paste_webkit_styles: 'all',
-        paste_merge_formats: true,
-        nonbreaking_force_tab: false,
-        paste_auto_cleanup_on_paste: false,
-
-        // Tab
-        tabfocus_elements: ':prev,:next',
-        object_resizing: true,
-
-        // Image
-        // imagetools_toolbar: 'rotateleft rotateright | flipv fliph | editimage imageoptions',
-
-        // init_instance_callback: function (editor) {
-        //   editor.on('input change undo redo', () => {
-        //     this.$emit('input', editor.getContent());
-        //   })
-        // }
+        branding: false,  // 去水印
       }
     }
   },
+  activated () {
+    this.flag++;
+  },
   mounted () {
-    // tinymce.init({})
-    this.init();
+    // this.init();
+    tinymce.init({});
   },
   methods: {
-    init () {
-      tinymce.init({init});
-    }
+    // init(){
+    //   tinymce.init({
+    //     ...this.configInit
+    //   })
+    // }
+    // sendContent(){
+    //   this.$emit('input', this.value);
+    // }
   },
   watch: {
-    tinymceHtml (val) {
-      if (window.tinymce.activeEditor) {
-          if (this.status === 0 || window.tinymce.activeEditor.getContent() !== val) {
-            if (val == null) {
-              val = ''
-            }
-            window.tinymce.activeEditor.setContent(val)
-          }
-          this.status = 2
-        }
+    value (val) {
+      if (val) this.$emit('input', this.value);
     }
+  },
+  beforeDestroy () {
+    // tinymce.get(this.flag).destroy();
   }
 }
 </script>

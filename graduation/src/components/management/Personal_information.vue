@@ -7,15 +7,15 @@
       </div>
       <div>
         <div class="name">
-          <span style="padding: 5px 0">名字</span>
+          <span style="padding: 5px 0">{{ content[0].name }}</span>
           <img :src="sex_icon" alt="" style="width: 25px;height: 25px; vertical-align: bottom;">
         </div>
         <div class="img">
           <img src="../../assets/05.png" alt="">
         </div>
         <div class="content">
-          <p>账号：</p>
-          <p>密码：</p>
+          <p>账号：{{ content[0].account }}</p>
+          <p>密码：{{ content[0].password }}</p>
         </div>
       </div>
     </el-card>
@@ -24,12 +24,12 @@
         <el-form :model="content" label-width="60px" label-position="left">
           <div style="width: 400px;">
             <el-form-item label="名字">
-              <el-input v-model="content.name" type="text"placeholder="请输入名字" size="samll" clearable></el-input>
+              <el-input v-model="content[0].name" type="text"placeholder="请输入名字" size="samll" clearable></el-input>
             </el-form-item>
           </div>
           <div style="width: 400px;">
             <el-form-item label="性别">
-              <el-radio-group v-model="sex">
+              <el-radio-group v-model="content[0].sex">
                 <el-radio :label="0">女</el-radio>
                 <el-radio :label="1">男</el-radio>
               </el-radio-group>
@@ -37,12 +37,12 @@
           </div>
           <div style="width: 400px;">
             <el-form-item label="账号">
-              <el-input v-model="content.name" type="text"placeholder="请输入账号" size="samll" clearable></el-input>
+              <el-input v-model="content[0].account" type="text"placeholder="请输入账号" size="samll" clearable></el-input>
            </el-form-item>
           </div>
           <div style="width: 400px;">
             <el-form-item label="密码">
-              <el-input v-model="content.name" type="password"placeholder="请输入密码" size="samll" show-password clearable></el-input>
+              <el-input v-model="content[0].password" type="password"placeholder="请输入密码" size="samll" show-password clearable></el-input>
            </el-form-item>
           </div>
         </el-form>
@@ -63,16 +63,40 @@ export default {
       sex_icon: '/img/icons/sex_0.png',
       sex: 0,
       content: {
-        name: '',
-        sex: '',
-        account: '',
-        password: ''
+        // name: '',
+        // sex: '',
+        // account: '',
+        // password: ''
       }
     }
+  },
+  mounted () {
+    this.getContent();
   },
   methods: {
     close () {
       this.dialog = false;
+    },
+    getContent () {
+      let _this = this;
+      this.$ajax.get('/api/administrator')
+      .then(res => {
+        _this.content = res.data;
+        this.setSex();
+          // console.log(this.content);
+      })
+      .catch(err => {
+        console.log('fail...');
+      })
+    },
+    setSex () {
+      if (this.content.sex == '男') {
+        this.sex_icon = '/img/icons/sex_0.png';
+        this.sex = 1;
+      }else{
+        this.sex_icon = '/img/icons/sex_1.png'
+        this.sex = 0;
+      }
     }
   }
 }

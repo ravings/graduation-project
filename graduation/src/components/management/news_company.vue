@@ -38,12 +38,12 @@
         <el-form :model="form" label-width="60px" label-position="left">
           <div style="width: 400px;">
             <el-form-item label="主标题">
-              <el-input v-model="form.title" type="text"placeholder="请输入标题" size="samll" clearable></el-input>
+              <el-input v-model="form.title" type="text" placeholder="请输入标题" size="samll" clearable></el-input>
             </el-form-item>
           </div>
           <div style="width: 400px;">
             <el-form-item label="副标题">
-              <el-input v-model="form.subtitle" type="text"placeholder="请输入副标题" size="samll" clearable></el-input>
+              <el-input v-model="form.subtitle" type="text" placeholder="请输入副标题" size="samll" clearable></el-input>
             </el-form-item>
           </div>
           <div>
@@ -55,9 +55,9 @@
           <div>
             <el-form-item label="内容">
               <el-input v-model="form.content" type="textarea" disabled placeholder="请输入在编辑器内输入内容"></el-input>
+            <!-- content: {{form.content}} -->
             </el-form-item>
-            content: {{value}}
-            <Editor v-model="value"></Editor>
+            <Editor ref="editor" v-model="form.content" @input="getContent"></Editor>
           </div>
           <!-- <div style="margin-top: 20px;">
             <el-button type="warning" @click="dialog = false">取 消</el-button>
@@ -127,6 +127,9 @@ export default {
   methods: {
     close () {
       this.dialog = false;
+    },
+    getContent (content) {
+      this.form.content = content;
     }
   }
 }
@@ -153,9 +156,4 @@ export default {
     text-align: center;
   }
 }
-// .dialog{
-  // div{
-  //   padding: 5px 0;
-  // }
-// }
 </style>
