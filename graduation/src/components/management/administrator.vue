@@ -21,7 +21,7 @@
     <!-- Dialog对话框 -->
     <div class="dialog">
       <el-dialog :visible="dialog" width="800" title="注册/添加" center @close="close">
-        <el-form :model="content" label-width="60px" label-position="left">
+        <el-form :model="content" ref="form" label-width="60px" label-position="left">
           <div style="width: 400px;">
             <el-form-item label="名字">
               <el-input v-model="content.name" type="text"placeholder="请输入名字" size="samll" clearable></el-input>
@@ -30,25 +30,25 @@
           <div style="width: 400px;">
             <el-form-item label="性别">
               <el-radio-group v-model="content.sex">
-                <el-radio :label="0">女</el-radio>
-                <el-radio :label="1">男</el-radio>
+                <el-radio label="女">女</el-radio>
+                <el-radio label="男">男</el-radio>
               </el-radio-group>
             </el-form-item>
           </div>
           <div style="width: 400px;">
             <el-form-item label="账号">
-              <el-input v-model="content.name" type="text"placeholder="请输入账号" size="samll" clearable></el-input>
+              <el-input v-model="content.account" type="text"placeholder="请输入账号" size="samll" clearable></el-input>
            </el-form-item>
           </div>
           <div style="width: 400px;">
             <el-form-item label="密码">
-              <el-input v-model="content.name" type="password"placeholder="请输入密码" size="samll" show-password clearable></el-input>
+              <el-input v-model="content.password" type="password"placeholder="请输入密码" size="samll" show-password clearable></el-input>
            </el-form-item>
           </div>
         </el-form>
         <div slot="footer">
             <el-button type="warning" @click="dialog = false">取 消</el-button>
-            <el-button type="primary" @click="dialog = false" style="margin-left: 486px;">确 定</el-button>
+            <el-button type="primary" @click="submit('form')" style="margin-left: 486px;">确 定</el-button>
           </div>
       </el-dialog>
     </div>
@@ -82,6 +82,20 @@ export default {
   methods: {
     close () {
       this.dialog = false;
+    },
+    submit (form) {
+      this.$refs.form.validate(valid => {
+        if (valid) {
+          this.$ajax.post('/api/administrator/add', this.content)
+          .then(res => {
+            this.$message({message:'添加成功'})
+            this.dialog = false;
+          })
+          .catch(err => {
+            console.log(err);
+          })
+        }
+      })
     },
     getContent () {
       let _this = this;

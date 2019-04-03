@@ -16,7 +16,7 @@ mongoose.connect('mongodb://localhost:27017/test', function(err){
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
 
-//引入job文件
+//引入路由文件
 const job = require('./routes/job');
 const history = require('./routes/history');
 const product = require('./routes/product');
