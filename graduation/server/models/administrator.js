@@ -4,6 +4,7 @@ const mongoose=require('mongoose');
 const Schema = mongoose.Schema;
 //通过mongoose的Schema定义模板
 const administratorSchema = new Schema({
+  // id: String,
   name: String,
   sex: String,
   account: String,
