@@ -85,7 +85,7 @@ export default {
     submit (form) {
       this.$refs.form.validate(valid => {
         if (valid) {
-          this.$ajax.post('/api/administrator/5ca32da90ffe1224084d16e8', this.content)
+          this.$ajax.post('/api/administrator/updateById/5ca32da90ffe1224084d16e8', this.content)
           .then(res => {
             this.$message({message:'编辑成功'})
             this.dialog = false;

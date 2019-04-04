@@ -11,7 +11,12 @@
         <el-table-column prop="number" label="人数" width="80" align="center"></el-table-column>
         <el-table-column prop="education" label="学历" width="150" align="center"></el-table-column>
         <el-table-column prop="professional" label="专业要求" width="150" align="center"></el-table-column>
-        <el-table-column prop="requirements" label="任职要求" width="200" align="center"></el-table-column>
+        <el-table-column  label="任职要求" width="200" align="center">
+          <!-- prop="requirements" -->
+          <template slot-scope="scope">
+            <div v-html="scope.row.requirements" style="height: 23px; overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></div>
+          </template>
+        </el-table-column>
         </el-table-column>
         <el-table-column label="操作" width="180" align="center">
           <template slot-scope="scope">
@@ -68,24 +73,23 @@ export default {
         professional: '',
         requirements: ''
       },
-      tableData: [],
-      pickerOptions: {
-        disabledDate(time) {
-          return time.getTime() > Date.now();
-        },
-        shortcuts: [{
-          text: '今天',
-          onClick(picker) {
-            picker.$emit('pick', new Date());
-          }
-        }]
-      }
+      tableData: []
     }
+  },
+  mounted() {
+    this.getJob();
   },
   methods: {
     close () {
       this.dialog = false;
-    }
+    },
+    getJob() {
+      this.$ajax.get('/api/job').then(res => {
+        this.tableData = res.data;
+      }).catch(err => {
+        console.log(err);
+      })
+    },
   }
 }
 </script>

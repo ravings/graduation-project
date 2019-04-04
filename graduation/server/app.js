@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 
 //引入路由文件
 const job = require('./routes/job');
+const jobScoial = require('./routes/job_social');
 const history = require('./routes/history');
 const product = require('./routes/product');
 const communication = require('./routes/communication');
@@ -27,6 +28,7 @@ const administrator = require('./routes/administrator');
 
 //使用路由
 app.use('/api/job', job);
+app.use('/api/jobScoial', jobScoial);
 app.use('/api/history', history);
 app.use('/api/city', product);
 app.use('/api/communication', communication);

@@ -13,7 +13,7 @@
         </el-table-column>
         <el-table-column label="操作" width="180" align="center">
           <template slot-scope="scope">
-            <el-button type="danger" icon="el-icon-delete" size="small" plain round>删除</el-button>
+            <el-button type="danger" icon="el-icon-delete" @click="deleteById(scope.row)" size="small" plain round>删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -23,12 +23,12 @@
       <el-dialog :visible="dialog" width="800" title="注册/添加" center @close="close">
         <el-form :model="content" ref="form" label-width="60px" label-position="left">
           <div style="width: 400px;">
-            <el-form-item label="名字">
+            <el-form-item label="名字" prop="name">
               <el-input v-model="content.name" type="text"placeholder="请输入名字" size="samll" clearable></el-input>
             </el-form-item>
           </div>
           <div style="width: 400px;">
-            <el-form-item label="性别">
+            <el-form-item label="性别" prop="sex">
               <el-radio-group v-model="content.sex">
                 <el-radio label="女">女</el-radio>
                 <el-radio label="男">男</el-radio>
@@ -36,18 +36,18 @@
             </el-form-item>
           </div>
           <div style="width: 400px;">
-            <el-form-item label="账号">
+            <el-form-item label="账号" prop="account">
               <el-input v-model="content.account" type="text"placeholder="请输入账号" size="samll" clearable></el-input>
            </el-form-item>
           </div>
           <div style="width: 400px;">
-            <el-form-item label="密码">
+            <el-form-item label="密码" prop="password">
               <el-input v-model="content.password" type="password"placeholder="请输入密码" size="samll" show-password clearable></el-input>
            </el-form-item>
           </div>
         </el-form>
         <div slot="footer">
-            <el-button type="warning" @click="dialog = false">取 消</el-button>
+            <el-button type="warning" @click="reset('form')">取 消</el-button>
             <el-button type="primary" @click="submit('form')" style="margin-left: 486px;">确 定</el-button>
           </div>
       </el-dialog>
@@ -67,29 +67,30 @@ export default {
         account: '',
         password: ''
       },
-      tableData: [
-        // {
-        //   name: '张三',
-        //   sex: '男',
-        //   account: '123456'
-        // }
-      ]
+      tableData: []
     }
   },
   mounted () {
     this.getContent();
   },
   methods: {
-    close () {
+    close() {
+      this.reset();
+    },
+    reset(form) {
+      // this.$nextTick(() => {
+      this.$refs.form.resetFields();
+      // })
       this.dialog = false;
     },
-    submit (form) {
+    submit(form) {
       this.$refs.form.validate(valid => {
         if (valid) {
           this.$ajax.post('/api/administrator/add', this.content)
-          .then(res => {
+          .then(() => {
             this.$message({message:'添加成功'})
             this.dialog = false;
+            this.getContent();
           })
           .catch(err => {
             console.log(err);
@@ -97,7 +98,16 @@ export default {
         }
       })
     },
-    getContent () {
+    deleteById(data) {
+      this.$ajax.delete(`/api/administrator/deleteById/${data._id}`)
+      .then(() => {
+        this.$message({message: '删除成功'});
+      }).catch(err => {
+        console.log(err);
+      })
+      this.getContent();
+    },
+    getContent() {
       let _this = this;
       this.$ajax.get('/api/administrator')
       .then(res => {

@@ -6,12 +6,15 @@
         <div>
           <p style="text-align: center; font-size: 20px; font-weight: bold;">通信</p>
         </div>
-        <el-card :body-style="{ width: '440px'}">
+        <el-card :body-style="{ width: '440px'}" style="margin-top: 10px;" v-for="list in productCommu" :key="list._id">
           <div slot="header">
-            <span class="title">产品名称</span>
-            <el-button class="btn" type="success" icon="el-icon-edit" size="small" @click="dialog = true" plain round>编辑</el-button>
+            <span class="title">{{ list.title }}</span>
+            <div class="btn">
+              <el-button type="success" icon="el-icon-edit" size="small" @click="changeCommu(list._id, 'type')" plain round>编辑</el-button>
+              <el-button type="danger" icon="el-icon-delete" size="small" @click="dialog = true" plain round>删除</el-button>
+            </div>
           </div>
-          <div class="content">
+          <div class="content" v-html="list.content">
           </div>
         </el-card>
       </el-col>
@@ -20,41 +23,39 @@
         <div>
           <p style="text-align: center; font-size: 20px; font-weight: bold;">智慧城市</p>
         </div>
-        <el-card :body-style="{ width: '440px'}">
+        <el-card :body-style="{ width: '440px'}" style="margin-top: 10px;" v-for="(item, index) in productCity" :key="index">
           <div slot="header">
-            <span class="title">产品名称</span>
-            <el-button class="btn" type="success" icon="el-icon-edit" size="small" @click="dialog = true" plain round>编辑</el-button>
+            <span class="title">{{item.title}}</span>
+            <div class="btn">
+              <el-button type="success" icon="el-icon-edit" size="small" @click="dialog = true" plain round>编辑</el-button>
+              <el-button type="danger" icon="el-icon-delete" size="small" @click="dialog = true" plain round>删除</el-button>
+            </div>
           </div>
-          <div class="content">
+          <div class="content" v-html="item.content">
           </div>
         </el-card>
       </el-col>
     </el-row>
     <div class="dialog">
-      <el-dialog :visible="dialog" width="800" title="更改信息" center @close="close">
-        <el-form :model="content" label-width="60px" label-position="left">
+      <el-dialog :visible="dialog" width="800" :title="theTitle" center @close="close">
+        <el-form :model="forms" ref="form" label-width="70px" label-position="left">
           <div style="width: 400px;">
-            <el-form-item label="名字">
-              <el-input v-model="content.name" type="text" placeholder="请输入名字" size="samll" clearable></el-input>
+            <el-form-item label="产品名称">
+              <el-input v-model="forms.title" type="text" placeholder="请输入产品名称" size="samll" clearable></el-input>
+            </el-form-item>
+          </div>
+          <div style="width: 400px;" ref="type">
+            <el-form-item label="类型">
+              <el-radio-group v-model="type">
+                <el-radio :label="0">智慧城市</el-radio>
+                <el-radio :label="1">通信</el-radio>
+              </el-radio-group>
             </el-form-item>
           </div>
           <div style="width: 400px;">
-            <el-form-item label="性别">
-              <!-- <el-radio-group v-model="1">
-                <el-radio :label="0">女</el-radio>
-                <el-radio :label="1">男</el-radio>
-              </el-radio-group> -->
+            <el-form-item label="内容">
+              <el-input v-model="forms.content" type="text" placeholder="请输入账号" size="samll" clearable></el-input>
             </el-form-item>
-          </div>
-          <div style="width: 400px;">
-            <el-form-item label="账号">
-              <el-input v-model="content.name" type="text" placeholder="请输入账号" size="samll" clearable></el-input>
-           </el-form-item>
-          </div>
-          <div style="width: 400px;">
-            <el-form-item label="密码">
-              <el-input v-model="content.name" type="password" placeholder="请输入密码" size="samll" show-password clearable></el-input>
-           </el-form-item>
           </div>
         </el-form>
         <div slot="footer">
@@ -70,18 +71,46 @@
 export default {
   data () {
     return {
+      theTitle: '',
       dialog: false,
-      content: {
-        name: '',
-        sex: '',
-        account: '',
-        password: ''
-      }
+      type: '',
+      productCommu: '',
+      productCity: '',
+      forms: {}
     };
+  },
+  mounted() {
+    this.getCommu();
+    this.getCity();
   },
   methods: {
     close() {
       this.dialog = false;
+    },
+    changeCommu(id, type) {
+      this.dialog = true;
+      // let str = document.getElementById('type');
+      // console.log(this.$refs.type);
+      // str.style.display = 'none';
+      // this.$ajax.get(`/api/communication/${id}`).then(res => {
+      //   this.forms = res.data;
+      // }).catch(err => {
+      //   console.log(err);
+      // })
+    },
+    getCity() {
+      this.$ajax.get('/api/city').then(res => {
+        this.productCity = res.data;
+      }).catch(err => {
+        console.log(err);
+      })
+    },
+    getCommu() {
+      this.$ajax.get('/api/communication').then(res => {
+        this.productCommu = res.data;
+      }).catch(err => {
+        console.log(err);
+      })
     }
   }
 };
@@ -93,8 +122,10 @@ export default {
   font-size: 18px;
 }
 .btn {
-  position: relative;
-  // right: -200px;
+  // margin-left: 200px;
+  float: right;
+  // position: relative;
+  // left: 200;
 }
 .name {
   margin-left: 40px;
@@ -107,12 +138,11 @@ export default {
   margin-left: 300px;
 }
 .content {
-  margin-left: 40px;
+  // margin-left: 40px;
+  height: 170px;
+  overflow: hidden;
   font-size: 14px;
   color: #c0c4cc;
-  p {
-    padding: 10px 0;
-  }
 }
 img {
   width: 56px;
