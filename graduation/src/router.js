@@ -14,6 +14,7 @@ import product from './components/management/product.vue'
 import administrator from './components/management/administrator.vue'
 import AU_about from './components/management/AU_about.vue'
 import job_1 from './components/management/job_1.vue'
+import job_2 from './components/management/job_2.vue'
 
 import AboutUs from "./components/About_us.vue"
 import about from "./components/About_us/about.vue"
@@ -96,6 +97,11 @@ export default new Router({
           path: 'job_1',
           name: '校招岗位',
           component: job_1
+        },
+        {
+          path: 'job_2',
+          name: '社招岗位',
+          component: job_2
         }
       ]
     },

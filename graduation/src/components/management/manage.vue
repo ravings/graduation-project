@@ -64,7 +64,7 @@
             <el-menu-item-group>
               <span slot="title">招聘岗位</span>
               <el-menu-item index="/Management/job_1">校招岗位</el-menu-item>
-              <el-menu-item index="2-2">社招岗位</el-menu-item>
+              <el-menu-item index="/Management/job_2">社招岗位</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="6">
