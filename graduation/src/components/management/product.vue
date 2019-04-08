@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div style="text-align: center;padding: 8px 0;">
+      <span style="font-size: 16px;color: #67C23A;padding: 0 8px;">添加产品</span>
+      <el-button icon="el-icon-plus" type="success" class="add" @click="open" plain circle></el-button>
+    </div>
     <el-row :gutter="40">
       <!-- 通信 -->
       <el-col :span="12">
@@ -10,11 +14,11 @@
           <div slot="header">
             <span class="title">{{ list.title }}</span>
             <div class="btn">
-              <el-button type="success" icon="el-icon-edit" size="small" @click="changeCommu(list._id, 'type')" plain round>编辑</el-button>
-              <el-button type="danger" icon="el-icon-delete" size="small" @click="dialog = true" plain round>删除</el-button>
+              <el-button type="success" icon="el-icon-edit" size="small" @click="getCommuById(list._id)" plain round>编辑</el-button>
+              <el-button type="danger" icon="el-icon-delete" size="small" @click="deleteCommuById(list._id)" plain round>删除</el-button>
             </div>
           </div>
-          <div class="content" v-html="list.content">
+          <div class="content" v-html="list.content" ref="content">
           </div>
         </el-card>
       </el-col>
@@ -27,8 +31,8 @@
           <div slot="header">
             <span class="title">{{item.title}}</span>
             <div class="btn">
-              <el-button type="success" icon="el-icon-edit" size="small" @click="dialog = true" plain round>编辑</el-button>
-              <el-button type="danger" icon="el-icon-delete" size="small" @click="dialog = true" plain round>删除</el-button>
+              <el-button type="success" icon="el-icon-edit" size="small" @click="getCityById(item._id)" plain round>编辑</el-button>
+              <el-button type="danger" icon="el-icon-delete" size="small" @click="deleteCityById(item._id)" plain round>删除</el-button>
             </div>
           </div>
           <div class="content" v-html="item.content">
@@ -36,31 +40,31 @@
         </el-card>
       </el-col>
     </el-row>
-    <div class="dialog">
-      <el-dialog :visible="dialog" width="800" :title="theTitle" center @close="close">
+    <div class="dialog" ref="dialog">
+      <el-dialog :visible="dialog" width="800" :title="theTitle" center @close="close" @open="show(clickTpye)">
         <el-form :model="forms" ref="form" label-width="70px" label-position="left">
-          <div style="width: 400px;">
-            <el-form-item label="产品名称">
+          <div>
+            <el-form-item label="产品名称" prop="title">
               <el-input v-model="forms.title" type="text" placeholder="请输入产品名称" size="samll" clearable></el-input>
             </el-form-item>
           </div>
-          <div style="width: 400px;" ref="type">
+          <div ref="radio">
             <el-form-item label="类型">
-              <el-radio-group v-model="type">
-                <el-radio :label="0">智慧城市</el-radio>
-                <el-radio :label="1">通信</el-radio>
+              <el-radio-group v-model="radioType">
+                <el-radio label="city">智慧城市</el-radio>
+                <el-radio label="communication">通信</el-radio>
               </el-radio-group>
             </el-form-item>
           </div>
-          <div style="width: 400px;">
-            <el-form-item label="内容">
-              <el-input v-model="forms.content" type="text" placeholder="请输入账号" size="samll" clearable></el-input>
+          <div>
+            <el-form-item label="内容" prop="content">
+              <el-input v-model="forms.content" type="textarea" placeholder="请输入..." size="samll" clearable></el-input>
             </el-form-item>
           </div>
         </el-form>
         <div slot="footer">
-            <el-button type="warning" @click="dialog = false">取 消</el-button>
-            <el-button type="primary" @click="dialog = false" style="margin-left: 486px;">确 定</el-button>
+            <el-button type="warning" @click="reset('form')">取 消</el-button>
+            <el-button type="primary" @click="add('form', clickTpye, productType)" style="margin-left: 486px;">确 定</el-button>
           </div>
       </el-dialog>
     </div>
@@ -68,14 +72,17 @@
 </template>
 
 <script>
+import { setTimeout } from 'timers';
 export default {
   data () {
     return {
-      theTitle: '',
+      theTitle: '编辑',
       dialog: false,
-      type: '',
+      radioType: 'city',
+      productType: '',
       productCommu: '',
       productCity: '',
+      clickTpye: 'add',
       forms: {}
     };
   },
@@ -85,18 +92,87 @@ export default {
   },
   methods: {
     close() {
+      this.reset();
+    },
+    open() {
+      this.clickTpye = 'add';
+      this.theTitle = '添加';
+      this.dialog = true;
+    },
+    show(clickTpye) {
+      if(clickTpye == 'update') {
+        setTimeout(() => {
+          this.$refs.radio.style.display = 'none';
+        }, 10);
+        // console.log(this.$refs.radio);
+      }else{
+        setTimeout(() => {
+          this.$refs.radio.style.display = 'block';
+        }, 10);
+      }
+    },
+    reset(form) {
+      this.$refs.form.resetFields();
       this.dialog = false;
     },
-    changeCommu(id, type) {
+    add(form, clickTpye, productType) {
+      if(clickTpye == 'add') {
+        this.$refs.form.validate(valid => {
+          if(valid) {
+            this.$ajax.post(`/api/${this.radioType}/add`, this.forms)
+            .then(() => {
+              this.$message({message:'添加成功'})
+              this.dialog = false;
+            }).catch(err => {
+              console.log(err);
+            })
+          }
+        })
+      }else{
+        this.$refs.form.validate(valid => {
+          if(valid) {
+            this.$ajax.post(`/api/${productType}/updateById/${this.forms._id}`, this.forms)
+            .then(() => {
+              this.$message({message:'编辑成功'})
+              this.dialog = false;
+            }).catch(err => {
+              console.log(err);
+            })
+          }
+        })
+      }
+    },
+    deleteCommuById(id) {
+      this.$ajax.delete(`/api/communication/deleteById/${id}`).then(() => {
+        this.$message({message: '删除成功'});
+        this.getCommu();
+      })
+    },
+    deleteCityById(id) {
+      this.$ajax.delete(`/api/city/deleteById/${id}`).then(() => {
+        this.$message({message: '删除成功'});
+        this.getCity();
+      })
+    },
+    getCommuById(id) {
       this.dialog = true;
-      // let str = document.getElementById('type');
-      // console.log(this.$refs.type);
-      // str.style.display = 'none';
-      // this.$ajax.get(`/api/communication/${id}`).then(res => {
-      //   this.forms = res.data;
-      // }).catch(err => {
-      //   console.log(err);
-      // })
+      this.clickTpye = 'update';
+      this.productType = 'communication'
+      this.$ajax.get(`/api/communication/findById/${id}`).then(res => {
+        this.forms = res.data;
+      }).catch(err => {
+        console.log(err);
+      })
+    },
+    getCityById(id) {
+      this.dialog = true;
+      this.clickTpye = 'update';
+      this.productType = 'city'
+      this.$ajax.get(`/api/city/findById/${id}`).then(res => {
+        this.forms = res.data;
+      }).catch(err => {
+        console.log(err);
+      })
     },
     getCity() {
       this.$ajax.get('/api/city').then(res => {
@@ -124,6 +200,7 @@ export default {
 .btn {
   // margin-left: 200px;
   float: right;
+  // display: block;
   // position: relative;
   // left: 200;
 }

@@ -9,7 +9,7 @@
       <el-button icon="el-icon-plus" type="primary" class="add" @click="dialog = true" round></el-button>
     </div>
     <div class="content">
-      <el-table class="table" border stripe :data="tableData" :default-sort="{prop:'date'}">
+      <el-table class="table" border stripe :data="tableData" :default-sort="{prop:'date', order: 'descending'}">
         <el-table-column label="序号" type="index" width="80" align="center"></el-table-column>
         <el-table-column prop="date" label="时间" sortable width="180" align="center">
           <!-- <template slot-scope="scope">
@@ -59,16 +59,13 @@
             </el-form-item>
             <Editor ref="editor" v-model="form.content" @input="getContent"></Editor>
           </div>
-          <!-- <div style="margin-top: 20px;">
-            <el-button type="warning" @click="dialog = false">取 消</el-button>
-            <el-button type="primary" @click="dialog = false" style="margin-left: 486px;">确 定</el-button>
-          </div> -->
         </el-form>
         <div slot="footer">
             <el-button type="warning" @click="dialog = false">取 消</el-button>
             <el-button type="primary" @click="dialog = false" style="margin-left: 486px;">确 定</el-button>
           </div>
       </el-dialog>
+      <!-- <Editor ref="editor" v-model="form.content" @input="getContent"></Editor> -->
     </div>
   </div>
 </template>

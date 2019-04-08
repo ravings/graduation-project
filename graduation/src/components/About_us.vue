@@ -1,5 +1,6 @@
 <template>
     <div>
+      <Nav></Nav>
         <div class="img">
             <img src="../assets/about_us_01.jpg" alt="">
         </div>
@@ -43,12 +44,18 @@
                 <!-- <router-view></router-view> -->
             </div>
         </div>
+      <Footer></Footer>
     </div>
 </template>
 
 <script>
+import Nav from './Nav.vue'
+import Footer from './Footer.vue'
 export default {
-
+  components: {
+    "Nav": Nav,
+    "Footer": Footer
+  }
 }
 </script>
 

@@ -1,5 +1,6 @@
 <template>
     <div>
+      <Nav></Nav>
         <div class="img">
             <img src="../assets/join_us_01.jpg" alt="">
         </div>
@@ -44,12 +45,19 @@
                 <!-- <router-view></router-view> -->
             </div>
         </div>
+      <Footer></Footer>
     </div>
 </template>
 
 <script>
+import Nav from './Nav.vue'
+import Footer from './Footer.vue'
 export default {
   name: 'joinus',
+  components: {
+    "Nav": Nav,
+    "Footer": Footer
+  },
   methods: {
     change: function (e) {
       if (e) {
