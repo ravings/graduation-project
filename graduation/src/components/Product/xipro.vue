@@ -50,7 +50,7 @@ export default {
   methods: {
     getProducts() {
       console.log(this.type);
-      this.$ajax.get(`/api/${this.type}/${this.id}`)//'5c93070541224b33700faaa5'
+      this.$ajax.get(`/api/${this.type}/findById/${this.id}`)//'5c93070541224b33700faaa5'
       .then(res => {
         // console.log(res.data);
         this.products = res.data;

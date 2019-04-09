@@ -93,6 +93,7 @@ export default {
             this.getContent();
           })
           .catch(err => {
+            this.$message({message:'用户名已被注册'})
             console.log(err);
           })
         }

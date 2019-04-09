@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcryptjs')
 const administrator = require('../models/administrator');
 
 // 查询所有数据
@@ -46,17 +47,23 @@ router.post('/add', (req, res) => {
     account: req.body.account,
     password: req.body.password
   });
-  // let newData = {};
-  // if (req.body.id) newData._id = req.body.id;
-  // if (req.body.name) newData.name = req.body.name;
-  // if (req.body.sex) newData.sex = req.body.sex;
-  // if (req.body.account) newData.account = req.body.account;
-  // if (req.body.password) newData.password = req.body.password;
-  // new administrator(newData).save().
-  newData.save().then(doc => {
-    res.json(doc);
-  }).catch(err => {
-    console.log(err);
+  administrator.findOne({account: req.body.account}).then(doc => {
+    if(doc) {
+      res.status(400).json('doc');
+    }else{
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newData.password, salt, (err, hash) => {
+          if(err) throw err;
+          // 使用hash覆盖明文密码
+          newData.password = hash;
+          newData.save().then(doc => {
+            res.json(doc);
+          }).catch(err => {
+            res.json(err);
+          })
+        })
+      })
+    }
   })
 });
 

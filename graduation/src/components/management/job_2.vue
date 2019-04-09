@@ -146,7 +146,7 @@ export default {
         this.$refs.form.validate(valid => {
           if(valid) {
             this.$ajax.post('/api/jobScoial/add',this.forms).then(res => {
-              this.$message({message:'编辑成功'})
+              this.$message({message:'添加成功'})
               this.dialog = false;
               this.getJobScoial();
             }).catch(err => {

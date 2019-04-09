@@ -85,9 +85,10 @@ export default {
     submit (form) {
       this.$refs.form.validate(valid => {
         if (valid) {
-          this.$ajax.post('/api/administrator/updateById/5ca32da90ffe1224084d16e8', this.content)
+          this.$ajax.post('/api/administrator/updateById/5cac6b0a9855622e00a7d3ea', this.content)
           .then(res => {
             this.$message({message:'编辑成功'})
+            this.getContent();
             this.dialog = false;
           })
           .catch(err => {
@@ -104,7 +105,7 @@ export default {
     },
     getContent () {
       let _this = this;
-      this.$ajax.get('/api/administrator/5ca32da90ffe1224084d16e8')
+      this.$ajax.get('/api/administrator/5cac6b0a9855622e00a7d3ea')
       .then(res => {
         _this.content = res.data;
         this.setSex();
