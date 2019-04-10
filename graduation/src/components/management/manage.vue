@@ -3,7 +3,7 @@
     <div class="title">
       <i class="el-icon-menu" @click="show_hide"></i>
       <span>公司首页管理系统</span>
-      <el-button class="exit" icon="el-icon-star-off" type="warning" size="mini" plain round>退出登录</el-button>
+      <el-button class="exit" @click="exit" icon="el-icon-star-off" type="warning" size="mini" plain round>退出登录</el-button>
     </div>
     <div class="content">
       <div class="left">
@@ -95,7 +95,7 @@
 export default {
   data () {
     return {
-      isCollapse: false,
+      isCollapse: false,  //  是否能够展开，收缩菜单
       tabs: [],
       tabsValue: '/Management/home'
     }
@@ -134,6 +134,10 @@ export default {
       }else{
         this.isCollapse = true;
       }
+    },
+    exit() {
+      localStorage.removeItem('token');
+      this.$router.push('/')
     },
     addTab (data) {
         this.tabs.push({

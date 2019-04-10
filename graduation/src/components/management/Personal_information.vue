@@ -15,7 +15,7 @@
         </div>
         <div class="content">
           <p>账号：{{ content.account }}</p>
-          <p>密码：{{ content.password }}</p>
+          <p>密码：******</p>
         </div>
       </div>
     </el-card>
@@ -105,7 +105,7 @@ export default {
     },
     getContent () {
       let _this = this;
-      this.$ajax.get('/api/administrator/5cac6b0a9855622e00a7d3ea')
+      this.$ajax.get('/api/administrator/findById/5cac6b0a9855622e00a7d3ea')
       .then(res => {
         _this.content = res.data;
         this.setSex();

@@ -21,7 +21,7 @@
     <!-- Dialog对话框 -->
     <div class="dialog">
       <el-dialog :visible="dialog" width="800" title="注册/添加" center @close="close">
-        <el-form :model="content" ref="form" label-width="60px" label-position="left">
+        <el-form :model="content" ref="form" :rules="rules" label-width="60px" label-position="left"  hide-required-asterisk status-icon>
           <div style="width: 400px;">
             <el-form-item label="名字" prop="name">
               <el-input v-model="content.name" type="text"placeholder="请输入名字" size="samll" clearable></el-input>
@@ -67,7 +67,20 @@ export default {
         account: '',
         password: ''
       },
-      tableData: []
+      tableData: [],
+      rules: {
+        sex: [
+          { required: true, message: '性别不能为空', trigg: 'change' }
+        ],
+        account: [
+          {required: true, message:"用户名不能为空!", trigger: 'blur'},
+          {min: 5, max: 12, message:"长度在5-12字符串之间", trigger:"blur"}
+        ],
+        password: [
+          {required: true, message:"密码不能为空!", trigger: 'blur'},
+          {min: 5, max: 12, message:"长度在5-12字符串之间", trigger:"blur"}
+        ]
+      }
     }
   },
   mounted () {
