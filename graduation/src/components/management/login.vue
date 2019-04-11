@@ -61,8 +61,10 @@ export default {
             // console.log(localStorage.token);
             const decode = jwt_decode(token);
             // console.log(decode);
+            // 用户名存进vuex中
+            this.$store.dispatch('setUser', decode.account);
             this.$message({message: '欢迎！'});
-            // this.$router.push({path: '/Management/home'});
+            this.$router.push({path: '/Management/home'});
           }).catch(err => {
             this.$message({message: '帐号或密码错误！'});
           })

@@ -63,7 +63,7 @@ router.post('/add', (req , res) => {
 });
 
 router.delete('/deleteById/:id', (req, res) => {
-  job.findByIdAndRemove({_id: req.params.id})
+  jobs.findByIdAndRemove({_id: req.params.id})
   .then(job => {
     res.json(job);
   }).catch(err => {

@@ -2,6 +2,7 @@
   <div class="block">
     <!-- <div v-html="value"></div>
     {{value}} -->
+    <el-input type="textarea" v-model="value"></el-input>
     <Editor id="tinymce" v-model="value" :init="configInit" :key="flag"></Editor>
   </div>
 </template>

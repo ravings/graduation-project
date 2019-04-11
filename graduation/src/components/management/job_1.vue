@@ -11,7 +11,7 @@
         <el-table-column prop="number" label="人数" width="80" align="center"></el-table-column>
         <el-table-column prop="education" label="学历" width="150" align="center"></el-table-column>
         <el-table-column prop="professional" label="专业要求" width="150" align="center"></el-table-column>
-        <el-table-column  label="任职要求" width="200" align="center">
+        <el-table-column  label="任职要求" min-width="200" align="center">
           <!-- prop="requirements" -->
           <template slot-scope="scope">
             <div v-html="scope.row.requirements" style="height: 23px; overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></div>
@@ -30,27 +30,27 @@
     <div class="dialog">
       <el-dialog :visible="dialog" width="800" title="添加" center @close="close">
         <el-form :model="forms" ref="form" label-width="80px" label-position="left">
-          <div style="width: 400px;">
+          <div>
             <el-form-item label="岗位名称" prop="title">
               <el-input v-model="forms.title" type="text" placeholder="请输入..." size="samll" clearable></el-input>
             </el-form-item>
           </div>
-          <div style="width: 400px;">
+          <div>
             <el-form-item label="人数" prop="number">
               <el-input v-model="forms.number" type="text" placeholder="请输入..." size="samll" clearable></el-input>
             </el-form-item>
           </div>
-          <div style="width: 400px;">
+          <div>
             <el-form-item label="学历" prop="education">
               <el-input v-model="forms.education" type="text" placeholder="请输入..." size="samll" clearable></el-input>
            </el-form-item>
           </div>
-          <div style="width: 400px;">
+          <div>
             <el-form-item label="专业要求" prop="professional">
               <el-input v-model="forms.professional" type="text" placeholder="请输入..." size="samll" clearable></el-input>
            </el-form-item>
           </div>
-          <div style="width: 400px;">
+          <div>
             <el-form-item label="任职要求" prop="requirements">
               <el-input v-model="forms.requirements" type="textarea" placeholder="请在编辑器中输入" size="samll" clearable></el-input>
            </el-form-item>
@@ -116,7 +116,7 @@ export default {
       this.$ajax.delete(`/api/job/deleteById/${data._id}`)
       .then(() => {
         this.$message({message: '删除成功'});
-        this.getJobScoial();
+        this.getJob();
       }).catch(err => {
         console.log(err);
       })
@@ -134,7 +134,7 @@ export default {
             .then(() => {
               this.$message({message:'编辑成功'})
               this.dialog = false;
-              this.getJobScoial();
+              this.getJob();
             })
             .catch(err => {
               console.log(err);
@@ -145,9 +145,9 @@ export default {
         this.$refs.form.validate(valid => {
           if(valid) {
             this.$ajax.post('/api/job/add',this.forms).then(res => {
-              this.$message({message:'编辑成功'})
+              this.$message({message:'添加成功'})
               this.dialog = false;
-              this.getJobScoial();
+              this.getJob();
             }).catch(err => {
               console.log(err);
             })

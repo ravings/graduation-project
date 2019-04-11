@@ -36,15 +36,15 @@
             </el-form-item>
           </div>
           <div style="width: 400px;">
-            <el-form-item label="账号" prop="account">
+            <el-form-item label="用户名" prop="account">
               <el-input v-model="content.account" type="text" placeholder="请输入账号" size="samll" clearable></el-input>
            </el-form-item>
           </div>
-          <div style="width: 400px;">
+          <!-- <div style="width: 400px;">
             <el-form-item label="密码" prop="password">
               <el-input v-model="content.password" type="password" placeholder="请输入密码" size="samll" show-password clearable></el-input>
            </el-form-item>
-          </div>
+          </div> -->
         </el-form>
           <!-- <el-form-item> -->
           <div slot="footer">
@@ -83,10 +83,11 @@ export default {
       // this.dialog = false;
     },
     submit (form) {
+      let account = this.$store.state.users;
       this.$refs.form.validate(valid => {
         if (valid) {
-          this.$ajax.post('/api/administrator/updateById/5cac6b0a9855622e00a7d3ea', this.content)
-          .then(res => {
+          this.$ajax.post(`/api/administrator/updateByAccount/${account}`, this.content)
+          .then(() => {
             this.$message({message:'编辑成功'})
             this.getContent();
             this.dialog = false;
@@ -105,7 +106,8 @@ export default {
     },
     getContent () {
       let _this = this;
-      this.$ajax.get('/api/administrator/findById/5cac6b0a9855622e00a7d3ea')
+      let account = this.$store.state.users;
+      this.$ajax.get(`/api/administrator/findByAccount/${account}`)
       .then(res => {
         _this.content = res.data;
         this.setSex();

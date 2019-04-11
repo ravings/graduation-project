@@ -28,7 +28,7 @@ router.beforeEach((to, from, next) => {
   }
   if (to.path == '/Login') {
     if (isLogin) {
-      this.$router.push('/Management/home');
+      this.$router.push({path: '/Management/home'});
     }
   }
 })

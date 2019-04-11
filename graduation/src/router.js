@@ -9,6 +9,7 @@ import Management from './components/management/manage.vue'
 import tinymce from './components/management/tinymce.vue'
 import home from './components/management/home.vue'
 import news_company from './components/management/news_company.vue'
+import news_industry from './components/management/news_industry.vue'
 import Personal_information from './components/management/Personal_information.vue'
 import product from './components/management/product.vue'
 import administrator from './components/management/administrator.vue'
@@ -72,6 +73,11 @@ export default new Router({
           path: 'news_company',
           name: '公司新闻',
           component: news_company
+        },
+        {
+          path: 'news_industry',
+          name: '行业动态',
+          component: news_industry
         },
         {
           path: 'Personal_information',

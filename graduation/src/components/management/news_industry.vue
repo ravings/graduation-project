@@ -132,7 +132,7 @@ export default {
     },
     find() {
       // this.$ajax.get('/api/news_company/findByMore', {params: {title: this.findTitle}})
-      this.$ajax.get(`/api/news_company/findByMore/${this.findTitle}`)
+      this.$ajax.get(`/api/news_industry/findByMore/${this.findTitle}`)
       .then(res => {
         this.tableData = res.data;
       }).catch(err => {
@@ -140,7 +140,7 @@ export default {
       })
     },
     getNews() {
-      this.$ajax.get('/api/news_company').then(res => {
+      this.$ajax.get('/api/news_industry').then(res => {
         this.tableData = res.data;
       }).catch(err => {
         console.log(err);
@@ -148,7 +148,7 @@ export default {
     },
     updateById(data) {
       this.dialog = true;
-      this.$ajax.get(`/api/news_company/findById/${data._id}`).then(res => {
+      this.$ajax.get(`/api/news_industry/findById/${data._id}`).then(res => {
         this.forms = res.data;
         this.clickType = 'update';
       }).catch(err => {
@@ -156,7 +156,7 @@ export default {
       })
     },
     deleteById(data) {
-      this.$ajax.delete(`/api/news_company/deleteById/${data._id}`).then(() => {
+      this.$ajax.delete(`/api/news_industry/deleteById/${data._id}`).then(() => {
         this.$message({message: '删除成功'});
         this.getNews();
       }).catch(err => {
@@ -171,7 +171,7 @@ export default {
       if(clickType == 'add'){
         this.$refs.form.validate(valid => {
           if(valid) {
-            this.$ajax.post('/api/news_company/add', this.forms)
+            this.$ajax.post('/api/news_industry/add', this.forms)
             .then(() => {
               this.$message({message: '添加成功'});
               this.getNews();
@@ -184,7 +184,7 @@ export default {
       }else{
         this.$refs.form.validate(valid => {
           if(valid) {
-            this.$ajax.post(`/api/news_company/updateById/${this.forms._id}`, this.forms)
+            this.$ajax.post(`/api/news_industry/updateById/${this.forms._id}`, this.forms)
             .then(() => {
               this.$message({message: '编辑成功'});
               this.getNews();

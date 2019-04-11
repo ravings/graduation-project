@@ -17,8 +17,8 @@ router.get('/', (req, res) => {
 });
 
 // 查询个人信息
-router.get('/findById/:id', (req, res) => {
-  administrator.findById({_id: req.params.id}).then(doc => {
+router.get('/findByAccount/:account', (req, res) => {
+  administrator.findOne({account: req.params.account}).then(doc => {
     if (!doc) {
       return res.status(404).json('fail...');
     }
@@ -29,8 +29,8 @@ router.get('/findById/:id', (req, res) => {
 });
 
 // 修改个人信息
-router.post('/updateById/:id', (req, res) => {
-  administrator.findByIdAndUpdate({_id: req.params.id},
+router.post('/updateByAccount/:account', (req, res) => {
+  administrator.findByIdAndUpdate({account: req.params.account},
      {name: req.body.name, sex: req.body.sex, account: req.body.account,
       password: req.body.password}, {new: true}).then(doc => {
     res.json(doc);

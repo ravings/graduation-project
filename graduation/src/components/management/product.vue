@@ -4,42 +4,44 @@
       <span style="font-size: 16px;color: #67C23A;padding: 0 8px;">添加产品</span>
       <el-button icon="el-icon-plus" type="success" class="add" @click="open" plain circle></el-button>
     </div>
-    <el-row :gutter="40">
-      <!-- 通信 -->
-      <el-col :span="12">
-        <div>
-          <p style="text-align: center; font-size: 20px; font-weight: bold;">通信</p>
-        </div>
-        <el-card :body-style="{ width: '440px'}" style="margin-top: 10px;" v-for="list in productCommu" :key="list._id">
-          <div slot="header">
-            <span class="title">{{ list.title }}</span>
-            <div class="btn">
-              <el-button type="success" icon="el-icon-edit" size="small" @click="getCommuById(list._id)" plain round>编辑</el-button>
-              <el-button type="danger" icon="el-icon-delete" size="small" @click="deleteCommuById(list._id)" plain round>删除</el-button>
+    <div class="row">
+      <el-row :gutter="40">
+        <!-- 通信 -->
+        <el-col :span="12">
+          <div>
+            <p style="text-align: center; font-size: 20px; font-weight: bold;">通信</p>
+          </div>
+          <el-card style="margin-top: 10px;" v-for="list in productCommu" :key="list._id">
+            <div slot="header">
+              <span class="title">{{ list.title }}</span>
+              <div class="btn">
+                <el-button type="success" icon="el-icon-edit" size="small" @click="getCommuById(list._id)" plain round>编辑</el-button>
+                <el-button type="danger" icon="el-icon-delete" size="small" @click="deleteCommuById(list._id)" plain round>删除</el-button>
+              </div>
             </div>
-          </div>
-          <div class="content" v-html="list.content" ref="content">
-          </div>
-        </el-card>
-      </el-col>
-      <!-- 智慧城市 -->
-      <el-col :span="12">
-        <div>
-          <p style="text-align: center; font-size: 20px; font-weight: bold;">智慧城市</p>
-        </div>
-        <el-card :body-style="{ width: '440px'}" style="margin-top: 10px;" v-for="(item, index) in productCity" :key="index">
-          <div slot="header">
-            <span class="title">{{item.title}}</span>
-            <div class="btn">
-              <el-button type="success" icon="el-icon-edit" size="small" @click="getCityById(item._id)" plain round>编辑</el-button>
-              <el-button type="danger" icon="el-icon-delete" size="small" @click="deleteCityById(item._id)" plain round>删除</el-button>
+            <div class="content" v-html="list.content" ref="content">
             </div>
+          </el-card>
+        </el-col>
+        <!-- 智慧城市 -->
+        <el-col :span="12">
+          <div>
+            <p style="text-align: center; font-size: 20px; font-weight: bold;">智慧城市</p>
           </div>
-          <div class="content" v-html="item.content">
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
+          <el-card style="margin-top: 10px;" v-for="(item, index) in productCity" :key="index">
+            <div slot="header">
+              <span class="title">{{item.title}}</span>
+              <div class="btn">
+                <el-button type="success" icon="el-icon-edit" size="small" @click="getCityById(item._id)" plain round>编辑</el-button>
+                <el-button type="danger" icon="el-icon-delete" size="small" @click="deleteCityById(item._id)" plain round>删除</el-button>
+              </div>
+            </div>
+            <div class="content" v-html="item.content">
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+    </div>
     <div class="dialog" ref="dialog">
       <el-dialog :visible="dialog" width="800" :title="theTitle" center @close="close" @open="show(clickTpye)">
         <el-form :model="forms" ref="form" label-width="70px" label-position="left">
@@ -220,6 +222,10 @@ export default {
   overflow: hidden;
   font-size: 14px;
   color: #c0c4cc;
+}
+.row{
+  margin-left: 20px;
+  margin-right: 20px;
 }
 img {
   width: 56px;

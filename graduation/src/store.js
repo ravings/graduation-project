@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    users: []
+    users: ''
   },
   getters: {
     user: state => {
@@ -14,12 +14,12 @@ export default new Vuex.Store({
   },
   mutations: {
     add(state, user) {
-      state.users.push(user);
+      state.users = user;
     }
   },
   actions: {
-    setUser: ({commit}) => {
-      commit('add')
+    setUser: ({commit}, user) => {
+      commit('add', user)
     }
   }
 });

@@ -44,7 +44,7 @@ export default {
         this.getDay(this.lists);
       })
       .catch(err => {
-        console.log('fail...');
+        console.log(err);
       })
     },
     getDay(arr){

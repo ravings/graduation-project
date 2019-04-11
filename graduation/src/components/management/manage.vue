@@ -46,7 +46,7 @@
               <span>新闻资讯</span>
             </template>
             <el-menu-item index="/Management/news_company">公司新闻</el-menu-item>
-            <el-menu-item index="3-2">行业动态</el-menu-item>
+            <el-menu-item index="/Management/news_industry">行业动态</el-menu-item>
           </el-submenu>
           <!-- <el-submenu index="4"> -->
           <el-menu-item index="/Management/product">
@@ -236,7 +236,8 @@ export default {
     }
   }
   .right{
-    // min-width: 1000px;
+    // min-width: 1200px;
+    width: 100%;
     min-height: 700px;
     margin-left: 46px;
     margin-top: 15px;
