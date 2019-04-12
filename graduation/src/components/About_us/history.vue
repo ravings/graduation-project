@@ -3,8 +3,9 @@
         <el-timeline class="el-timeline">
             <el-timeline-item v-for="(list, index) in lists" :key="index" :timestamp="list.time" placement="top" color="#12c3dd">
                 <el-card>
-                    <h4>{{ list.title }}</h4>
-                    <p>{{ list.content }}</p>
+                    <!-- <h4>{{ list.title }}</h4> -->
+                    <!-- <p>{{ list.content }}</p> -->
+                    <div v-html="list.content"></div>
                 </el-card>
             </el-timeline-item>
         </el-timeline>
@@ -23,16 +24,23 @@ export default {
     this.gethistory();
   },
   methods: {
+    // 根据时间对数据进行排序
+    sortByTime(arr, key) {
+      return arr.slice().sort((a, b) => {
+        // 2018-2019
+        const x = a[key].substr(0, 4);
+        const y = b[key].substr(0, 4);
+        return y - x;
+      })
+    },
     gethistory() {
-      // let _this = this;
       this.$ajax.get('/api/history')
       .then(res => {
         // console.log(res.data);
-        this.lists = res.data;
-        console.log(this.lists);
+        this.lists = this.sortByTime(res.data, 'time');
       })
       .catch(err => {
-        console.log('fail...');
+        console.log(err);
       })
     }
   }

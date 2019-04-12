@@ -14,6 +14,7 @@ import Personal_information from './components/management/Personal_information.v
 import product from './components/management/product.vue'
 import administrator from './components/management/administrator.vue'
 import AU_about from './components/management/AU_about.vue'
+import AU_history from './components/management/AU_history.vue'
 import job_1 from './components/management/job_1.vue'
 import job_2 from './components/management/job_2.vue'
 
@@ -88,6 +89,11 @@ export default new Router({
           path: 'AU_about',
           name: '公司概括',
           component: AU_about
+        },
+        {
+          path: 'AU_history',
+          name: '发展历程',
+          component: AU_history
         },
         {
           path: 'administrator',

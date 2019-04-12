@@ -32,7 +32,7 @@
             <el-menu-item-group>
               <span slot="title">企业简介</span>
               <el-menu-item index="/Management/AU_about">公司概括</el-menu-item>
-              <el-menu-item index="2-2">发展历程</el-menu-item>
+              <el-menu-item index="/Management/AU_history">发展历程</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group>
               <span slot="title">企业文化</span>

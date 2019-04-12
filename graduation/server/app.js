@@ -25,6 +25,7 @@ const communication = require('./routes/communication');
 const news_company = require('./routes/news_company');
 const news_industry = require('./routes/news_industry');
 const administrator = require('./routes/administrator');
+const AU_about = require('./routes/AU_about');
 
 //使用路由
 app.use('/api/job', job);
@@ -35,6 +36,7 @@ app.use('/api/communication', communication);
 app.use('/api/news_company', news_company);
 app.use('/api/news_industry', news_industry);
 app.use('/api/administrator', administrator);
+app.use('/api/AU_about', AU_about);
 
 // const post = process.env.PORT || 3000;
 

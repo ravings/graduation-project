@@ -81,7 +81,7 @@ router.post('/login', (req, res) => {
           let content = {account: req.body.account};
           let secretOrPrivateKey = 'theKey';
           // (要生成token的主题信息， 加密的key（密钥）， 过期时间)
-          jwt.sign(content, secretOrPrivateKey, {expiresIn:60*30*1}, (err, token) => {
+          jwt.sign(content, secretOrPrivateKey, {expiresIn: 3600}, (err, token) => {
             if (err) throw err;
             res.json({
               success: true,

@@ -11,7 +11,7 @@
         <el-table-column prop="number" label="人数" width="80" align="center"></el-table-column>
         <el-table-column prop="education" label="学历" width="150" align="center"></el-table-column>
         <el-table-column prop="professional" label="专业要求" width="150" align="center"></el-table-column>
-        <el-table-column  label="任职要求" min-width="200" align="center">
+        <el-table-column  label="任职要求" show-overflow-tooltip align="center">
           <!-- prop="requirements" -->
           <template slot-scope="scope">
             <div v-html="scope.row.requirements" style="height: 23px; overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></div>
