@@ -31,7 +31,7 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column label="内容" width="260" align="center">
+        <el-table-column label="内容" width="260" align="center" show-overflow-tooltip>
           <template slot-scope="scope">
             <!-- <span>{{ scope.row.content }}</span> -->
             <div v-html="scope.row.content" style="height: 23px; overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></div>

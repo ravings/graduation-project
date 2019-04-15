@@ -15,6 +15,7 @@ import product from './components/management/product.vue'
 import administrator from './components/management/administrator.vue'
 import AU_about from './components/management/AU_about.vue'
 import AU_history from './components/management/AU_history.vue'
+import AU_activity from './components/management/AU_activity.vue'
 import job_1 from './components/management/job_1.vue'
 import job_2 from './components/management/job_2.vue'
 
@@ -94,6 +95,11 @@ export default new Router({
           path: 'AU_history',
           name: '发展历程',
           component: AU_history
+        },
+        {
+          path: 'AU_activity',
+          name: '企业活动',
+          component: AU_activity
         },
         {
           path: 'administrator',

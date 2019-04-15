@@ -5,9 +5,10 @@
       <el-button icon="el-icon-plus" type="success" class="add" @click="add()" plain circle></el-button>
     </div>
     <div class="content">
-      <el-table class="table" border stripe :data="tableData">
+      <el-table class="table" border stripe :data="tableData" :default-sort = "{prop: 'date', order: 'descending'}">
         <el-table-column label="序号" type="index" width="80" align="center"></el-table-column>
-        <el-table-column prop="time" label="时间" width="180" align="center"></el-table-column>mn>
+        <el-table-column prop="time" label="时间" width="180" sortable align="center"></el-table-column>
+        <el-table-column prop="title" label="主题" width="200" align="center"></el-table-column>
         <el-table-column  label="内容" show-overflow-tooltip>
           <!-- prop="requirements" -->
           <template slot-scope="scope">
@@ -27,22 +28,28 @@
     <div class="dialog">
       <el-dialog :visible="dialog" width="800" title="添加" center @close="close">
         <el-form :model="forms" ref="form" label-width="40px" label-position="left">
-          <div style="overflow:hidden">
-            <div style="float: left; margin-right: 30px;">
-              <el-form-item label="时间" prop="startTime">
-                <el-date-picker type="year" v-model="forms.startTime" format="yyyy年" value-format="yyyy" placeholder="起始年份"></el-date-picker>
-              </el-form-item>
-            </div>
-            <span style="margin-left: 20px;">-</span>
-            <div style="float: right; margin-right: 40px;">
-              <el-form-item prop="endTime">
-                <el-date-picker type="year" v-model="forms.endTime" format="yyyy年" value-format="yyyy" placeholder="结束年份"></el-date-picker>
-              </el-form-item>
-            </div>
+          <div>
+            <el-form-item label="时间" prop="time">
+              <el-date-picker type="date" v-model="forms.time" format="yyyy 年 MM 月 dd 日" value-format="yyyy-MM-dd" placeholder="选择日期"></el-date-picker>
+            </el-form-item>
+          </div>
+          <div>
+            <el-form-item label="主题" prop="title">
+              <el-input v-model="forms.title" type="text" placeholder="请输入..." size="samll" clearable></el-input>
+            </el-form-item>
           </div>
           <div>
             <el-form-item label="内容" prop="content">
               <el-input v-model="forms.content" type="textarea" placeholder="请输入..." size="samll" clearable></el-input>
+            </el-form-item>
+          </div>
+          <div>
+            <el-form-item label="图片">
+              <el-upload class="uplod" accept="image/png, image/png"
+                :before-upload="beforeUpload">
+                <img src="" alt="" class="uplodImg">
+                <i class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
             </el-form-item>
           </div>
         </el-form>
@@ -63,18 +70,24 @@ export default {
       type: '',
       dialog: false,
       forms: {
-        startTime: '',
-        endTime: '',
+        time: '',
+        title: '',
         content: ''
       },
       tableData: [],
-      // updateId: ''
     }
   },
   mounted() {
-    this.getHistory();
+    this.getActivity();
   },
   methods: {
+    beforeUpload(file) {
+      const isLt2M = file.size / 1024 / 1024 < 2;
+      if (!isLt2M) {
+        this.$message.error('上传图片大小不能超过 2MB!');
+      }
+      return isLt2M;
+    },
     close () {
       this.dialog = false;
     },
@@ -82,25 +95,10 @@ export default {
       this.type = 'add';
       this.dialog = true;
     },
-    // 根据时间对数据进行排序
-    sortByTime(arr, key) {
-      return arr.slice().sort((a, b) => {
-        // 2018-2019
-        const x = a[key].substr(0, 4);
-        const y = b[key].substr(0, 4);
-        return y - x;
-      })
-    },
     getById(data) {
-      this.$ajax.get(`/api/history/findById/${data._id}`).then(res => {
-        // this.forms = res.data;
+      this.$ajax.get(`/api/AU_activity/findById/${data._id}`).then(res => {
+        this.forms = res.data;
         // 2018-2019
-        let startTime = res.data.time.substr(0, 4);
-        let endTime = res.data.time.substring(5);
-        this.forms._id = res.data._id;
-        this.forms.startTime = startTime;
-        this.forms.endTime = endTime;
-        this.forms.content = res.data.content;
         // console.log(this.forms);
       }).catch(err => {
         console.log(err);
@@ -108,10 +106,10 @@ export default {
       this.type = 'update'
       this.dialog = true;
     },
-    getHistory() {
-      this.$ajax.get('/api/history').then(res => {
-        // this.tableData = res.data;
-        this.tableData = this.sortByTime(res.data, 'time');
+    getActivity() {
+      this.$ajax.get('/api/AU_activity').then(res => {
+        this.tableData = res.data;
+        // this.tableData = this.sortByTime(res.data, 'time');
         // console.log(this.tableData);
       }).catch(err => {
         console.log(err);
@@ -119,10 +117,10 @@ export default {
     },
     deleteById(data) {
       // console.log(data);
-      this.$ajax.delete(`/api/history/deleteById/${data._id}`)
+      this.$ajax.delete(`/api/AU_activity/deleteById/${data._id}`)
       .then(() => {
         this.$message({message: '删除成功'});
-        this.getHistory();
+        this.getActivity();
       }).catch(err => {
         console.log(err);
       })
@@ -139,11 +137,11 @@ export default {
       {
         this.$refs[form].validate(valid => {
           if (valid) {
-            this.$ajax.post(`/api/history/updateById/${this.forms._id}`, this.forms)
+            this.$ajax.post(`/api/AU_activity/updateById/${this.forms._id}`, this.forms)
             .then(() => {
               this.$message({message:'编辑成功'})
               this.dialog = false;
-              this.getHistory();
+              this.getActivity();
             })
             .catch(err => {
               console.log(err);
@@ -153,10 +151,10 @@ export default {
       }else{
         this.$refs[form].validate(valid => {
           if(valid) {
-            this.$ajax.post('/api/history/add',this.forms).then(() => {
+            this.$ajax.post('/api/AU_activity/add',this.forms).then(() => {
               this.$message({message:'添加成功'})
               this.dialog = false;
-              this.getHistory();
+              this.getActivity();
             }).catch(err => {
               console.log(err);
             })
@@ -169,4 +167,26 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.uplod{
+  width: 178px;
+  height: 178px;
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.uplodImg{
+  width: 178px;
+  height: 178px;
+  display: block;
+}
+.avatar-uploader-icon{
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
 </style>

@@ -36,8 +36,8 @@
             </el-menu-item-group>
             <el-menu-item-group>
               <span slot="title">企业文化</span>
-              <el-menu-item index="2-3">企业文化</el-menu-item>
-              <el-menu-item index="2-4">企业活动</el-menu-item>
+              <el-menu-item index="#">企业文化</el-menu-item>
+              <el-menu-item index="/Management/AU_activity">企业活动</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="3">
@@ -237,6 +237,7 @@ export default {
   }
   .right{
     // min-width: 1200px;
+    overflow: hidden;
     width: 100%;
     min-height: 700px;
     margin-left: 46px;

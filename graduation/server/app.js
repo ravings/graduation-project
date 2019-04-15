@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-// const proxy = require('../src/proxy');
 
 //连接数据库
 mongoose.connect('mongodb://localhost:27017/test', function(err){
@@ -13,6 +12,7 @@ mongoose.connect('mongodb://localhost:27017/test', function(err){
   }
 })
 
+// 解析post请求的数据
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
 
@@ -26,6 +26,7 @@ const news_company = require('./routes/news_company');
 const news_industry = require('./routes/news_industry');
 const administrator = require('./routes/administrator');
 const AU_about = require('./routes/AU_about');
+const AU_activity = require('./routes/AU_activity');
 
 //使用路由
 app.use('/api/job', job);
@@ -37,7 +38,9 @@ app.use('/api/news_company', news_company);
 app.use('/api/news_industry', news_industry);
 app.use('/api/administrator', administrator);
 app.use('/api/AU_about', AU_about);
+app.use('/api/AU_activity', AU_activity);
 
+// 设置端口号
 // const post = process.env.PORT || 3000;
 
 // 监听3000端口
