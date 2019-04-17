@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 //通过mongoose的Schema定义模板
 const AU_activitySchema = new Schema({
   time: String,
+  url: String,
   title: String,
   content: String
 },

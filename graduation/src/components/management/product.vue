@@ -63,6 +63,21 @@
               <el-input v-model="forms.content" type="textarea" placeholder="请输入..." size="samll" clearable></el-input>
             </el-form-item>
           </div>
+          <div ref="upload">
+            <el-form-item label="图片" prop="url">
+              <el-upload class="uplod" ref="el_upload"
+                :action="`/api/upload/productUpload/${radioType}`"
+                accept="image/png, image/img"
+                :on-success="handleSuccess"
+                :before-upload="beforeUpload"
+                >
+                <!-- :http-request="upload" :auto-upload="false" -->
+                <img v-if="forms.url" :src="forms.url" alt="" class="uplodImg">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </el-form-item>
+          </div>
+        </el-form>
         </el-form>
         <div slot="footer">
             <el-button type="warning" @click="reset('form')">取 消</el-button>
@@ -93,8 +108,17 @@ export default {
     this.getCity();
   },
   methods: {
+    beforeUpload(file) {
+      console.log(file);
+    },
+    handleSuccess(res, file) {
+      // this.url = window.URL.createObjectURL(file.raw);
+      // console.log(this.url);
+      this.$message.success('上传图片成功');
+      this.forms.url = `/img/product/${res.imgName}`;
+    },
     close() {
-      this.reset();
+      this.reset('form');
     },
     open() {
       this.clickTpye = 'add';
@@ -105,11 +129,13 @@ export default {
       if(clickTpye == 'update') {
         setTimeout(() => {
           this.$refs.radio.style.display = 'none';
+          this.$refs.upload.style.display = 'none';
         }, 10);
         // console.log(this.$refs.radio);
       }else{
         setTimeout(() => {
           this.$refs.radio.style.display = 'block';
+          this.$refs.upload.style.display = 'block';
         }, 10);
       }
     },
@@ -121,10 +147,16 @@ export default {
       if(clickTpye == 'add') {
         this.$refs.form.validate(valid => {
           if(valid) {
+            // this.$refs.el_upload.submit(); //  上传图片
             this.$ajax.post(`/api/${this.radioType}/add`, this.forms)
             .then(() => {
-              this.$message({message:'添加成功'})
-              this.dialog = false;
+              this.$message({message:'添加成功'});
+              this.reset('form');
+              if (this.radioType == 'city') {
+                this.getCity();
+              }else {
+                this.getCommu();
+              }
             }).catch(err => {
               console.log(err);
             })
@@ -135,8 +167,13 @@ export default {
           if(valid) {
             this.$ajax.post(`/api/${productType}/updateById/${this.forms._id}`, this.forms)
             .then(() => {
-              this.$message({message:'编辑成功'})
-              this.dialog = false;
+              this.$message({message:'编辑成功'});
+              this.reset('form');
+              if (this.radioType == 'city') {
+                this.getCity();
+              }else {
+                this.getCommu();
+              }
             }).catch(err => {
               console.log(err);
             })
@@ -230,5 +267,27 @@ export default {
 img {
   width: 56px;
   height: 56px;
+}
+.uplod{
+  width: 178px;
+  height: 178px;
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.uplodImg{
+  width: 178px;
+  height: 178px;
+  display: block;
+}
+.avatar-uploader-icon{
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
 }
 </style>

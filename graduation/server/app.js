@@ -17,6 +17,8 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
 
 //引入路由文件
+const upload = require('./upload/activityUpload'); //  上传图片
+
 const job = require('./routes/job');
 const jobScoial = require('./routes/job_social');
 const history = require('./routes/history');
@@ -29,6 +31,8 @@ const AU_about = require('./routes/AU_about');
 const AU_activity = require('./routes/AU_activity');
 
 //使用路由
+app.use('/api/upload', upload); //  上传图片
+
 app.use('/api/job', job);
 app.use('/api/jobScoial', jobScoial);
 app.use('/api/history', history);

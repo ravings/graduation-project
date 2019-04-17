@@ -27,13 +27,13 @@ export default {
   methods: {
     getNews() {
       // console.log(this.id);
-      this.$ajax.get(`/api/${this.type}/${this.id}`)//'5c93070541224b33700faaa5'
+      this.$ajax.get(`/api/${this.type}/findById/${this.id}`)//'5c93070541224b33700faaa5'
       .then(res => {
         // console.log(res.data);
         this.lists = res.data;
       })
       .catch(err => {
-        console.log('fail...');
+        console.log(err);
       })
     }
   },

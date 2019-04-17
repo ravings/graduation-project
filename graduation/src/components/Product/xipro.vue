@@ -3,8 +3,9 @@
     <div class="con_title">
       <div class="img">
         <!-- ../../assets/product_2.jpg -->
-        <img src="../../assets/product_2.jpg" alt="" />
+        <!-- <img src="../../assets/product_2.jpg" alt="" /> -->
         <!-- ../../../public/img/prodct/product_2.jpg -->
+        <img :src="products.url" alt="" />
       </div>
       <div class="title">
         <h2>{{ products.title}}</h2>
@@ -49,14 +50,14 @@ export default {
   },
   methods: {
     getProducts() {
-      console.log(this.type);
+      // console.log(this.type);
       this.$ajax.get(`/api/${this.type}/findById/${this.id}`)//'5c93070541224b33700faaa5'
       .then(res => {
         // console.log(res.data);
         this.products = res.data;
       })
       .catch(err => {
-        console.log('fail...');
+        console.log(err);
       })
     }
   },
@@ -83,6 +84,10 @@ export default {
   margin-bottom: 30px;
   .img{
     font-size: 0px;
+    img{
+      width: 280px;
+      height: 150px;
+    }
   }
   .title{
     margin-left: 130px;

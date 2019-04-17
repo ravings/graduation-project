@@ -26,7 +26,7 @@ router.get('/findById/:id', (req, res) => {
 // 修改
 router.post('/updateById/:id', (req, res) => {
   AU_activity.findByIdAndUpdate({_id: req.params.id},
-     {time: req.body.time, title: req.body.title, content: req.body.content}, {new: true}).then(doc => {
+     {time: req.body.time, url: req.body.url, title: req.body.title, content: req.body.content}, {new: true}).then(doc => {
     res.json(doc);
   }).catch(err => {
     res.status(404).json(err);
@@ -39,6 +39,9 @@ router.post('/add', (req , res) => {
   const file = {};
   if (req.body.time) {
     file.time = req.body.time;
+  }
+  if (req.body.url) {
+    file.url = req.body.url;
   }
   if (req.body.title) {
     file.title = req.body.title;

@@ -7,8 +7,8 @@
         <div class="list">
             <ul>
                 <li v-for="(item, index) in imgs" :key="index">
-                    <a :href="item.url"><img :src="item.src" alt=""></a>
-                    <p>美食、电影节</p>
+                    <img :src="item.url" alt="">
+                    <p>{{ item.title }}</p>
                 </li>
             </ul>
         </div>
@@ -19,23 +19,20 @@
 export default {
     data () {
         return {
-            imgs: [{
-                src: require('../../assets/activity_1.jpg'),
-                url: ''
-            },
-            {
-                src: require('../../assets/activity_1.jpg'),
-                url: ''
-            },
-            {
-                src: require('../../assets/activity_1.jpg'),
-                url: ''
-            },
-            {
-                src: require('../../assets/activity_1.jpg'),
-                url: ''
-            }]
+          imgs: []
         }
+    },
+    mounted() {
+      this.getActivity();
+    },
+    methods: {
+      getActivity() {
+        this.$ajax.get('/api/AU_activity').then(res => {
+          this.imgs = res.data;
+        }).catch(err => {
+          console.log(err);
+        })
+      }
     }
 }
 </script>
@@ -54,6 +51,10 @@ export default {
         list-style: none;
         float: left;
         margin: 15px 10px;
+        img{
+          width: 280px;
+          height: 160px;
+        }
         p{
             font-size: 18px;
             padding: 5px 0;

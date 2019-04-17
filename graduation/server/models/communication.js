@@ -4,7 +4,7 @@ const mongoose=require('mongoose');
 const Schema = mongoose.Schema;
 //通过mongoose的Schema定义模板
 const communicationSchema = new Schema({
-  img: String,
+  url: String,
   title: String,
   content: String
 },

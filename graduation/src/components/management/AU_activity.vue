@@ -44,11 +44,14 @@
             </el-form-item>
           </div>
           <div>
-            <el-form-item label="图片">
-              <el-upload class="uplod" accept="image/png, image/png"
+            <el-form-item label="图片" prop="url">
+              <el-upload class="uplod"
+                action="/api/upload/activityUpload"
+                accept="image/png, image/png"
+                :on-success="handleSuccess"
                 :before-upload="beforeUpload">
-                <img src="" alt="" class="uplodImg">
-                <i class="el-icon-plus avatar-uploader-icon"></i>
+                <img v-if="forms.url" :src="forms.url" alt="" class="uplodImg">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </el-form-item>
           </div>
@@ -63,6 +66,7 @@
 </template>
 
 <script>
+import { URL } from 'url';
 export default {
   data () {
     return {
@@ -71,10 +75,11 @@ export default {
       dialog: false,
       forms: {
         time: '',
+        url: '',
         title: '',
         content: ''
       },
-      tableData: [],
+      tableData: []
     }
   },
   mounted() {
@@ -88,8 +93,14 @@ export default {
       }
       return isLt2M;
     },
+    handleSuccess(res, file) {
+      // this.forms.url = window.URL.createObjectURL(file.raw);
+      // console.log(res);
+      this.$message.success('上传图片成功');
+      this.forms.url = `/img/activity/${res.imgName}`;
+    },
     close () {
-      this.dialog = false;
+      this.reset('form');
     },
     add() {
       this.type = 'add';
@@ -140,7 +151,7 @@ export default {
             this.$ajax.post(`/api/AU_activity/updateById/${this.forms._id}`, this.forms)
             .then(() => {
               this.$message({message:'编辑成功'})
-              this.dialog = false;
+              this.reset('form');
               this.getActivity();
             })
             .catch(err => {
@@ -153,7 +164,7 @@ export default {
           if(valid) {
             this.$ajax.post('/api/AU_activity/add',this.forms).then(() => {
               this.$message({message:'添加成功'})
-              this.dialog = false;
+              this.reset('form');
               this.getActivity();
             }).catch(err => {
               console.log(err);
