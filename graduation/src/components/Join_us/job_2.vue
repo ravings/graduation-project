@@ -55,11 +55,17 @@ export default {
       //     content: ''
       //   }
       // ]
-      jobs: []
+      jobs: [],
+      jobType: ''
     }
   },
   created () {
     this.getjobs();
+  },
+  watch: {
+    '$route'(val) {
+      if (val) this.getjobs();
+    }
   },
   methods: {
     show: function (hide, index, e) {
@@ -83,14 +89,18 @@ export default {
       }
     },
     getjobs () {
-      let _this = this;
-      this.$ajax.get('/api/job')
+      if (this.$route.params.title == 'social') {
+        this.jobType = 'jobScoial';
+      }else {
+        this.jobType = 'job'
+      }
+      this.$ajax.get(`/api/${this.jobType}`)
       .then(res => {
-          _this.jobs = res.data;
+          this.jobs = res.data;
           // console.log(res.data);
         })
         .catch(err => {
-            console.log('fail...');
+            console.log(err);
           })
     }
   }

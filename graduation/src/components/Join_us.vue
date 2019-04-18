@@ -8,9 +8,10 @@
             <h3>加入我们</h3>
             <p>JOIN US</p>
         </div>
+        <Breadcrumb ref="breadcrumb"></Breadcrumb>
         <div class="pagecontent">
             <div class="leftnav">
-                <el-menu active-text-color="#dd4012" @open="change" router unique-opened>
+                <el-menu active-text-color="#dd4012" @open="change" :default-active="defaultActive" router unique-opened>
                     <el-submenu index="1">
                         <template slot="title">
                             <span>员工成长</span>
@@ -26,7 +27,7 @@
                         </template>
                         <!-- <el-menu-item-group> -->
                         <el-menu-item index="/JoinUs/jobflow">招聘流程</el-menu-item>
-                        <el-menu-item index="/JoinUs/job2">招聘岗位</el-menu-item>
+                        <el-menu-item index="/JoinUs/job2/school">校招岗位</el-menu-item>
                         <!-- </el-menu-item-group> -->
                     </el-submenu>
                     <!-- <el-menu-item class="el-submenu" index="/AboutUs/contactus">
@@ -36,7 +37,7 @@
                         <template slot="title">
                             <span>社会招聘</span>
                         </template>
-                        <el-menu-item index="/JoinUs/job2">社招岗位</el-menu-item>
+                        <el-menu-item index="/JoinUs/job2/social">社招岗位</el-menu-item>
                     </el-submenu>
                 </el-menu>
             </div>
@@ -52,11 +53,28 @@
 <script>
 import Nav from './Nav.vue'
 import Footer from './Footer.vue'
+import Breadcrumb from './public/breadcrumb.vue'
 export default {
   name: 'joinus',
   components: {
     "Nav": Nav,
-    "Footer": Footer
+    "Footer": Footer,
+    "Breadcrumb": Breadcrumb
+  },
+  data () {
+    return {
+      defaultActive: '',
+      route: ''
+    }
+  },
+  mounted() {
+    this.defaultActive = this.$route.path;
+    // this.$refs.breadcrumb.getBreadcrumb(this.$route);
+  },
+  watch: {
+    '$route'(val) {
+      // this.$refs.breadcrumb.getBreadcrumb(val);
+    }
   },
   methods: {
     change: function (e) {

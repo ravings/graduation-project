@@ -136,31 +136,50 @@ export default new Router({
       path: "/AboutUs",
       name: "AboutUs",
       component: AboutUs,
+      // meta: {title: 'AboutUs'},
+      meta: {title: '关于我们'},
       children: [
+        // {
+        //   path: 'AboutUs-1',
+        //   name: 'AboutUs-1',
+        //   component: AboutUs,
+        //   meta: { title: 'AboutUs-1'},
+        //   children: []
+        // },
           {
             path: "about",
             name: "AUabout",
-            component: about
+            component: about,
+            // meta: {title: 'AUabout'}
+            meta: {title: '公司概括'}
           },
           {
             path: "history",
             name: "AUhistory",
-            component: history
+            component: history,
+            // meta: {title: 'AUhistory'}
+            meta: {title: '发展历程'}
           },
           {
             path: "culture",
             name: "AUculture",
-            component: culture
+            component: culture,
+            // meta: {title: 'AUculture'}
+            meta: {title: '企业文化'}
           },
           {
             path: "activity",
             name: "AUactivity",
-            component: activity
+            component: activity,
+            // meta: {title: 'AUactivity'}
+            meta: {title: '企业活动'}
           },
           {
             path: "contactus",
             name: "AUcontactus",
-            component: contactus
+            component: contactus,
+            // meta: {title: 'AUcontactus'}
+            meta: {title: '联系我们'}
           }
       ]
     },
@@ -168,26 +187,35 @@ export default new Router({
       path: "/JoinUs",
       name: "JoinUs",
       component: JoinUs,
+      meta: {title: '加入我们'},
       children: [
           {
             path: "treatment",
             name: "JUtreatment",
-            component: treatment
+            component: treatment,
+            // meta: {title: 'JUtreatment'}
+            meta: {title: '员工福利'}
           },
           {
             path: "promote",
             name: "JUpromote",
-            component: promote
+            component: promote,
+            // meta: {title: 'JUpromote'}
+            meta: {title: '培养与竞升'}
           },
           {
-            path: "job2",
+            path: "job2/:title",
             name: "JUjob2",
-            component: job2
+            component: job2,
+            // meta: {title: 'JUjob2'}
+            meta: {title: '招聘岗位'}
           },
           {
             path: "jobflow",
             name: "JUjobflow",
-            component: jobflow
+            component: jobflow,
+            // meta: {title: 'JUjobflow'}
+            meta: {title: '招聘流程'}
           }
       ]
     },
@@ -197,17 +225,19 @@ export default new Router({
       component: Product,
       children: [
         {
-          path: "xipro/:id",
+          path: "xipro/:type/:id",
           // path: "xipro",
           name: "Pxipro",
           component: xipro,
-          props: true
+          props: true,
+          meta: {title: 'Pxipro'}
         },
         {
           path: "communication/:id",
           name: "Pcommunication",
           component: communication,
-          props: true
+          props: true,
+          meta: {title: 'Pcommunication'}
         }
       ]
     },
@@ -219,7 +249,8 @@ export default new Router({
         {
           path: "news/:id",
           name: "Nnews",
-          component: news
+          component: news,
+          meta: {title: 'Nnews'}
         },
         {
           path: "news_show/:id",

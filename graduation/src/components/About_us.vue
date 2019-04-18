@@ -4,13 +4,26 @@
         <div class="img">
             <img src="../assets/about_us_01.jpg" alt="">
         </div>
-        <div class="title">
+        <div class="title_breadcrumb">
+          <div class="title">
             <p>关于我们</p>
             <p>ABOUT US</p>
+          </div>
+          <div class="breadcrumb">
+              <div>
+                <i class="el-icon-location-outline"></i>
+                <span>当前位置：</span>
+              </div>
+              <el-breadcrumb separator-class="el-icon-arrow-right">
+                <el-breadcrumb-item  to="/" class="item">首页</el-breadcrumb-item>
+                <el-breadcrumb-item  class="item" v-for="(list, index) in levelList" :key="index">{{ list }}</el-breadcrumb-item>
+                <!-- <el-breadcrumb-item  class="item">公司概括</el-breadcrumb-item> -->
+              </el-breadcrumb>
+          </div>
         </div>
         <div class="pagecontent">
             <div class="leftnav">
-                <el-menu active-text-color="#dd4012" router>
+                <el-menu active-text-color="#dd4012" :default-active="defaultActive" router>
                     <el-submenu index="1">
                         <template slot="title">
                             <span>企业简介</span>
@@ -55,6 +68,32 @@ export default {
   components: {
     "Nav": Nav,
     "Footer": Footer
+  },
+  data () {
+    return {
+      levelList: [],
+      defaultActive: ''
+    }
+  },
+  mounted() {
+    this.getBreadcrumb(this.$route);
+    this.defaultActive = this.$route.path;
+    // console.log(this.$route.path);
+  },
+  watch: {
+    '$route'(val) {
+      this.getBreadcrumb(val);
+      // console.log(val.matched)
+      // console.log(val.matched[0].meta.title);
+      // this.levelList = val.matched.filter(item => item.meta.title);
+    }
+  },
+  methods: {
+    getBreadcrumb(val) {
+      val.matched.forEach((item, index) => {
+        this.levelList[index] = item.meta.title;
+      })
+    }
   }
 }
 </script>
@@ -77,7 +116,20 @@ export default {
         padding: 10px 0;
         margin-top: -50px;
         margin-left: 60px;
-        z-index: 100;
+        // z-index: 0;
+}
+.breadcrumb{
+  position: absolute;
+  left: 850px;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  color: #999;
+}
+.item{
+  // vertical-align: bottom;
+  margin-top: 3px;
+  color: #999;
 }
 .pagecontent{
     display: flex;

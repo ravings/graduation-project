@@ -10,7 +10,7 @@
         </div>
         <div class="pagecontent">
             <div class="leftnav">
-                <el-menu @open="change" router>
+                <el-menu @open="change" :default-active="defaultActive" router>
                   <el-menu-item class="el-submenu" :index="`/News/news/1`" @click="get('1')">
                     <span slot="title">公司新闻</span>
                       </el-menu-item>
@@ -38,8 +38,12 @@ export default {
   },
   data () {
     return {
-      type: ''
+      type: '',
+      defaultActive: ''
     }
+  },
+  mounted() {
+    this.defaultActive = this.$route.path;
   },
   methods: {
     get: function(num){

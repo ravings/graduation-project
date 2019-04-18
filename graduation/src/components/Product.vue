@@ -8,6 +8,7 @@
             <h3>产品中心</h3>
             <p>PRODUCTS</p>
         </div>
+        <Breadcrumb></Breadcrumb>
         <div class="pagecontent">
             <div class="leftnav">
                 <el-menu @open="change" router :default-active="this.$route.path">
@@ -16,7 +17,7 @@
                             <span>通信</span>
                         </template>
                         <el-menu-item v-for="(list, id) in lists" :key="id"
-                        @click="getId('1')" :index="`/Product/xipro/${list._id}`">{{ list.title}}</el-menu-item>
+                        @click="getId('1')" :index="`/Product/xipro/communication/${list._id}`">{{ list.title}}</el-menu-item>
                     </el-submenu>
                     <el-submenu index="2" popper-class="submenu">
                         <template slot="title">
@@ -24,7 +25,7 @@
                         </template>
                         <!-- {name: 'Pxipro', params: {id: item._id}} -->
                         <el-menu-item v-for="(item, index) in products" :key="index"
-                        @click="getId('2')" :index="`/Product/xipro/${item._id}`">{{ item.title}}</el-menu-item>
+                        @click="getId('2')" :index="`/Product/xipro/city/${item._id}`">{{ item.title}}</el-menu-item>
                         <!-- :index="`/Product/xipro/${this.proId}`" -->
                         <!-- :index="`/Product/xipro/${item._id}`" -->
                         <!-- index="/Product/xipro" -->
@@ -43,11 +44,13 @@
 <script>
 import Nav from './Nav.vue'
 import Footer from './Footer.vue'
+import Breadcrumb from './public/breadcrumb.vue'
 export default {
   name: 'product',
   components: {
     "Nav": Nav,
-    "Footer": Footer
+    "Footer": Footer,
+    "Breadcrumb": Breadcrumb
   },
   data () {
     return {
@@ -59,6 +62,11 @@ export default {
   created () {
     this.getProducts();
     this.getCommunication();
+    if (this.$route.path.substr(15, 13) == 'communication') {
+      this.type = 'communication';
+    }else {
+      this.type = 'city';
+    }
   },
   methods: {
     getId: function (message) {

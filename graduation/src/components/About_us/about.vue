@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="content">
-            <div v-html="this.contents[0].content"></div>
+            <div v-html="this.contents.content"></div>
         </div>
     </div>
 </template>
@@ -10,7 +10,7 @@
 export default {
   data () {
     return {
-      contents: []
+      contents: {}
     }
   },
   mounted() {
@@ -19,7 +19,7 @@ export default {
   methods: {
     getContent() {
       this.$ajax.get('/api/AU_about').then(res => {
-        this.contents = res.data;
+        this.contents = res.data[0];
       }).catch(err => {
         console.log(err);
       })
