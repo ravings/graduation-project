@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 1000px;">
+  <div>
     <div style="text-align: center;padding: 8px 0;">
       <span style="font-size: 16px;color: #67C23A;padding: 0 8px;">赶快发布招聘岗位吧~</span>
       <el-button icon="el-icon-plus" type="success" class="add" @click="add(type)" plain circle></el-button>
@@ -11,7 +11,7 @@
         <el-table-column prop="number" label="人数" width="80" align="center"></el-table-column>
         <el-table-column prop="education" label="学历" width="150" align="center"></el-table-column>
         <el-table-column prop="professional" label="专业要求" width="150" align="center"></el-table-column>
-        <el-table-column  label="任职要求" width="200" align="center">
+        <el-table-column  label="任职要求" min-width="200" align="center">
           <!-- prop="requirements" -->
           <template slot-scope="scope">
             <div v-html="scope.row.requirements" style="height: 23px; overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></div>
@@ -161,4 +161,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.content{
+  margin-right: 20px;
+}
 </style>

@@ -73,7 +73,7 @@
               <span>编辑器</span>
             </template>
             <el-menu-item index="/Management/tinymce">Tinymce富文本编辑器</el-menu-item>
-            <el-menu-item index="/Management">Markdown编辑器</el-menu-item>
+            <el-menu-item index="#">Markdown编辑器</el-menu-item>
           </el-submenu>
         </el-menu>
       </div>

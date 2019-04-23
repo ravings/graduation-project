@@ -69,8 +69,7 @@
                 :action="`/api/upload/productUpload/${radioType}`"
                 accept="image/png, image/img"
                 :on-success="handleSuccess"
-                :before-upload="beforeUpload"
-                >
+                :before-upload="beforeUpload">
                 <!-- :http-request="upload" :auto-upload="false" -->
                 <img v-if="forms.url" :src="forms.url" alt="" class="uplodImg">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>

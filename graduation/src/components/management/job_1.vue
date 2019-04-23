@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 1000px;">
+  <div>
     <div style="text-align: center;padding: 8px 0;">
       <span style="font-size: 16px;color: #67C23A;padding: 0 8px;">赶快发布招聘岗位吧~</span>
       <el-button icon="el-icon-plus" type="success" class="add" @click="add(type)" plain circle></el-button>
@@ -160,4 +160,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.content{
+  margin-right: 20px;
+}
 </style>
