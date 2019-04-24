@@ -11,7 +11,7 @@
             </div>
             <div class="text">
               <p>{{ list.subtitle }}</p>
-              <router-link :to="`/News/news_show/${list._id}`"> 查看详情> </router-link>
+              <router-link :to="`/News/news_show/${type}/${list._id}`"> 查看详情> </router-link>
             </div>
           </div>
         </li>
@@ -29,9 +29,10 @@ export default {
   data () {
     return {
       lists: [],
+      // type: this.$route.params.type
     }
   },
-  created () {
+  mounted() {
     this.getNews_company();
   },
   methods: {
@@ -71,10 +72,9 @@ export default {
     }
   },
   watch: {
-    type(val){
-      if(val){
-        this.getNews_company();
-      }
+    '$route'(val) {
+      // console.log(this.type);
+      this.getNews_company();
     }
   }
 }

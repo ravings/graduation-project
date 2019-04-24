@@ -13,8 +13,12 @@ router.get('/', (req, res) => {
   })
 });
 
-router.get('/findByMore/:title', (req, res) => {
-  let keyTitle = req.params.title;
+router.get('/findByMore', (req, res) => {
+  let keyTitle = req.query.findTitle;
+  // let keyDate = req.query.findDate;
+  // let startDate = keyDate[0];
+  // let endDate = keyDate[1];
+  // console.log(new Date(startDate));
   let _filter = {
     $or: [
       {
@@ -22,7 +26,10 @@ router.get('/findByMore/:title', (req, res) => {
       },
       {
         subtitle: {$regex: keyTitle}
-      }
+      },
+      // {
+      //   time: {$gt: new Date(startDate), $lt: new Date(endDate)}
+      // }
     ]
   }
   news_company.find(_filter).then(doc => {

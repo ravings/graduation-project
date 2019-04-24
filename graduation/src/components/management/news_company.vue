@@ -4,34 +4,37 @@
       <div class="input">
         <el-input type="text" class="input" v-model="findTitle" placeholder="请输入关键字" size="samll" clearable></el-input>
       </div>
+      <div>
+        <el-date-picker v-model="findDate" type="daterange" start-placeholder="开始日期" end-placeholder="结束日期" format="yyyy 年 MM 月 dd 日" value-format="timestamp"></el-date-picker>
+      </div>
       <el-button icon="el-icon-search" @click="find"></el-button>
       <!-- <div class="add"></div> -->
       <el-button icon="el-icon-plus" type="primary" class="add" @click="add" round></el-button>
     </div>
     <div class="content">
-      <el-table class="table" border stripe :data="tableData" :default-sort="{prop:'date', order: 'descending'}">
+      <el-table class="table" border stripe :data="tableData.slice((currPage-1)*pageSize, currPage*pageSize)" :default-sort="{prop:'date', order: 'descending'}">
         <el-table-column label="序号" type="index" width="80" align="center"></el-table-column>
-        <el-table-column prop="time" label="时间" sortable width="150" align="center">
+        <el-table-column prop="time" label="时间" sortable width="130" align="center">
           <!-- <template slot-scope="scope">
             <i class="el-icon-time"></i>
             <span style="margin-left: 8px;">{{ scope.row.date }}</span>
           </template> -->
         </el-table-column>
-        <el-table-column prop="title" label="标题" width="180" align="center">
+        <el-table-column prop="title" label="标题" width="180" align="center" show-overflow-tooltip>
           <template slot-scope="scope">
             <div style="height: 23px; overflow:hidden;text-overflow:ellipsis;white-space:nowrap">
               {{ scope.row.title }}
             </div>
           </template>
         </el-table-column>
-        <el-table-column label="副标题" width="180" align="center">
+        <el-table-column label="副标题" width="180" align="center" show-overflow-tooltip>
           <template slot-scope="scope">
             <div style="height: 23px; overflow:hidden;text-overflow:ellipsis;white-space:nowrap">
               {{ scope.row.subtitle }}
             </div>
           </template>
         </el-table-column>
-        <el-table-column label="内容" width="260" align="center" show-overflow-tooltip>
+        <el-table-column label="内容" min-width="260" align="center" show-overflow-tooltip>
           <template slot-scope="scope">
             <!-- <span>{{ scope.row.content }}</span> -->
             <div v-html="scope.row.content" style="height: 23px; overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></div>
@@ -44,6 +47,17 @@
           </template>
         </el-table-column>
       </el-table>
+    </div>
+    <div>
+      <el-pagination
+       :pager-count="pagerCount"
+       layout="prev, pager, next"
+       :page-size="pageSize"
+       :total="tableData.length"
+       @current-change="currentChange"
+       background
+       class="pagination">
+      </el-pagination>
     </div>
     <!-- Dialog对话框 -->
     <div class="dialog">
@@ -84,18 +98,19 @@
 </template>
 
 <script>
-import Editor from './tinymce.vue'
-import { valid } from 'semver';
+// import Editor from './tinymce.vue'
+// import { valid } from 'semver';
 export default {
   components: {
-    'Editor': Editor
+    // 'Editor': Editor
   },
   data () {
     return {
       value: '',
       clickType: '',
       dialog: false,
-      findTitle: '',
+      findTitle: '',  //查询关键字
+      findDate: '', //查询时间
       forms: {
         title: '',
         subtitle: '',
@@ -103,6 +118,9 @@ export default {
         content: '',
       },
       tableData: [],
+      currPage: 1,  //分页组件的当前页号
+      pagerCount: 5,  //按钮显示数量
+      pageSize: 3,  //每页显示个数
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now();
@@ -120,6 +138,11 @@ export default {
     this.getNews();
   },
   methods: {
+    // 分页方法
+    currentChange(val) {
+      // console.log(val);
+      this.currPage = val;
+    },
     close () {
       this.reset();
     },
@@ -131,10 +154,27 @@ export default {
       this.dialog = true;
     },
     find() {
+      this.tableData.splice(0,this.tableData.length);
       // this.$ajax.get('/api/news_company/findByMore', {params: {title: this.findTitle}})
-      this.$ajax.get(`/api/news_company/findByMore/${this.findTitle}`)
+      this.$ajax.get('/api/news_company/findByMore', {
+        params: {
+          findTitle: this.findTitle
+          // findDate: this.findDate
+        }
+      })
       .then(res => {
-        this.tableData = res.data;
+        // this.tableData = res.data;
+        if (this.findDate) {
+          res.data.forEach((item) => {
+            if (new Date(item.time) > this.findDate[0] && new Date(item.time) < this.findDate[1]) {
+              // console.log(new Date(item.time).getTime());
+              this.tableData.push(item);
+            }
+          })
+        }else {
+          this.tableData = res.data;
+        }
+
       }).catch(err => {
         console.log(err);
       })
@@ -207,18 +247,23 @@ export default {
   // width: 450px;
   padding: 20px 0;
   .input{
-    width: 350px;
+    width: 210px;
+    margin-right: 20px;
   }
   .el-button{
     border: none;
   }
   .add{
-    margin-left: 460px;
+    margin-left: 260px;
   }
 }
 .content{
+  margin-right: 20px;
   .el-table__header{
     text-align: center;
   }
+}
+.pagination{
+  margin-top: 40px;
 }
 </style>

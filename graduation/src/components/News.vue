@@ -10,17 +10,17 @@
         </div>
         <div class="pagecontent">
             <div class="leftnav">
-                <el-menu @open="change" :default-active="defaultActive" router>
-                  <el-menu-item class="el-submenu" :index="`/News/news/1`" @click="get('1')">
+                <el-menu :default-active="defaultActive" router>
+                  <el-menu-item class="el-submenu" :index="`/News/news/news_company`">
                     <span slot="title">公司新闻</span>
                       </el-menu-item>
-                  <el-menu-item class="el-submenu" :index="`/News/news/2`" @click="get('2')">
+                  <el-menu-item class="el-submenu" :index="`/News/news/news_industry`">
                     <span slot="title">行业动态</span>
                   </el-menu-item>
                 </el-menu>
             </div>
             <div class="right_content">
-                <router-view :type="type"/>
+                <router-view/>
             </div>
         </div>
       <Footer></Footer>
@@ -46,19 +46,6 @@ export default {
     this.defaultActive = this.$route.path;
   },
   methods: {
-    get: function(num){
-      if(num == 1){
-        this.type = 'news_company';
-      }else{
-        this.type = 'news_industry';
-      }
-    },
-    change: function (e) {
-      if (e) {
-        console.log(e.target);
-        // e.target.style.background = '#dd4012';
-      }
-    }
   }
 }
 </script>

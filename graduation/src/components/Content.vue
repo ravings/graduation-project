@@ -62,7 +62,8 @@
                             </div>
                             <ul>
                                 <li v-for="(list, index) in sortByKey(this.lists, 'time')" :key="index" v-if="index < 4">
-                                  <a href="" :title="list.title">{{ list.title }}</a>
+                                  <!-- <a href="" :title="list.title">{{ list.title }}</a> -->
+                                  <router-link :to="`/News/news_show/news_company/${list._id}`">{{ list.title }}</router-link>
                                   <span>{{ list.time }}</span>
                                 </li>
                             </ul>
@@ -81,7 +82,8 @@
                             </div>
                             <ul>
                                 <li v-for="(item, id) in sortByKey(this.items, 'time')" :key="id" v-if="id < 4">
-                                  <a href="">{{ item.title }}</a>
+                                  <!-- <a href="">{{ item.title }}</a> -->
+                                  <router-link :to="`/News/news_show/news_industry/${item._id}`">{{ item.title }}</router-link>
                                   <span>{{ item.time }}</span>
                                 </li>
                             </ul>

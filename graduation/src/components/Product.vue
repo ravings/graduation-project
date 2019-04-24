@@ -8,16 +8,16 @@
             <h3>产品中心</h3>
             <p>PRODUCTS</p>
         </div>
-        <Breadcrumb></Breadcrumb>
+        <!-- <Breadcrumb></Breadcrumb> -->
         <div class="pagecontent">
             <div class="leftnav">
-                <el-menu @open="change" router :default-active="this.$route.path">
+                <el-menu router :default-active="this.$route.path">
                     <el-submenu index="1">
                         <template slot="title">
                             <span>通信</span>
                         </template>
                         <el-menu-item v-for="(list, id) in lists" :key="id"
-                        @click="getId('1')" :index="`/Product/xipro/communication/${list._id}`">{{ list.title}}</el-menu-item>
+                        :index="`/Product/xipro/communication/${list._id}`">{{ list.title}}</el-menu-item>
                     </el-submenu>
                     <el-submenu index="2" popper-class="submenu">
                         <template slot="title">
@@ -25,7 +25,7 @@
                         </template>
                         <!-- {name: 'Pxipro', params: {id: item._id}} -->
                         <el-menu-item v-for="(item, index) in products" :key="index"
-                        @click="getId('2')" :index="`/Product/xipro/city/${item._id}`">{{ item.title}}</el-menu-item>
+                        :index="`/Product/xipro/city/${item._id}`">{{ item.title}}</el-menu-item>
                         <!-- :index="`/Product/xipro/${this.proId}`" -->
                         <!-- :index="`/Product/xipro/${item._id}`" -->
                         <!-- index="/Product/xipro" -->
@@ -34,7 +34,7 @@
             </div>
             <div class="right_content">
                 <!-- <router-view :id="proId"/> -->
-                <router-view :type="type"/>
+                <router-view/>
             </div>
         </div>
       <Footer></Footer>
@@ -56,30 +56,24 @@ export default {
     return {
       lists: [],
       products: [],
-      type: ''
+      // type: ''
     }
   },
   created () {
     this.getProducts();
     this.getCommunication();
-    if (this.$route.path.substr(15, 13) == 'communication') {
-      this.type = 'communication';
-    }else {
-      this.type = 'city';
-    }
+    // if (this.$route.path.substr(15, 13) == 'communication') {
+    //   this.type = 'communication';
+    // }else {
+    //   this.type = 'city';
+    // }
   },
   methods: {
-    getId: function (message) {
-      if (message == 1) this.type = 'communication';
-      if (message == 2) this.type = 'city';
-      // console.log(this.type);
-    },
-    change: function (e) {
-      if (e) {
-        // console.log(e.target);
-        // e.target.style.background = '#dd4012';
-      }
-    },
+    // getId: function (message) {
+    //   if (message == 1) this.type = 'communication';
+    //   if (message == 2) this.type = 'city';
+    //   // console.log(this.type);
+    // },
     getCommunication() {
       this.$ajax.get('/api/communication')
       .then(res => {

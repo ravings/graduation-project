@@ -10,15 +10,15 @@
 
 <script>
 export default {
-  props: {
-    type: String
-  },
+  // props: {
+  //   type: String
+  // },
   data () {
     return {
       lists: {},
-      id: this.$route.params.id
+      id: this.$route.params.id,
       // id: this.$route.query.id,
-      // type: this.$route.query.type
+      type: this.$route.params.type
     }
   },
   created () {
@@ -38,11 +38,7 @@ export default {
     }
   },
   watch: {
-    type(val){
-      if(val){
-        this.getNews_company();
-      }
-    }
+
   }
 }
 </script>

@@ -247,13 +247,14 @@ export default new Router({
       component: News,
       children: [
         {
-          path: "news/:id",
+          path: "news/:type",
           name: "Nnews",
           component: news,
+          props: true,
           meta: {title: 'Nnews'}
         },
         {
-          path: "news_show/:id",
+          path: "news_show/:type/:id",
           name: "Nnews_show",
           component: news_show
         }
