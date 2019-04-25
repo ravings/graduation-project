@@ -31,6 +31,7 @@ import treatment from "./components/Join_us/treatment.vue"
 import promote from "./components/Join_us/promote.vue"
 import job2 from "./components/Join_us/job_2.vue"
 import jobflow from "./components/Join_us/jobflow.vue"
+import preach from "./components/Join_us/preach.vue"
 
 import Product from "./components/Product.vue"
 import xipro from "./components/Product/xipro.vue"
@@ -216,6 +217,13 @@ export default new Router({
             component: jobflow,
             // meta: {title: 'JUjobflow'}
             meta: {title: '招聘流程'}
+          },
+          {
+            path: "preach",
+            name: "JUpreach",
+            component: preach,
+            // meta: {title: 'JUjobflow'}
+            meta: {title: '宣讲行程'}
           }
       ]
     },
@@ -223,6 +231,7 @@ export default new Router({
       path: "/Product",
       name: "Product",
       component: Product,
+      meta: {title: '产品中心'},
       children: [
         {
           path: "xipro/:type/:id",

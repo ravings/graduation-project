@@ -6,6 +6,8 @@ const Schema = mongoose.Schema;
 const jobSchema = new Schema({
   // _id: Object,
   id: String,
+  time: String,
+  address: String,
   title: String,  //岗位
   number: String, //招聘人数
   education: String,  //学历

@@ -104,7 +104,7 @@
                     <div class="product_one">
                         <img src="../assets/city_logo_1.png" alt="">
                         <div>
-                            <h3><a href="/Product/xipro">智慧城市</a></h3>
+                            <h3><a href="/Product">智慧城市</a></h3>
                             <p>围绕“改变城市管理现状，全面提升城市效率”的宗旨，致力成为国内智慧城市领域一流的产品和综合解决方案提供商</p>
                         </div>
                     </div>

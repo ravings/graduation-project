@@ -6,10 +6,12 @@
     </div>
     <div class="content">
       <el-table class="table" border stripe :data="tableData">
-        <el-table-column label="序号" type="index" width="80" align="center"></el-table-column>
+        <el-table-column label="序号" type="index" width="60" align="center"></el-table-column>
+        <el-table-column prop="time" label="发布时间" width="100" align="center"></el-table-column>
+        <el-table-column prop="address" label="工作地点" width="80" align="center"></el-table-column>
         <el-table-column prop="title" label="职位" width="150" align="center"></el-table-column>
-        <el-table-column prop="number" label="人数" width="80" align="center"></el-table-column>
-        <el-table-column prop="education" label="学历" width="150" align="center"></el-table-column>
+        <el-table-column prop="number" label="人数" width="60" align="center"></el-table-column>
+        <el-table-column prop="education" label="学历" width="100" align="center"></el-table-column>
         <el-table-column prop="professional" label="专业要求" width="150" align="center"></el-table-column>
         <el-table-column  label="任职要求" show-overflow-tooltip align="center">
           <!-- prop="requirements" -->
@@ -48,6 +50,11 @@
           <div>
             <el-form-item label="专业要求" prop="professional">
               <el-input v-model="forms.professional" type="text" placeholder="请输入..." size="samll" clearable></el-input>
+           </el-form-item>
+          </div>
+          <div>
+            <el-form-item label="工作地点" prop="address">
+              <el-input v-model="forms.address" type="text" placeholder="请输入..." size="samll" clearable></el-input>
            </el-form-item>
           </div>
           <div>
@@ -143,6 +150,13 @@ export default {
         })
       }else{
         this.$refs.form.validate(valid => {
+          let nowDate = new Date();
+          const year = nowDate.getFullYear();
+          const month = (nowDate.getMonth() + 1) < 10 ? '0' + (nowDate.getMonth() + 1) : (nowDate.getMonth() + 1);
+          const day = nowDate.getDate() < 10 ? '0' + nowDate.getDate() : nowDate.getDate();
+          let nowTime = `${year}-${month}-${day}`;
+          // console.log(nowTime);
+          this.forms.time = nowTime;
           if(valid) {
             this.$ajax.post('/api/job/add',this.forms).then(res => {
               this.$message({message:'添加成功'})

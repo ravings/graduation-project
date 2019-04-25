@@ -47,14 +47,6 @@ export default {
     '$route' (to, from) {
         this.getProducts();
     }
-    // id: function (val) {
-    //   this.getProducts();
-    // }
-    // id (val) {
-    //   if (val) {
-    //     this.getProducts();
-    //   }
-    // }
   }
 }
 </script>

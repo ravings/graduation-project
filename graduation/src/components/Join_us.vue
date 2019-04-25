@@ -11,7 +11,7 @@
         <Breadcrumb ref="breadcrumb"></Breadcrumb>
         <div class="pagecontent">
             <div class="leftnav">
-                <el-menu active-text-color="#dd4012" @open="change" :default-active="defaultActive" router unique-opened>
+                <el-menu active-text-color="#dd4012" @open="change" :default-active="defaultActive" router>
                     <el-submenu index="1">
                         <template slot="title">
                             <span>员工成长</span>
@@ -26,6 +26,7 @@
                             <span>校园招聘</span>
                         </template>
                         <!-- <el-menu-item-group> -->
+                          <el-menu-item index="/JoinUs/preach">宣讲行程</el-menu-item>
                         <el-menu-item index="/JoinUs/jobflow">招聘流程</el-menu-item>
                         <el-menu-item index="/JoinUs/job2/school">校招岗位</el-menu-item>
                         <!-- </el-menu-item-group> -->

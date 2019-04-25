@@ -24,7 +24,7 @@ router.get('/findById/:id', (req, res) => {
 router.post('/updateById/:id', (req, res) => {
   jobs.findByIdAndUpdate({_id: req.params.id},{title: req.body.title, number: req.body.number,
    education: req.body.education, professional: req.body.professional, hide: 'true',
-   requirements: req.body.requirements}, {new: true}).then(doc => {
+   requirements: req.body.requirements, address: req.body.address}, {new: true}).then(doc => {
      res.json(doc);
    }).catch(err => {
      res.json(err);
@@ -34,8 +34,14 @@ router.post('/updateById/:id', (req, res) => {
 router.post('/add', (req , res) => {
   // console.log(req.body);
   const jobfile = {};
-  if (req.body.id) {
-    jobfile.id = req.body.id;
+  // if (req.body.id) {
+  //   jobfile.id = req.body.id;
+  // }
+  if (req.body.time) {
+    jobfile.time = req.body.time;
+  }
+  if (req.body.address) {
+    jobfile.address = req.body.address;
   }
   if (req.body.title) {
     jobfile.title = req.body.title;
@@ -49,9 +55,9 @@ router.post('/add', (req , res) => {
   if (req.body.professional) {
     jobfile.professional = req.body.professional;
   }
-  if (req.body.hide) {
-    jobfile.hide = req.body.hide;
-  }
+  // if (req.body.hide) {
+  //   jobfile.hide = req.body.hide;
+  // }
   if (req.body.requirements) {
     jobfile.requirements = req.body.requirements;
   }
