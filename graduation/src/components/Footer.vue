@@ -29,8 +29,8 @@
                 </li>
                 <li><h3><a href="/Product">产品中心</a></h3>
                     <dl>
-                        <dd><a href="/Product/xipro/communication/5c9602ddcae29f13bc8dc4c1">通信</a></dd>
-                        <dd><a href="/Product/xipro/city/5c93070541224b33700faaa5">智慧城市</a></dd>
+                        <dd><a href="/Product/xipro/communication/5cc17d3a8f5a8927181dee25">通信</a></dd>
+                        <dd><a href="/Product/xipro/city/5cc17bde0f433615b0448851">智慧城市</a></dd>
                     </dl>
                 </li>
                 <li><h3><a href="/JoinUs/treatment">加入我们</a></h3>

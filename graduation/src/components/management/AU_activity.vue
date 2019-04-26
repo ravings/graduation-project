@@ -9,7 +9,7 @@
         <el-table-column label="序号" type="index" width="80" align="center"></el-table-column>
         <el-table-column prop="time" label="时间" width="180" sortable align="center"></el-table-column>
         <el-table-column prop="title" label="主题" width="200" align="center"></el-table-column>
-        <el-table-column  label="内容" show-overflow-tooltip>
+        <el-table-column  label="内容" align="center" show-overflow-tooltip>
           <!-- prop="requirements" -->
           <template slot-scope="scope">
             <div v-html="scope.row.content"></div>

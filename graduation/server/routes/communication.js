@@ -38,6 +38,7 @@ router.post('/updateById/:id', (req, res) => {
 
 router.post('/add', (req, res) => {
   let data = new communication({
+    url: req.body.url,
     title: req.body.title,
     content: req.body.content
   });

@@ -21,6 +21,7 @@ export default {
     }
   },
   watch: {
+    // 监听路由
     '$route'(val) {
       this.getBreadcrumb(val);
     }

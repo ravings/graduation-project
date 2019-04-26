@@ -9,8 +9,9 @@ import jwt_decode from 'jwt-decode';
 export default {
   name: 'App',
   created() {
-    if (localStorage.token) {
-      let decode = jwt_decode(localStorage.token)
+    // 刷新页面是state的数据会重置，需要重新存入
+    if (sessionStorage.token) {
+      let decode = jwt_decode(sessionStorage.token)
       this.$store.dispatch('setUser', decode.account);
     }
   }

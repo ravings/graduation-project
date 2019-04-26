@@ -7,8 +7,8 @@
         <div class="list">
             <ul>
                 <li v-for="(item, index) in imgs" :key="index">
-                    <img :src="item.url" alt="">
-                    <p>{{ item.title }}</p>
+                    <div><img :src="item.url" alt=""></div>
+                    <router-link to=""><p>{{ item.title }}</p></router-link>
                 </li>
             </ul>
         </div>
@@ -51,20 +51,32 @@ export default {
         list-style: none;
         float: left;
         margin: 15px 10px;
+        div{
+          overflow: hidden;
+          font-size: 0;
+        }
         img{
           width: 280px;
           height: 160px;
+          cursor: pointer;
+          transition: all 1s ease-in-out;
+          &:hover{
+            transform: scale(1.2, 1.2);
+          }
+        }
+        a{
+          text-decoration: none;
         }
         p{
-            font-size: 18px;
-            padding: 5px 0;
-            text-align: center;
-            background-color: rgba(102, 102, 102, 0.5);
-            &:hover{
-                background-color:  rgba(221, 64, 18, 1);
-                cursor: pointer;
-                color: #fff;
-            }
+          font-size: 18px;
+          padding: 5px 0;
+          text-align: center;
+          background-color: rgba(102, 102, 102, 0.5);
+          &:hover{
+              background-color:  rgba(221, 64, 18, 1);
+              cursor: pointer;
+              color: #fff;
+          }
         }
     }
 }

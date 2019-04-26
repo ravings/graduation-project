@@ -16,7 +16,7 @@ router.beforeEach((to, from, next) => {
   const nextRouterPath = ['/Management', '/Management/home', '/Management/administrator', '/Management/tinymce',
   '/Management/news_company', '/Management/Personal_information', '/Management/AU_about','/Management/product',
    '/Management/job_1', '/Management/job_2', '/Management/AU_history', '/Management/AU_activity'];
-  let isLogin = localStorage.getItem('token');
+  let isLogin = sessionStorage.getItem('token');
   if (nextRouterPath.indexOf(to.path) >= 0 && !isLogin) {
     next({
       path: '/Login',

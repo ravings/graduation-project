@@ -77,7 +77,6 @@
             </el-form-item>
           </div>
         </el-form>
-        </el-form>
         <div slot="footer">
             <el-button type="warning" @click="reset('form')">取 消</el-button>
             <el-button type="primary" @click="add('form', clickTpye, productType)" style="margin-left: 486px;">确 定</el-button>

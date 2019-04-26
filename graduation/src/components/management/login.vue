@@ -57,8 +57,10 @@ export default {
           .then((res) => {
             const token = res.data.token;
             // 存储token
-            localStorage.setItem('token', token);
+            // localStorage.setItem('token', token);
+            sessionStorage.setItem('token', token);
             // console.log(localStorage.token);
+            // 解析token数据
             const decode = jwt_decode(token);
             // console.log(decode);
             // 用户名存进vuex中
