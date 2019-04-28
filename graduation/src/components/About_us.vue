@@ -120,7 +120,7 @@ export default {
 }
 .breadcrumb{
   position: absolute;
-  left: 850px;
+  right: 100px;
   display: flex;
   flex-direction: row;
   font-size: 14px;

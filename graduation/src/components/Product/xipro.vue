@@ -43,9 +43,11 @@ export default {
     return {
       products: {},
       // id: this.$route.params.id
+      levelList: [],
+      productType: ''
     }
   },
-  created () {
+  mounted() {
     this.getProducts();
   },
   methods: {
@@ -55,24 +57,35 @@ export default {
       .then(res => {
         // console.log(res.data);
         this.products = res.data;
+        // console.log('get:'+this.products.title);
+        this.getBreadcrumb();
+        // this.$emit('getTitle', this.products.title);
+        this.$emit('getTitle', this.levelList)
       })
       .catch(err => {
         console.log(err);
       })
+    },
+    getBreadcrumb() {
+      if (this.type == 'city') {
+        this.productType = '智慧城市';
+      }else {
+        this.productType = '通信';
+      }
+      if (this.levelList) this.levelList.splice(0, this.levelList.length);
+      if (this.type) this.levelList.push(this.productType);
+      // console.log(this.contentTitle);
+      if (this.products.title) this.levelList.push(this.products.title);
     }
+    // sendTitle() {
+      // this.$emit('getTitle', this.products.title);
+    // }
   },
   watch: {
-    '$route' (to, from) {
-        this.getProducts();
+    '$route' (val) {
+      this.getProducts();
+
     }
-    // id: function (val) {
-    //   this.getProducts();
-    // }
-    // id (val) {
-    //   if (val) {
-    //     this.getProducts();
-    //   }
-    // }
   }
 }
 </script>

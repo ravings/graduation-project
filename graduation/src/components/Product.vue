@@ -9,9 +9,22 @@
             <p>PRODUCTS</p>
         </div>
         <!-- <Breadcrumb></Breadcrumb> -->
+        <div class="breadcrumb">
+          <div>
+            <i class="el-icon-location-outline"></i>
+              <span>当前位置：</span>
+          </div>
+          <el-breadcrumb separator-class="el-icon-arrow-right">
+            <el-breadcrumb-item  to="/" class="item">首页</el-breadcrumb-item>
+            <el-breadcrumb-item  to="" class="item">产品中心</el-breadcrumb-item>
+            <el-breadcrumb-item  to="" class="item" v-for="(list, index) in levelList" :key="index">{{ list }}</el-breadcrumb-item>
+            <!-- <el-breadcrumb-item  to="" class="item">{{ title }}</el-breadcrumb-item>
+            <el-breadcrumb-item  to="" class="item">{{ contentTitle }}</el-breadcrumb-item> -->
+          </el-breadcrumb>
+        </div>
         <div class="pagecontent">
             <div class="leftnav">
-                <el-menu router :default-active="this.$route.path">
+                <el-menu router :default-active="this.$route.path" @select="receive">
                     <el-submenu index="1">
                         <template slot="title">
                             <span>通信</span>
@@ -34,7 +47,7 @@
             </div>
             <div class="right_content">
                 <!-- <router-view :id="proId"/> -->
-                <router-view/>
+                <router-view ref="product" @getTitle="getTitle"/>
             </div>
         </div>
       <Footer></Footer>
@@ -56,24 +69,27 @@ export default {
     return {
       lists: [],
       products: [],
-      // type: ''
+      levelList: []
     }
   },
-  created () {
+  mounted() {
     this.getProducts();
     this.getCommunication();
-    // if (this.$route.path.substr(15, 13) == 'communication') {
-    //   this.type = 'communication';
-    // }else {
-    //   this.type = 'city';
-    // }
+  },
+  watch: {
+
   },
   methods: {
-    // getId: function (message) {
-    //   if (message == 1) this.type = 'communication';
-    //   if (message == 2) this.type = 'city';
-    //   // console.log(this.type);
-    // },
+    receive(index, indexPath) {
+      // this.$refs.product.sendTitle();
+      // this.getBreadcrumb();
+      // console.log('1');
+    },
+    getTitle(val) {
+      // this.contentTitle = val;
+      this.levelList = val;
+      // console.log('val:'+ val)
+    },
     getCommunication() {
       this.$ajax.get('/api/communication')
       .then(res => {
@@ -144,5 +160,19 @@ export default {
         // border: 1px solid #000;
         // height: 200px;
     }
+}
+.breadcrumb{
+  position: absolute;
+  left: 900px;
+  // right: 100px;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  color: #999;
+}
+.item{
+  // vertical-align: bottom;
+  margin-top: 3px;
+  color: #999;
 }
 </style>

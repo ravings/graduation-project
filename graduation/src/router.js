@@ -254,6 +254,7 @@ export default new Router({
       path: "/News",
       name: "News",
       component: News,
+      meta: {title: '新闻资讯'},
       children: [
         {
           path: "news/:type",

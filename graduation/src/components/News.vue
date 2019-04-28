@@ -8,6 +8,17 @@
             <h3>新闻资讯</h3>
             <p>NEWS</p>
         </div>
+        <div class="breadcrumb">
+          <div>
+            <i class="el-icon-location-outline"></i>
+              <span>当前位置：</span>
+          </div>
+          <el-breadcrumb separator-class="el-icon-arrow-right">
+            <el-breadcrumb-item  to="/" class="item">首页</el-breadcrumb-item>
+            <el-breadcrumb-item  to="" class="item">新闻资讯</el-breadcrumb-item>
+            <el-breadcrumb-item  to="" class="item">{{ title }}</el-breadcrumb-item>
+          </el-breadcrumb>
+        </div>
         <div class="pagecontent">
             <div class="leftnav">
                 <el-menu :default-active="defaultActive" router>
@@ -30,6 +41,7 @@
 <script>
 import Nav from './Nav.vue'
 import Footer from './Footer.vue'
+import { type } from 'os';
 export default {
   name: '',
   components: {
@@ -39,18 +51,49 @@ export default {
   data () {
     return {
       type: '',
-      defaultActive: ''
+      defaultActive: '',
+      title: ''
     }
   },
   mounted() {
-    this.defaultActive = this.$route.path;
+    // this.defaultActive = this.$route.path;
+    this.getTitle();
   },
   methods: {
+    getTitle() {
+      this.type = this.$route.params.type;
+      if (this.type == 'news_company') {
+        this.title = '公司新闻';
+        this.defaultActive = '/News/news/news_company';
+      }else {
+        this.title = '行业动态';
+        this.defaultActive = '/News/news/news_industry';
+      }
+    }
+  },
+  watch: {
+    '$route'(val) {
+      this.getTitle();
+    }
   }
 }
 </script>
 
 <style lang="less" scoped>
+.breadcrumb{
+  position: absolute;
+  // left: 1000px;
+  right: 100px;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  color: #999;
+}
+.item{
+  // vertical-align: bottom;
+  margin-top: 3px;
+  color: #999;
+}
 .img{
     font-size: 0px;
     img{

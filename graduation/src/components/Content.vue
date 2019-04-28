@@ -58,7 +58,7 @@
                         </div>
                         <div class="news_title_one_list">
                             <div>
-                                <a href="">More+</a>
+                                <a href="/News/news/news_company">More+</a>
                             </div>
                             <ul>
                                 <li v-for="(list, index) in sortByKey(this.lists, 'time')" :key="index" v-if="index < 4">
@@ -78,7 +78,7 @@
                         </div>
                         <div class="news_title_two_list">
                             <div>
-                                <a href="">More+</a>
+                                <a href="/News/news/news_industry">More+</a>
                             </div>
                             <ul>
                                 <li v-for="(item, id) in sortByKey(this.items, 'time')" :key="id" v-if="id < 4">

@@ -26,6 +26,9 @@ export default {
       this.getBreadcrumb(val);
     }
   },
+  mounted() {
+    this.getBreadcrumb(this.$route);
+  },
   methods: {
     getBreadcrumb(val) {
       if (this.levelList) this.levelList.splice(0, this.levelList.length);
@@ -40,7 +43,7 @@ export default {
 <style lang="less" scoped>
 .breadcrumb{
   position: absolute;
-  left: 850px;
+  right: 100px;
   display: flex;
   flex-direction: row;
   font-size: 14px;
