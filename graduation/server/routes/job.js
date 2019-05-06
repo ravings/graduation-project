@@ -37,6 +37,14 @@ router.post('/add', (req , res) => {
   // if (req.body.id) {
   //   jobfile.id = req.body.id;
   // }
+  // let jobfile = new jobs({
+  //   time: req.body.time,
+  //   address: req.body.address,
+  //   title: req.body.title,
+  //   number: req.body.number,
+  //   education: req.body.education,
+  //   professional: req.body.professional
+  // })
   if (req.body.time) {
     jobfile.time = req.body.time;
   }

@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const formidable = require('formidable');
-const path = require('path');
-const fs = require('fs');
+const formidable = require('formidable'); //  中间件，用来解析formData数据
+const path = require('path'); //  node.js的工具模块，用来处理文件的路径
+const fs = require('fs'); //  node.js的文件系统模块， 用来处理文件
 
 router.post('/activityUpload', (req, res, next) => {
   let form = new formidable.IncomingForm();

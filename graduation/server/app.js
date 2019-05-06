@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
 
 //引入路由文件
-const upload = require('./upload/activityUpload'); //  上传图片
+const upload = require('./upload/upload'); //  上传图片
 
 const job = require('./routes/job');
 const jobScoial = require('./routes/job_social');
