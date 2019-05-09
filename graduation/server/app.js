@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
 
 //连接数据库
 mongoose.connect('mongodb://localhost:27017/test', function(err){
@@ -43,6 +44,26 @@ app.use('/api/news_industry', news_industry);
 app.use('/api/administrator', administrator);
 app.use('/api/AU_about', AU_about);
 app.use('/api/AU_activity', AU_activity);
+
+
+// app.use(function(req, res, next) {
+//   console.log('1111');
+// })
+
+app.use((req, res, next) => {
+
+  console.log(2222);
+  let token = req.config.headers.Authorization;
+  jwt.verify(token, 'theKey', (err, decode) => {
+    if (err) {
+      res.status(401).json({
+        message: 'token过期'
+      })
+    }else {
+      next();
+    }
+  })
+})
 
 // 设置端口号
 // const post = process.env.PORT || 3000;
