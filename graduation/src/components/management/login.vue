@@ -40,11 +40,13 @@ export default {
       rules: {
         account: [
           {required: true, message:"用户名不能为空!", trigger: 'blur'},
-          {min: 5, max: 12, message:"长度在5-12字符串之间", trigger:"blur"}
+          {min: 5, max: 12, message:"长度在5-12字符串之间", trigger:"blur"},
+          // {pattern: /&/, message: "包含非法字符"}
         ],
         password: [
           {required: true, message:"密码不能为空!", trigger: 'blur'},
-          {min: 5, max: 12, message:"长度在5-12字符串之间", trigger:"blur"}
+          {min: 5, max: 12, message:"长度在5-12字符串之间", trigger:"blur"},
+          {pattern: /^(?!\d+$)[\da-zA-Z]+$/, message: "只能输入纯英文或数字英文混合的密码"}
         ]
       }
     }

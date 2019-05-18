@@ -23,4 +23,7 @@ export default {
   margin: 0px;
   padding: 0px;
 }
+#app {
+  min-width: 1340px;
+}
 </style>

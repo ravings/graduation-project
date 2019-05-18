@@ -8,7 +8,9 @@
             <h3>加入我们</h3>
             <p>JOIN US</p>
         </div>
-        <Breadcrumb ref="breadcrumb"></Breadcrumb>
+        <div class="breadcrumb-container">
+          <Breadcrumb ref="breadcrumb"></Breadcrumb>
+        </div>
         <div class="pagecontent">
             <div class="leftnav">
                 <el-menu active-text-color="#dd4012" @open="change" :default-active="defaultActive" router>
@@ -89,6 +91,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.breadcrumb-container{
+  position: relative;
+}
 .img{
     font-size: 0px;
     img{

@@ -9,16 +9,18 @@
             <p>关于我们</p>
             <p>ABOUT US</p>
           </div>
-          <div class="breadcrumb">
-              <div>
-                <i class="el-icon-location-outline"></i>
-                <span>当前位置：</span>
-              </div>
-              <el-breadcrumb separator-class="el-icon-arrow-right">
-                <el-breadcrumb-item  to="/" class="item">首页</el-breadcrumb-item>
-                <el-breadcrumb-item  class="item" v-for="(list, index) in levelList" :key="index">{{ list }}</el-breadcrumb-item>
-                <!-- <el-breadcrumb-item  class="item">公司概括</el-breadcrumb-item> -->
-              </el-breadcrumb>
+          <div class="breadcrumb-container">
+            <div class="breadcrumb">
+                <div>
+                  <i class="el-icon-location-outline"></i>
+                  <span>当前位置：</span>
+                </div>
+                <el-breadcrumb separator-class="el-icon-arrow-right">
+                  <el-breadcrumb-item  to="/" class="item">首页</el-breadcrumb-item>
+                  <el-breadcrumb-item  class="item" v-for="(list, index) in levelList" :key="index">{{ list }}</el-breadcrumb-item>
+                  <!-- <el-breadcrumb-item  class="item">公司概括</el-breadcrumb-item> -->
+                </el-breadcrumb>
+            </div>
           </div>
         </div>
         <div class="pagecontent">
@@ -99,6 +101,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.breadcrumb-container{
+  position: relative;
+}
 .img{
     font-size: 0px;
     img{

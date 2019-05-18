@@ -1,11 +1,11 @@
 <template>
   <div>
     <!-- 导航栏 -->
-    <div class="div_show" id="div_show">
+    <div class="div_show" id="div_show" ref="div_show">
       <div class="nav_show">
         <div class="logo">
           <img class="div_img" src="../assets/logo_01.png" alt="">
-          <p>中国科技技术股份有限公司</p>
+          <p><a href="/">中国科技技术股份有限公司</a></p>
         </div>
         <div class="nav">
           <nav class="div_nav" @mouseover="show"><!--  -->
@@ -14,8 +14,9 @@
           </nav>
         </div>
       </div>
+    </div>
       <!-- 下拉隐藏栏 -->
-      <div class="div_hide" @mouseleave="hide">
+      <div class="div_hide" ref="div_hide" @mouseleave="hide">
             <ul class="div_hide_product">
                 <!-- <transition-group tag="div"> -->
                     <li v-for="product in hide_list_product" :key="product.id">
@@ -36,8 +37,8 @@
               </li>
             </ul> -->
         </div>
-    </div>
-    <div style="height: 87px;"></div>
+
+    <!-- <div style="height: 87px;"></div> -->
   </div>
 </template>
 
@@ -93,12 +94,15 @@ export default{
   },
   methods: {
     show: function () {
-      let str = document.getElementById('div_show');
-      str.style.height = '252px';
+      // let str = document.getElementById('div_show');
+      // str.style.height = '252px';
+      let str = this.$refs.div_hide;
+      str.style.height = '165px'
     },
     hide: function () {
-      let str = document.getElementById('div_show');
-      str.style.height = '87px';
+      // let str = document.getElementById('div_show');
+      let str = this.$refs.div_hide;
+      str.style.height = '';
     }
   }
 }
@@ -111,9 +115,9 @@ export default{
     width: 100%;
     height: 87px;
     color: #fff;
-    position: absolute;
-    overflow: hidden;
-    transition: all .4s ease-in-out;
+    // position: absolute;
+    // overflow: hidden;
+    // transition: all .4s ease-in-out;
 }
 .nav_show{
     background-color: #141826;
@@ -164,12 +168,14 @@ a{
     color: #dd4012;
 }
 .div_hide{
-    height: 165px;
-    position: relative;
+  width: 100%;
+    height: 0;
+    position: absolute;
     // background-color: #141826;
     // opacity: 0.5;
      background: rgba(24, 29, 31, 0.75);
     overflow: hidden;
+    transition: all .4s ease-in-out;
     z-index: 9999;
     ul{
         text-align: center;
@@ -184,7 +190,7 @@ a{
     }
 }
 .div_hide_product{
-    position: relative;
+    // position: relative;
     float: right;
     right: 270px;
     // left: 810px;

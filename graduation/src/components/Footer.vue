@@ -123,4 +123,9 @@
         }
     }
 }
+// @media (max-width: 1300px) {
+//   .img {
+//     display: none;
+//   }
+// }
 </style>

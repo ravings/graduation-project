@@ -1,8 +1,9 @@
 <template>
     <div>
       <Nav></Nav>
-        <div class="div">
-            <el-carousel type="" height="360px">
+      <div class="div">
+        <div class="carousel">
+            <el-carousel height="360px">
             <el-carousel-item v-for="(item, index) in imgs" :key="index">
                 <router-link :to="item.url">
                     <img :src="item.src" alt="" style="height: 100%; width: 100%;">
@@ -120,6 +121,7 @@
                 </el-col>
             </el-row>
         </div>
+      </div>
       <Footer></Footer>
     </div>
 </template>
@@ -200,7 +202,17 @@ export default {
 </script>
 
 <style lang="less" scoped>
+// .carousel {
+  // z-index: 0;
+// }
+// .div {
+//   // position: absolute;
+//   width: 100%;
+//   min-width: 1200px;
+// }
+
 .about_us, .news, .product{
+  // position: absolute;
     padding-left: 25px;
     padding-right: 25px;
     // border: 1px solid #000;
@@ -211,7 +223,9 @@ export default {
 }
 .about_us{
     .el-col-6{
+      height: 385px;
         border-left: 1px solid rgba(20, 24, 38, 0.1);
+        // padding-top: 112px;
         &:first-child{
             border: none;
         }
@@ -240,22 +254,27 @@ export default {
     }
 }
 .about_us .about_us_title_one, .about_us_title_two, .about_us_title_three{
-    margin-top: 112px;
+  position: relative;
+  margin-top: 112px;
     h3{
+
         min-height: 75px;
-        margin-bottom: 40px;
+        // margin-bottom: 40px;
     }
     a{
         display: block;
+        position: absolute;
+        top: 150px;
+        left: 0;
         text-align: center;
         text-decoration: none;
-        width: 160px;
+        width: 157px;
         height: 43px;
         background-color: #000;
         color: #fff;
         bottom: 80px;
         line-height: 43px;
-        margin-bottom: 80px;
+        // margin-bottom: 80px;
     }
     a:hover{
         background-color: #dd4012;

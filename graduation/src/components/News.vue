@@ -8,16 +8,18 @@
             <h3>新闻资讯</h3>
             <p>NEWS</p>
         </div>
-        <div class="breadcrumb">
-          <div>
-            <i class="el-icon-location-outline"></i>
-              <span>当前位置：</span>
+        <div class="breadcrumb-container">
+          <div class="breadcrumb">
+            <div>
+              <i class="el-icon-location-outline"></i>
+                <span>当前位置：</span>
+            </div>
+            <el-breadcrumb separator-class="el-icon-arrow-right">
+              <el-breadcrumb-item  to="/" class="item">首页</el-breadcrumb-item>
+              <el-breadcrumb-item  to="" class="item">新闻资讯</el-breadcrumb-item>
+              <el-breadcrumb-item  to="" class="item">{{ title }}</el-breadcrumb-item>
+            </el-breadcrumb>
           </div>
-          <el-breadcrumb separator-class="el-icon-arrow-right">
-            <el-breadcrumb-item  to="/" class="item">首页</el-breadcrumb-item>
-            <el-breadcrumb-item  to="" class="item">新闻资讯</el-breadcrumb-item>
-            <el-breadcrumb-item  to="" class="item">{{ title }}</el-breadcrumb-item>
-          </el-breadcrumb>
         </div>
         <div class="pagecontent">
             <div class="leftnav">
@@ -80,6 +82,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.breadcrumb-container{
+  position: relative;
+}
 .breadcrumb{
   position: absolute;
   // left: 1000px;
